@@ -318,20 +318,20 @@ section{ position:relative; }
   position:relative; border-radius: 6px; overflow:hidden; height: 420px;
   display:flex; flex-direction:column; justify-content:flex-end;
   cursor:pointer;
-  background: var(--ink); /* Подложка под встроенное фото */
+  background: var(--ink);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
 .p-card:hover{ transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(31,28,23,.4); }
 .p-texture{ 
   position:absolute; 
   inset:0; 
-  background-size: contain; /* Картинка масштабируется и помещается целиком */
+  background-size: cover; 
   background-repeat: no-repeat;
-  background-position: center; /* Картинка встает ровно по центру */
+  background-position: center; 
   transition: transform 0.6s var(--ease);
 }
 .p-card:hover .p-texture{
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 .p-texture.tex-paint{ background-color: #2D2923; }
 .p-texture.tex-wallpaper{
@@ -348,7 +348,8 @@ section{ position:relative; }
 }
 .p-card::before{
   content:""; position:absolute; inset:0;
-  background: linear-gradient(to top, rgba(20,18,14,.92) 0%, rgba(20,18,14,.35) 35%, rgba(20,18,14,0) 60%);
+  /* Темный градиент снизу вверх для максимальной контрастности текста */
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.1) 75%);
   z-index:1;
 }
 .p-peel{
@@ -359,12 +360,14 @@ section{ position:relative; }
   box-shadow: -6px 6px 14px -4px rgba(0,0,0,.25);
 }
 .p-card:hover .p-peel{ width:92px; height:92px; }
-.p-body{ position:relative; z-index:2; padding: 26px 26px 30px; color: var(--paper); }
-.p-index{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-bottom:10px; display:block; }
-.p-body h3{ font-family: var(--font-display); font-size:26px; font-weight:500; margin-bottom:10px; }
-.p-body p{ font-size:14px; line-height:1.55; opacity:.88; max-width:36ch; margin-bottom:18px; height:0; overflow:hidden; opacity:0; transition: height .5s var(--ease), opacity .4s ease .05s, margin .5s ease; }
-.p-card:hover .p-body p{ height:5.4em; opacity:.88; }
-.p-link{ font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:8px; }
+
+/* ОБНОВЛЕННЫЕ СТИЛИ ТЕКСТА В КАРТОЧКАХ */
+.p-body{ position:relative; z-index:2; padding: 26px 26px 30px; color: #ffffff; }
+.p-index{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom:10px; display:block; font-weight:700; }
+.p-body h3{ font-family: var(--font-display); font-size:26px; font-weight:500; margin-bottom:10px; color: #ffffff !important; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.p-body p{ font-size:14px; line-height:1.55; color: rgba(255, 255, 255, 0.9); max-width:36ch; margin-bottom:18px; height:0; overflow:hidden; opacity:0; transition: height .5s var(--ease), opacity .4s ease .05s, margin .5s ease; }
+.p-card:hover .p-body p{ height:5.4em; opacity:1; }
+.p-link{ font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:8px; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 .p-link svg{ width:13px; height:13px; transition: transform .35s var(--ease); }
 .p-card:hover .p-link svg{ transform: translateX(4px); }
 
