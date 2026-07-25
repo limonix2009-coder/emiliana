@@ -238,10 +238,7 @@ section{ position:relative; }
   opacity:0;
   animation: heroFade 16s infinite;
 }
-.hero-slideshow .slide:nth-child(1){ animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2){ animation-delay: 4s; }
-.hero-slideshow .slide:nth-child(3){ animation-delay: 8s; }
-.hero-slideshow .slide:nth-child(4){ animation-delay: 12s; }
+
 @keyframes heroFade{
   0%   { opacity:0; }
   4%   { opacity:1; }
@@ -1047,9 +1044,18 @@ function resetRevTimer(){
 function renderHero(){
   const wrap = document.getElementById('heroSlideshow');
   if(!wrap) return;
-  wrap.innerHTML = (data.hero.slides || []).map(url =>
-    `<div class="slide" style="background-image:url('${fixPath(url)}');"></div>`
-  ).join('');
+  
+  const slides = data.hero.slides || [];
+  const total = slides.length;
+  if(total === 0) return;
+  
+  const cycleTime = 4; // Время показа одного слайда (секунды)
+  const totalDuration = total * cycleTime;
+  
+  wrap.innerHTML = slides.map((url, i) => {
+    const delay = i * cycleTime;
+    return `<div class="slide" style="background-image:url('${fixPath(url)}'); animation-delay:${delay}s; animation-duration:${totalDuration}s;"></div>`;
+  }).join('');
 }
 
 /* ============================= LANGUAGE SWITCH ============================= */
