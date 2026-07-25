@@ -321,8 +321,17 @@ section{ position:relative; }
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
 .p-card:hover{ transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(31,28,23,.4); }
-.p-texture{ position:absolute; inset:0; background-size:cover; background-position:center; }
-.p-texture.tex-paint{ background: radial-gradient(circle at 30% 25%, #6C7C67, var(--verde) 55%, var(--verde-deep) 100%); }
+.p-texture{ 
+  position:absolute; 
+  inset:0; 
+  background-size: cover; 
+  background-position: center 30%; /* Центрируем стеллаж в карточке */
+  transition: transform 0.6s var(--ease);
+}
+.p-card:hover .p-texture{
+  transform: scale(1.05);
+}
+.p-texture.tex-paint{ background-color: #3C4A3B; }
 .p-texture.tex-wallpaper{
   background-color:#E7DEC9;
   background-image: radial-gradient(circle at 9px 9px, rgba(139,85,70,.5) 2px, transparent 2.4px), radial-gradient(circle at 20px 20px, rgba(169,121,59,.35) 1.6px, transparent 2px);
@@ -337,7 +346,8 @@ section{ position:relative; }
 }
 .p-card::before{
   content:""; position:absolute; inset:0;
-  background: linear-gradient(to top, rgba(20,18,14,.88) 0%, rgba(20,18,14,.42) 46%, rgba(20,18,14,0) 72%);
+  /* Мягкий градиент, чтобы нижний текст был читаемым, а картинка оставалась яркой */
+  background: linear-gradient(to top, rgba(20,18,14,.92) 0%, rgba(20,18,14,.4) 40%, rgba(20,18,14,0) 65%);
   z-index:1;
 }
 .p-peel{
@@ -1049,7 +1059,7 @@ function renderHero(){
   const total = slides.length;
   if(total === 0) return;
   
-  const cycleTime = 4; // Время показа одного слайда (секунды)
+  const cycleTime = 4; // Время показа одного слайда в секундах
   const totalDuration = total * cycleTime;
   
   wrap.innerHTML = slides.map((url, i) => {
