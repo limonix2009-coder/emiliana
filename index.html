@@ -848,6 +848,12 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
    ============================================================== */
 const CONTENT_BASE = 'content/';
 
+// Вспомогательная функция для чистки путей к файлам (убираем слэш в начале)
+function fixPath(url) {
+  if (!url) return '';
+  return url.replace(/^\//, '');
+}
+
 let dict = { az:{}, en:{}, ru:{} };   // static text dictionaries
 let data = {                          // dynamic collections
   hero: { slides: [] },
@@ -925,7 +931,7 @@ function applySettings(){
   const s = data.settings || {};
   if(s.logo){
     const logo = document.getElementById('siteLogo');
-    if(logo) logo.src = s.logo;
+    if(logo) logo.src = fixPath(s.logo);
   }
   if(s.founding_year){
     const a = document.getElementById('foundingYearNum');
@@ -936,7 +942,7 @@ function applySettings(){
   if(s.about_image){
     const frame = document.getElementById('aboutFrame');
     if(frame){
-      frame.style.backgroundImage = `url('${s.about_image}')`;
+      frame.style.backgroundImage = `url('${fixPath(s.about_image)}')`;
       frame.style.backgroundSize = 'cover';
       frame.style.backgroundPosition = 'center';
     }
@@ -961,7 +967,7 @@ function renderProducts(lang){
   if(!grid) return;
   grid.innerHTML = data.products.items.map(p => `
     <article class="p-card">
-      <div class="p-texture tex-${p.texture}" ${p.image ? `style="background-image:url('${p.image}')"` : ''}></div>
+      <div class="p-texture tex-${p.texture}" ${p.image ? `style="background-image:url('${fixPath(p.image)}')"` : ''}></div>
       <div class="p-peel"></div>
       <div class="p-body">
         <span class="p-index">${(p.index && p.index[lang]) || ''}</span>
@@ -979,7 +985,7 @@ function renderGallery(lang){
   if(!grid) return;
   grid.innerHTML = data.gallery.items.map(g => `
     <div class="g-tile ${g.texture} ${currentFilter !== 'all' && g.room !== currentFilter ? 'hide' : ''}" data-room="${g.room}">
-      <div class="g-tex tex-${g.texture}" ${g.image ? `style="background-image:url('${g.image}')"` : ''}></div>
+      <div class="g-tex tex-${g.texture}" ${g.image ? `style="background-image:url('${fixPath(g.image)}')"` : ''}></div>
       <div class="g-cap">
         <div class="room">${(dict[lang] && dict[lang]['filter_' + g.room]) || ''}</div>
         <p>${(g.caption && g.caption[lang]) || ''}</p>
@@ -1042,7 +1048,7 @@ function renderHero(){
   const wrap = document.getElementById('heroSlideshow');
   if(!wrap) return;
   wrap.innerHTML = (data.hero.slides || []).map(url =>
-    `<div class="slide" style="background-image:url('${url}');"></div>`
+    `<div class="slide" style="background-image:url('${fixPath(url)}');"></div>`
   ).join('');
 }
 
