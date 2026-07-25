@@ -162,6 +162,7 @@ collections:
             fields:
               - { label: "ID (do not change)", name: "id", widget: "string" }
               - { label: "Texture style (paint / wallpaper / doors / parquet)", name: "texture", widget: "select", options: ["paint", "wallpaper", "doors", "parquet"] }
+              - { label: "Photo (optional — leave empty to use the texture style above)", name: "image", widget: "image", required: false }
               - label: "Index label (e.g. '01 — PAINT')"
                 name: "index"
                 widget: "object"
@@ -272,6 +273,7 @@ collections:
         name: "settings"
         fields:
           - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "About photo (optional — leave empty to use the default texture)", name: "about_image", widget: "image", required: false }
           - { label: "Founding year", name: "founding_year", widget: "string" }
           - { label: "Showroom address", name: "address", widget: "string" }
           - { label: "Phone", name: "phone", widget: "string" }
