@@ -360,7 +360,7 @@ section{ position:relative; }
 }
 .catalog-close:hover { background: var(--stone); color: var(--ink); }
 
-.catalog-nav { display: flex; gap: 12px; margin: 24px 0 36px; border-bottom: 1px solid var(--stone-line); padding-bottom: 12px; flex-wrap: wrap; }
+.catalog-nav { display: flex; gap: 12px; margin: 24px 0 20px; border-bottom: 1px solid var(--stone-line); padding-bottom: 12px; flex-wrap: wrap; }
 .catalog-tab {
   padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 600;
   cursor: pointer; background: transparent; color: var(--ink-soft);
@@ -768,7 +768,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow" data-i18n="contact_eyebrow">ƏLAQƏ VƏ MƏKAN</p>
+        <p class="eyebrow" data-i18n="contact_eyebrow">ƏLAqƏ VƏ MƏKAN</p>
         <h2 data-i18n="contact_headline">Materialları canlı olaraq görün.</h2>
       </div>
       <p class="lede" data-i18n="contact_sub">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
@@ -831,6 +831,17 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="doors" data-i18n="doors_name">Qapılar</button>
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
+
+    <!-- АДМИН-ПАНЕЛЬ ДЛЯ БЫСТРОГО ДОБАВЛЕНИЯ -->
+    <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
+      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
+        <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
+      </div>
+    </div>
+
     <div class="catalog-grid-inner" id="catalogGridInner"></div>
   </div>
 </div>
@@ -941,6 +952,23 @@ const catalogData = {
     { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png" }
   ]
 };
+
+// Загружаем сохраненные в браузере кастомные элементы
+function loadCustomItems() {
+  const saved = localStorage.getItem('emiliana_custom_paint_items');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      for (let brandId in parsed) {
+        if (!catalogData.paint.items[brandId]) {
+          catalogData.paint.items[brandId] = [];
+        }
+        catalogData.paint.items[brandId].push(...parsed[brandId]);
+      }
+    } catch(e) { console.error(e); }
+  }
+}
+loadCustomItems();
 
 let currentLang = 'az';
 let currentFilter = 'all';
@@ -1123,9 +1151,11 @@ function switchCatalogCategory(catId) {
 
 function renderCatalogContent(catId) {
   const grid = document.getElementById('catalogGridInner');
+  const adminPanel = document.getElementById('adminAddPanel');
   
   if (catId === 'paint') {
     if (!selectedBrand) {
+      if(adminPanel) adminPanel.style.display = 'none';
       const brands = catalogData.paint.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer;">
@@ -1139,6 +1169,7 @@ function renderCatalogContent(catId) {
         </div>
       `).join('');
     } else {
+      if(adminPanel) adminPanel.style.display = 'block'; // Показываем админ-панель внутри бренда
       const brandObj = catalogData.paint.brands.find(b => b.id === selectedBrand);
       const items = catalogData.paint.items[selectedBrand] || [];
       
@@ -1150,11 +1181,11 @@ function renderCatalogContent(catId) {
       `;
       
       if (items.length === 0) {
-        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə tezliklə yeni məhsullar əlavə olunacaq.</p>';
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ məhsul yoxdur. Yuxarıdakı panel vasitəsilə əlavə edin.</p>';
       } else {
         html += items.map(item => `
           <div class="cat-item-card">
-            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img" style="display:flex; align-items:center; justify-content:center; color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
             <div class="cat-item-info">
               <div>
                 <div class="cat-item-title">${item.title}</div>
@@ -1168,6 +1199,7 @@ function renderCatalogContent(catId) {
       grid.innerHTML = html;
     }
   } else {
+    if(adminPanel) adminPanel.style.display = 'none';
     const items = catalogData[catId] || [];
     if (items.length === 0) {
       grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
@@ -1188,8 +1220,43 @@ function renderCatalogContent(catId) {
   }
 }
 
+// Функция добавления новой краски через админ-панель
+function addNewPaintItem() {
+  const titleInput = document.getElementById('newPaintTitle');
+  const descInput = document.getElementById('newPaintDesc');
+  
+  if (!titleInput.value) {
+    alert('Zəhmət olmasa məhsulun adını daxil edin.');
+    return;
+  }
+
+  const newItem = {
+    title: titleInput.value,
+    desc: descInput.value || 'Dekorativ interyer örtüyü',
+    img: ''
+  };
+
+  if (!catalogData.paint.items[selectedBrand]) {
+    catalogData.paint.items[selectedBrand] = [];
+  }
+  catalogData.paint.items[selectedBrand].push(newItem);
+
+  // Сохраняем в localStorage, чтобы не пропало при перезагрузке
+  let customItems = JSON.parse(localStorage.getItem('emiliana_custom_paint_items') || '{}');
+  if (!customItems[selectedBrand]) customItems[selectedBrand] = [];
+  customItems[selectedBrand].push(newItem);
+  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
+
+  // Очищаем инпуты и обновляем сетку
+  titleInput.value = '';
+  descInput.value = '';
+  renderCatalogContent('paint');
+}
+
 function openMaterialDetails(title) {
   const grid = document.getElementById('catalogGridInner');
+  const adminPanel = document.getElementById('adminAddPanel');
+  if(adminPanel) adminPanel.style.display = 'none';
   
   if (!window.catalogPreviousContent) {
     window.catalogPreviousContent = grid.innerHTML;
@@ -1227,6 +1294,8 @@ function backToCatalogGrid() {
     document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
     document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
     window.catalogPreviousContent = null;
+    const adminPanel = document.getElementById('adminAddPanel');
+    if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
   }
 }
 
