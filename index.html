@@ -1039,19 +1039,14 @@ const catalogData = {
   ]
 };
 
-// Жесткая загрузка из localStorage с защитой от дублирования дефолтных элементов
+// Принудительное обновление и очистка старого кэша localStorage
 function loadCustomItems() {
-  const saved = localStorage.getItem('emiliana_custom_paint_items');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      for (let brandId in parsed) {
-        catalogData.paint.items[brandId] = parsed[brandId];
-      }
-    } catch(e) { console.error(e); }
-  } else {
-    saveCustomItemsToStorage();
+  localStorage.removeItem('emiliana_custom_paint_items');
+  let customItems = {};
+  for (let brandId in catalogData.paint.items) {
+    customItems[brandId] = catalogData.paint.items[brandId];
   }
+  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
 }
 loadCustomItems();
 
