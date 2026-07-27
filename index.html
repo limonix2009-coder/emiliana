@@ -768,7 +768,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow" data-i18n="contact_eyebrow">ƏLAqƏ VƏ MƏKAN</p>
+        <p class="eyebrow" data-i18n="contact_eyebrow">ƏLAQƏ VƏ MƏKAN</p>
         <h2 data-i18n="contact_headline">Materialları canlı olaraq görün.</h2>
       </div>
       <p class="lede" data-i18n="contact_sub">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
@@ -832,12 +832,13 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДЛЯ БЫСТРОГО ДОБАВЛЕНИЯ -->
+    <!-- АДМИН-ПАНЕЛЬ С ПОЛЕМ ДЛЯ КАРТИНКИ -->
     <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
       <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
-      <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
         <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/ foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
       </div>
     </div>
@@ -1169,7 +1170,7 @@ function renderCatalogContent(catId) {
         </div>
       `).join('');
     } else {
-      if(adminPanel) adminPanel.style.display = 'block'; // Показываем админ-панель внутри бренда
+      if(adminPanel) adminPanel.style.display = 'block';
       const brandObj = catalogData.paint.brands.find(b => b.id === selectedBrand);
       const items = catalogData.paint.items[selectedBrand] || [];
       
@@ -1220,10 +1221,11 @@ function renderCatalogContent(catId) {
   }
 }
 
-// Функция добавления новой краски через админ-панель
+// Функция добавления новой краски с учетом ссылки на картинку
 function addNewPaintItem() {
   const titleInput = document.getElementById('newPaintTitle');
   const descInput = document.getElementById('newPaintDesc');
+  const imgInput = document.getElementById('newPaintImg');
   
   if (!titleInput.value) {
     alert('Zəhmət olmasa məhsulun adını daxil edin.');
@@ -1233,7 +1235,7 @@ function addNewPaintItem() {
   const newItem = {
     title: titleInput.value,
     desc: descInput.value || 'Dekorativ interyer örtüyü',
-    img: ''
+    img: imgInput.value.trim()
   };
 
   if (!catalogData.paint.items[selectedBrand]) {
@@ -1241,15 +1243,14 @@ function addNewPaintItem() {
   }
   catalogData.paint.items[selectedBrand].push(newItem);
 
-  // Сохраняем в localStorage, чтобы не пропало при перезагрузке
   let customItems = JSON.parse(localStorage.getItem('emiliana_custom_paint_items') || '{}');
   if (!customItems[selectedBrand]) customItems[selectedBrand] = [];
   customItems[selectedBrand].push(newItem);
   localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
 
-  // Очищаем инпуты и обновляем сетку
   titleInput.value = '';
   descInput.value = '';
+  imgInput.value = '';
   renderCatalogContent('paint');
 }
 
