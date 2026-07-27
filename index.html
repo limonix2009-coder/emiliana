@@ -397,21 +397,28 @@ section{ position:relative; }
 }
 .cat-item-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
 
-/* Стиль для плашки с логотипом бренда */
+/* Контейнер логотипа бренда */
 .brand-logo-container {
   width: 100%;
-  height: 90px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
   background: #ffffff;
   border-bottom: 1px solid var(--stone-line);
+  overflow: hidden;
 }
 .brand-logo-img {
-  max-height: 100%;
-  max-width: 100%;
+  max-height: 85%;
+  max-width: 90%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.cat-item-card:hover .brand-logo-img {
+  transform: scale(1.08);
 }
 
 .cat-item-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--plaster-2); }
@@ -474,21 +481,21 @@ section{ position:relative; }
 .g-tile.hide{ display:none; }
 .g-tile:nth-child(3n+1){ grid-column: span 2; }
 .g-tile:nth-child(4n){ aspect-ratio: 4/5; }
-.g-tex{ position:absolute; inset:0; transition: transform .7s var(--ease); background-size:cover; background-position:center; }
+
+/* ИСПРАВЛЕННЫЙ ИЗОБРАЗИТЕЛЬНЫЙ СТИЛЬ ГАЛЕРЕИ */
+.g-tex { 
+  position: absolute; 
+  inset: 0; 
+  transition: transform .7s var(--ease); 
+  background-size: cover !important; 
+  background-position: center !important; 
+  background-repeat: no-repeat !important;
+}
 .g-tile:hover .g-tex{ transform: scale(1.07); }
 .g-tile::before{ content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(20,18,14,.82), rgba(20,18,14,0) 60%); z-index:1; }
 .g-cap{ position:absolute; left:20px; right:20px; bottom:18px; z-index:2; color: var(--paper); }
 .g-cap .room{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--brass-light); margin-bottom:6px; font-weight:700; }
 .g-cap p{ font-size:13.5px; line-height:1.45; opacity:.92; }
-
-.g-tex.tex-g1{ background: linear-gradient(135deg, var(--verde), var(--verde-deep) 70%); }
-.g-tex.tex-g2{ background-color:#E9E0CB; background-image: radial-gradient(circle at 9px 9px, rgba(139,85,70,.45) 2px, transparent 2.4px); background-size:26px 26px; }
-.g-tex.tex-g3{ background: repeating-linear-gradient(45deg, #5C3623 0 3px, #6E4430 3px 8px, #4E2D1D 8px 10px), linear-gradient(#5C3623,#5C3623); }
-.g-tex.tex-g4{ background-color:#D8C6A8; background-image: radial-gradient(circle at 10px 10px, rgba(60,74,59,.4) 2px, transparent 2.4px); background-size:24px 24px; }
-.g-tex.tex-g5{ background: radial-gradient(circle at 30% 20%, #A85F63, #8B5546 60%, #5c372c); }
-.g-tex.tex-g6{ background-color:#EFE7D6; background-image: radial-gradient(circle at 9px 9px, rgba(169,121,59,.4) 1.8px, transparent 2.2px), radial-gradient(circle at 19px 19px, rgba(31,28,23,.15) 1.4px, transparent 1.8px); background-size:28px 28px; }
-.g-tex.tex-g7{ background: repeating-linear-gradient(95deg, #2b2723 0 4px, #3a352c 4px 9px); }
-.g-tex.tex-g8{ background: radial-gradient(circle at 32% 28%, #6C7C67, var(--verde) 55%, var(--verde-deep) 100%); }
 
 /* ============================= REVIEWS ============================= */
 .reviews-band{ background: var(--ink); color: var(--paper); overflow:hidden; }
@@ -647,7 +654,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
     </div>
 
-    <!-- Interior slideshow: populated dynamically from content/hero.json -->
+    <!-- Interior slideshow -->
     <div class="hero-visual">
       <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true"></div>
     </div>
@@ -703,7 +710,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <p class="lede" data-i18n="products_sub">Hover any material to see how we work with it.</p>
     </div>
 
-    <div class="products-grid reveal-stagger" id="productsGrid"><!-- rendered from content/products.json --></div>
+    <div class="products-grid reveal-stagger" id="productsGrid"></div>
   </div>
 </section>
 
@@ -751,7 +758,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <h2 data-i18n="brands_headline">The names behind the finish.</h2>
       <p data-i18n="brands_sub">We import directly.</p>
     </div>
-    <div class="brands-grid reveal-stagger" id="brandsGrid"><!-- rendered from content/brands.json --></div>
+    <div class="brands-grid reveal-stagger" id="brandsGrid"></div>
   </div>
 </section>
 
@@ -774,7 +781,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="filter-btn" data-filter="office" data-i18n="filter_office">Office</button>
     </div>
 
-    <div class="gallery-grid reveal-stagger" id="galleryGrid"><!-- rendered from content/gallery.json --></div>
+    <div class="gallery-grid reveal-stagger" id="galleryGrid"></div>
   </div>
 </section>
 
@@ -784,7 +791,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <p class="eyebrow reveal" data-i18n="reviews_eyebrow">CUSTOMER REVIEWS</p>
     <h2 class="reveal" style="color:var(--paper); margin:14px 0 46px;" data-i18n="reviews_headline">Said by the people who live with our materials.</h2>
 
-    <div class="rev-track" id="revTrack"><!-- rendered from content/reviews.json --></div>
+    <div class="rev-track" id="revTrack"></div>
 
     <div class="rev-nav">
       <button class="rev-arrow" id="revPrev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -942,16 +949,16 @@ let data = {
   settings: {}
 };
 
-// Структура брендов (с логотипами) и красок
+// Структура брендов и красок
 const catalogData = {
   paint: {
     brands: [
-      { id: 'decorazza', name: 'Decorazza', logo: 'uploads/decorazza.png', desc: 'İtalyan üslublu dekorativ boyalar və suvaqlar' },
-      { id: 'olsta', name: 'Olsta', logo: 'uploads/olsta.png', desc: 'Ekoloji təmiz premium interyer boyaları' },
-      { id: 'swisslake', name: 'Swiss Lake', logo: 'uploads/swisslake.png', desc: 'İsveçrə keyfiyyətli zəngin rəng palitrası' },
-      { id: 'bayramix', name: 'Bayramix', logo: 'uploads/bayramix.png', desc: 'Mərmər qırıntılı mozaik və dekorativ örtüklər' },
-      { id: 'teknos', name: 'Teknos', logo: 'uploads/teknos.png', desc: 'Fin texnologiyalı yüksək davamlılıqlı boyalar' },
-      { id: 'daricco', name: 'Daricco', logo: 'uploads/daricco.png', desc: 'Eleqant teksturalı dekorativ örtüklər' }
+      { id: 'decorazza', name: 'Decorazza', logo: 'uploads/decorazza.png', scale: 1.45, desc: 'İtalyan üslublu dekorativ boyalar və suvaqlar' },
+      { id: 'olsta', name: 'Olsta', logo: 'uploads/olsta.png', scale: 0.95, desc: 'Ekoloji təmiz premium interyer boyaları' },
+      { id: 'swisslake', name: 'Swiss Lake', logo: 'uploads/swisslake.png', scale: 1.45, desc: 'İsveçrə keyfiyyətli zəngin rəng palitrası' },
+      { id: 'bayramix', name: 'Bayramix', logo: 'uploads/bayramix.png', scale: 1.0, desc: 'Mərmər qırıntılı mozaik və dekorativ örtüklər' },
+      { id: 'teknos', name: 'Teknos', logo: 'uploads/teknos.png', scale: 1.0, desc: 'Fin texnologiyalı yüksək davamlılıqlı boyalar' },
+      { id: 'daricco', name: 'Daricco', logo: 'uploads/daricco.png', scale: 1.45, desc: 'Eleqant teksturalı dekorativ örtüklər' }
     ],
     items: {
       decorazza: [
@@ -1142,7 +1149,7 @@ function renderCatalogContent(catId) {
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer;">
           <div class="brand-logo-container">
-            ${b.logo ? `<img src="${fixPath(b.logo)}" class="brand-logo-img" alt="${b.name}">` : `<span style="font-family: var(--font-display); font-size:22px; color:var(--brass);">${b.name}</span>`}
+            ${b.logo ? `<img src="${fixPath(b.logo)}" class="brand-logo-img" style="transform: scale(${b.scale || 1});" alt="${b.name}">` : `<span style="font-family: var(--font-display); font-size:22px; color:var(--brass);">${b.name}</span>`}
           </div>
           <div class="cat-item-info">
             <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
@@ -1223,8 +1230,8 @@ function renderGallery(lang){
   const grid = document.getElementById('galleryGrid');
   if(!grid) return;
   grid.innerHTML = data.gallery.items.map(g => `
-    <div class="g-tile ${g.texture} ${currentFilter !== 'all' && g.room !== currentFilter ? 'hide' : ''}" data-room="${g.room}">
-      <div class="g-tex tex-${g.texture}" ${g.image ? `style="background-image:url('${fixPath(g.image)}')"` : ''}></div>
+    <div class="g-tile ${currentFilter !== 'all' && g.room !== currentFilter ? 'hide' : ''}" data-room="${g.room}">
+      <div class="g-tex" ${g.image ? `style="background-image:url('${fixPath(g.image)}');"` : ''}></div>
       <div class="g-cap">
         <div class="room">${(dict[lang] && dict[lang]['filter_' + g.room]) || ''}</div>
         <p>${(g.caption && g.caption[lang]) || ''}</p>
