@@ -950,7 +950,7 @@ const catalogData = {
     ],
     items: {
       decorazza: [
-        { title: "Decorazza Lucetezza", desc: "İpək effekti verən dekorativ boya", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
+        { title: "Decorazza Lucetezza", desc: "İpək effekti verən dekorativ boya", img: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png" },
         { title: "Decorazza Traverto", desc: "Təbii travertin daşı effekti", img: "" },
         { title: "Decorazza Velours", desc: "Məxmər effekti yaradan örtük", img: "" }
       ],
@@ -974,13 +974,13 @@ const catalogData = {
     }
   },
   wallpaper: [
-    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/wallpapers.png" }
+    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png" }
   ],
   doors: [
-    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/doors.png" }
+    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" }
   ],
   parquet: [
-    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg" }
+    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png" }
   ]
 };
 
@@ -1082,46 +1082,62 @@ function applySettings(){
 
 /* ============================= PRODUCTS & MODAL ============================= */
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-const catOrder = ['paint', 'wallpaper', 'doors', 'parquet'];
 
 function renderProducts(lang){
   const grid = document.getElementById('productsGrid');
   if(!grid) return;
 
-  const items = (data.products && data.products.items && data.products.items.length > 0) 
-    ? data.products.items 
-    : [
-        { id: "paint", image: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
-        { id: "wallpaper", image: "uploads/wallpapers.png" },
-        { id: "doors", image: "uploads/doors.png" },
-        { id: "parquet", image: "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg" }
-      ];
+  // Прямое сопоставление с точным регистром файлов из папки uploads/
+  const items = [
+    {
+      id: "paint",
+      image: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png",
+      index: { az: "01 — BOYA", en: "01 — PAINT", ru: "01 — КРАСКА" },
+      desc: { az: "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi.", en: "Breathable lime paints.", ru: "Дышащие краски." },
+      cta: { az: "Boya çeşidinə bax", en: "View paint range", ru: "Смотреть краски" }
+    },
+    {
+      id: "wallpaper",
+      image: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png",
+      index: { az: "02 — DİVAR KAĞIZI", en: "02 — WALLPAPER", ru: "02 — ОБОИ" },
+      desc: { az: "İtaliya və Avropa istehsalı premium divar kağızları.", en: "European wallpapers.", ru: "Европейские обои." },
+      cta: { az: "Divar kağızı çeşidinə bax", en: "View wallpaper range", ru: "Смотреть обои" }
+    },
+    {
+      id: "doors",
+      image: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png",
+      index: { az: "03 — QAPILAR", en: "03 — DOORS", ru: "03 — ДВЕРИ" },
+      desc: { az: "İtalyan üslublu interyer qapıları, gizli çərçivələr.", en: "Italian interior doors.", ru: "Итальянские двери." },
+      cta: { az: "Qapı çeşidinə bax", en: "View door range", ru: "Смотреть двери" }
+    },
+    {
+      id: "parquet",
+      image: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png",
+      index: { az: "04 — PARKET", en: "04 — PARQUET", ru: "04 — ПАРКЕТ" },
+      desc: { az: "Təbii palıd, fransız və klassik yolka parketlər.", en: "Natural oak parquet.", ru: "Натуральный паркет." },
+      cta: { az: "Parket çeşidinə bax", en: "View parquet range", ru: "Смотреть паркет" }
+    }
+  ];
 
-  grid.innerHTML = items.map((p, idx) => {
-    const imgUrl = p.image ? fixPath(p.image) : '';
-    const indexText = (p.index && p.index[lang]) ? p.index[lang] : '0' + (idx + 1) + ' — ' + (p.id || catOrder[idx]).toUpperCase();
-    const titleText = (dict[lang] && dict[lang][(p.id || catOrder[idx]) + '_name']) ? dict[lang][(p.id || catOrder[idx]) + '_name'] : '';
-    const descText = (p.desc && p.desc[lang]) ? p.desc[lang] : '';
-    const ctaText = (p.cta && p.cta[lang]) ? p.cta[lang] : 'Bax';
-
+  grid.innerHTML = items.map((p) => {
     return `
-      <article class="p-card" data-cat-id="${p.id || catOrder[idx] || 'paint'}">
-        <div class="p-texture" style="background-image: url('${imgUrl}');"></div>
+      <article class="p-card" data-cat-id="${p.id}">
+        <div class="p-texture" style="background-image: url('${p.image}');"></div>
         <div class="p-peel"></div>
         <div class="p-body">
-          <span class="p-index">${indexText}</span>
-          <h3>${titleText}</h3>
-          <p>${descText}</p>
-          <div class="p-link"><span>${ctaText}</span>${arrowSVG}</div>
+          <span class="p-index">${p.index[lang] || p.index['az']}</span>
+          <h3>${(dict[lang] && dict[lang][p.id + '_name']) || p.id}</h3>
+          <p>${p.desc[lang] || p.desc['az']}</p>
+          <div class="p-link"><span>${p.cta[lang] || p.cta['az']}</span>${arrowSVG}</div>
         </div>
       </article>
     `;
   }).join('');
 
-  document.querySelectorAll('.p-card').forEach((card, index) => {
+  document.querySelectorAll('.p-card').forEach((card) => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
-      const catId = card.getAttribute('data-cat-id') || catOrder[index] || 'paint';
+      const catId = card.getAttribute('data-cat-id') || 'paint';
       openCatalogModal(catId);
     });
   });
