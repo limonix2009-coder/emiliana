@@ -954,23 +954,18 @@ const catalogData = {
   ]
 };
 
-// Загружаем сохраненные кастомные элементы
+// Жесткая загрузка из localStorage с защитой от дублирования дефолтных элементов
 function loadCustomItems() {
   const saved = localStorage.getItem('emiliana_custom_paint_items');
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
       for (let brandId in parsed) {
-        if (!catalogData.paint.items[brandId]) {
-          catalogData.paint.items[brandId] = [];
-        }
-        parsed[brandId].forEach(item => {
-          if (!catalogData.paint.items[brandId].some(existing => existing.title === item.title)) {
-            catalogData.paint.items[brandId].push(item);
-          }
-        });
+        catalogData.paint.items[brandId] = parsed[brandId];
       }
     } catch(e) { console.error(e); }
+  } else {
+    saveCustomItemsToStorage();
   }
 }
 loadCustomItems();
@@ -1265,7 +1260,6 @@ function saveCustomItemsToStorage() {
   localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
 }
 
-// Открытие карточки с возможностью редактирования и удаления
 function openMaterialDetails(title) {
   const grid = document.getElementById('catalogGridInner');
   const adminPanel = document.getElementById('adminAddPanel');
@@ -1306,7 +1300,6 @@ function openMaterialDetails(title) {
       <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line);">
         <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
         
-        <!-- Панель администратора (Редактирование и Удаление) -->
         <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
           <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Məhsulu idarə et (Admin)</h4>
           
@@ -1332,7 +1325,6 @@ function openMaterialDetails(title) {
           </div>
         </div>
 
-        <!-- Отображение информации на сайте -->
         <p id="displayDetails" style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
           ${detailsText}
         </p>
@@ -1352,7 +1344,6 @@ function openMaterialDetails(title) {
   `;
 }
 
-// Функция удаления товара
 function deleteItem(title) {
   if (!confirm(`"${title}" məhsulunu silmək istədiyinizə əminsinizmi?`)) return;
 
@@ -1386,7 +1377,7 @@ function deleteItem(title) {
   }
 
   saveCustomItemsToStorage();
-  window.catalogPreviousContent = null; // сбрасываем кэш просмотра
+  window.catalogPreviousContent = null;
   backToCatalogGrid();
   renderCatalogContent(selectedBrand ? 'paint' : 'paint');
   alert('Məhsul uğurla silindi!');
@@ -1446,7 +1437,6 @@ function backToCatalogGrid() {
     const adminPanel = document.getElementById('adminAddPanel');
     if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
   } else {
-    // Если вернулись после удаления
     renderCatalogContent(selectedBrand ? 'paint' : 'paint');
     const adminPanel = document.getElementById('adminAddPanel');
     if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
