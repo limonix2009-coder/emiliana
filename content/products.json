@@ -3,35 +3,28 @@
     {
       "id": "paint",
       "texture": "paint",
-      "index": {
-        "az": "01 — BOYA",
-        "en": "01 — PAINT",
-        "ru": "01 — КРАСКА"
-      },
+      "image": "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png",
+      "index": { "az": "01 — BOYA", "en": "01 — PAINT", "ru": "01 — КРАСКА" },
       "desc": {
         "az": "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi, mat təbaşirdən dərin lak parıltısına qədər örtüklər.",
-        "en": "Breathable lime and mineral paints, bespoke tinting, and finishes from matte chalk to deep lacquer.",
-        "ru": "Дышащие известковые и минеральные краски, индивидуальный подбор оттенка, покрытия от матового мела до глубокого лака."
+        "en": "Breathable lime and mineral paints, bespoke tinting.",
+        "ru": "Дышащие известковые и минеральные краски, подбор оттенка."
       },
       "cta": {
         "az": "Boya çeşidinə bax",
         "en": "View paint range",
         "ru": "Смотреть краски"
-      },
-      "image": "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png"
+      }
     },
     {
       "id": "wallpaper",
       "texture": "wallpaper",
-      "index": {
-        "az": "02 — DİVAR KAĞIZI",
-        "en": "02 — WALLPAPER",
-        "ru": "02 — ОБОИ"
-      },
+      "image": "uploads/wallpapers.png",
+      "index": { "az": "02 — DİVAR KAĞIZI", "en": "02 — WALLPAPER", "ru": "02 — ОБОИ" },
       "desc": {
-        "az": "Kiçik tirajlı Avropa divar kağızları — botanik, suvaq effektli və toxuma naxışlı, məqsədli otaqlar üçün.",
-        "en": "European wallpapers in small print runs — botanical, plaster-effect and textile weaves for rooms with intent.",
-        "ru": "Европейские обои малых тиражей — ботанические, под штукатурку и текстильные фактуры для продуманных интерьеров."
+        "az": "İtaliya və Avropa istehsalı premium divar kağızları, toxuma teksturalar və xüsusi dizaynlar.",
+        "en": "European wallpaper collections, woven textures.",
+        "ru": "Коллекции европейских обоев, тканевые текстуры."
       },
       "cta": {
         "az": "Divar kağızı çeşidinə bax",
@@ -42,15 +35,12 @@
     {
       "id": "doors",
       "texture": "doors",
-      "index": {
-        "az": "03 — QAPILAR",
-        "en": "03 — DOORS",
-        "ru": "03 — ДВЕРИ"
-      },
+      "image": "uploads/doors.png",
+      "index": { "az": "03 — QAPILAR", "en": "03 — DOORS", "ru": "03 — ДВЕРИ" },
       "desc": {
-        "az": "Palıd, qoz ağacı və lak örtüklü massiv interyer qapıları, bürünc və mat qara aksesuarlarla.",
-        "en": "Solid interior doors in oak, walnut and lacquered finishes, fitted with brass and matte-black hardware.",
-        "ru": "Массивные межкомнатные двери из дуба, ореха и лакированных пород с латунной и матово-чёрной фурнитурой."
+        "az": "İtalyan üslublu interyer qapıları, gizli çərçivələr və fərdi emal örtükləri.",
+        "en": "Italian interior doors, concealed frames.",
+        "ru": "Итальянские межкомнатные двери, скрытые короба."
       },
       "cta": {
         "az": "Qapı çeşidinə bax",
@@ -61,22 +51,18 @@
     {
       "id": "parquet",
       "texture": "parquet",
-      "index": {
-        "az": "04 — PARKET",
-        "en": "04 — PARQUET",
-        "ru": "04 — ПАРКЕТ"
-      },
+      "image": "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg",
+      "index": { "az": "04 — PARKET", "en": "04 — PARQUET", "ru": "04 — ПАРКЕТ" },
       "desc": {
-        "az": "Mühəndis və massiv parket — balıqqulağı, şevron və geniş lövhəli palıd, sifarişə uyğun emal olunur.",
-        "en": "Engineered and solid parquet — herringbone, chevron and wide-plank oak, finished to order.",
-        "ru": "Инженерный и массивный паркет — ёлочка, шеврон и широкая дубовая доска, обработка на заказ."
+        "az": "Təbii palıd, fransız və klassik yolka parketlər, uzunömürlü yağ və lak örtükləri.",
+        "en": "Natural oak, herringbone and chevron parquet.",
+        "ru": "Натуральный дуб, паркет ёлочкой и шеврон."
       },
       "cta": {
         "az": "Parket çeşidinə bax",
         "en": "View parquet range",
         "ru": "Смотреть паркет"
-      },
-      "image": "/uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png"
+      }
     }
   ]
 }
