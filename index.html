@@ -838,7 +838,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
         <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/ foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
       </div>
     </div>
@@ -1260,13 +1260,12 @@ function addNewPaintItem() {
 function saveCustomItemsToStorage() {
   let customItems = {};
   for (let brandId in catalogData.paint.items) {
-    // Сохраняем только созданные пользователем (или все обновленные)
     customItems[brandId] = catalogData.paint.items[brandId];
   }
   localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
 }
 
-// Открытие карточки с возможностью редактирования полей
+// Открытие карточки с возможностью редактирования и удаления
 function openMaterialDetails(title) {
   const grid = document.getElementById('catalogGridInner');
   const adminPanel = document.getElementById('adminAddPanel');
@@ -1279,7 +1278,6 @@ function openMaterialDetails(title) {
 
   document.getElementById('catalogTitle').textContent = title;
 
-  // Ищем товар по всем категориям и брендам
   let foundItem = null;
   if (selectedBrand && catalogData.paint.items[selectedBrand]) {
     foundItem = catalogData.paint.items[selectedBrand].find(i => i.title === title);
@@ -1308,9 +1306,9 @@ function openMaterialDetails(title) {
       <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line);">
         <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
         
-        <!-- Панель редактирования деталей -->
+        <!-- Панель администратора (Редактирование и Удаление) -->
         <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
-          <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Bu səhifəni redaktə et (Admin)</h4>
+          <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Məhsulu idarə et (Admin)</h4>
           
           <div style="margin-bottom: 12px;">
             <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Ətraflı mətn təsviri:</label>
@@ -1328,7 +1326,10 @@ function openMaterialDetails(title) {
             </div>
           </div>
 
-          <button onclick="saveItemDetails('${title}')" class="btn btn-primary" style="padding: 10px 20px; font-size: 12px; cursor:pointer;">Yadda saxla</button>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="saveItemDetails('${title}')" class="btn btn-primary" style="padding: 10px 20px; font-size: 12px; cursor:pointer;">Yadda saxla</button>
+            <button onclick="deleteItem('${title}')" class="btn" style="padding: 10px 20px; font-size: 12px; cursor:pointer; background: #c0392b; color: #ffffff;" onmouseover="this.style.background='#a93226'" onmouseout="this.style.background='#c0392b'">Məhsulu sil</button>
+          </div>
         </div>
 
         <!-- Отображение информации на сайте -->
@@ -1351,13 +1352,51 @@ function openMaterialDetails(title) {
   `;
 }
 
-// Сохранение отредактированных данных товара
+// Функция удаления товара
+function deleteItem(title) {
+  if (!confirm(`"${title}" məhsulunu silmək istədiyinizə əminsinizmi?`)) return;
+
+  let deleted = false;
+  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
+    let index = catalogData.paint.items[selectedBrand].findIndex(i => i.title === title);
+    if (index !== -1) {
+      catalogData.paint.items[selectedBrand].splice(index, 1);
+      deleted = true;
+    }
+  }
+
+  if (!deleted) {
+    for (let cat in catalogData) {
+      if (Array.isArray(catalogData[cat])) {
+        let index = catalogData[cat].findIndex(i => i.title === title);
+        if (index !== -1) {
+          catalogData[cat].splice(index, 1);
+          deleted = true;
+        }
+      } else if (cat === 'paint') {
+        for (let b in catalogData.paint.items) {
+          let index = catalogData.paint.items[b].findIndex(i => i.title === title);
+          if (index !== -1) {
+            catalogData.paint.items[b].splice(index, 1);
+            deleted = true;
+          }
+        }
+      }
+    }
+  }
+
+  saveCustomItemsToStorage();
+  window.catalogPreviousContent = null; // сбрасываем кэш просмотра
+  backToCatalogGrid();
+  renderCatalogContent(selectedBrand ? 'paint' : 'paint');
+  alert('Məhsul uğurla silindi!');
+}
+
 function saveItemDetails(title) {
   const newDetails = document.getElementById('editDetails').value;
   const newPurpose = document.getElementById('editPurpose').value;
   const newOrigin = document.getElementById('editOrigin').value;
 
-  // Обновляем в объекте данных
   let found = false;
   if (selectedBrand && catalogData.paint.items[selectedBrand]) {
     let item = catalogData.paint.items[selectedBrand].find(i => i.title === title);
@@ -1392,7 +1431,6 @@ function saveItemDetails(title) {
 
   saveCustomItemsToStorage();
 
-  // Обновляем текст на экране без перезагрузки
   document.getElementById('displayDetails').textContent = newDetails;
   document.getElementById('displayPurpose').textContent = newPurpose;
   document.getElementById('displayOrigin').textContent = newOrigin;
@@ -1405,6 +1443,11 @@ function backToCatalogGrid() {
     document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
     document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
     window.catalogPreviousContent = null;
+    const adminPanel = document.getElementById('adminAddPanel');
+    if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
+  } else {
+    // Если вернулись после удаления
+    renderCatalogContent(selectedBrand ? 'paint' : 'paint');
     const adminPanel = document.getElementById('adminAddPanel');
     if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
   }
