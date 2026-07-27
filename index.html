@@ -846,7 +846,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
     <div class="catalog-grid-inner" id="catalogGridInner">
-      <!-- Динамические товары -->
+      <!-- Динамические бренды и товары -->
     </div>
   </div>
 </div>
@@ -905,7 +905,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 
 <script>
 /* ==============================================================
-   CONTENT LOADING
+   CONTENT LOADING & CATALOG LOGIC
    ============================================================== */
 const CONTENT_BASE = 'content/';
 
@@ -924,24 +924,51 @@ let data = {
   settings: {}
 };
 
-// Каталог материалов
-const catalogDemoItems = {
-  paint: [
-    { title: "Deco Razza Premium", desc: "Davamlı daxili boya, mat görünüş", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
-    { title: "Travertin Finish", desc: "Dekorativ suvaq və boya effekti", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
-    { title: "Ceiling Matt", desc: "Tavanlar üçün xüsusi əks-etdirməyən boya", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" }
-  ],
+// Структура брендов и красок
+const catalogData = {
+  paint: {
+    brands: [
+      { id: 'decorazza', name: 'Decorazza', desc: 'İtalyan üslublu dekorativ boyalar və suvaqlar' },
+      { id: 'olsta', name: 'Olsta', desc: 'Ekoloji təmiz premium interyer boyaları' },
+      { id: 'swisslake', name: 'Swiss Lake', desc: 'İsveçrə keyfiyyətli zəngin rəng palitrası' },
+      { id: 'bayramix', name: 'Bayramix', desc: 'Mərmər qırıntılı mozaik və dekorativ örtüklər' },
+      { id: 'teknos', name: 'Teknos', desc: 'Fin texnologiyalı yüksək davamlılıqlı boyalar' },
+      { id: 'daricco', name: 'Daricco', desc: 'Eleqant teksturalı dekorativ örtüklər' }
+    ],
+    items: {
+      decorazza: [
+        { title: "Decorazza Lucetezza", desc: "İpək effekti verən dekorativ boya", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
+        { title: "Decorazza Traverto", desc: "Təbii travertin daşı effekti", img: "" },
+        { title: "Decorazza Velours", desc: "Məxmər effekti yaradan örtük", img: "" }
+      ],
+      olsta: [
+        { title: "Olsta Interior Matt", desc: "Davamlı mat daxili boya", img: "" },
+        { title: "Olsta Washable Velvet", desc: "Yuyula bilən ipək-mat boya", img: "" }
+      ],
+      swisslake: [
+        { title: "Swiss Lake Wall 3", desc: "Dərin mat görünüşlü daxili boya", img: "" },
+        { title: "Swiss Lake Tactile Semi-Matt", desc: "Yarım-mat davamlı örtük", img: "" }
+      ],
+      bayramix: [
+        { title: "Bayramix Mineral", desc: "Təbii mərmər qırıntılı mozaik suvaq", img: "" }
+      ],
+      teknos: [
+        { title: "Teknos Biora Balance", desc: "Tamamilə mət, ekoloji təhlükəsiz boya", img: "" }
+      ],
+      daricco: [
+        { title: "Daricco Art Velvet", desc: "Müasir interyerlər üçün dekorativ boya", img: "" }
+      ]
+    }
+  },
   wallpaper: [
     { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "" },
     { title: "Textured Linen Wallpaper", desc: "Kətan toxumalı tekstura", img: "" }
   ],
   doors: [
-    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "" },
-    { title: "Minimalist Flush Door", desc: "Gizli çərçivəli interyer qapısı", img: "" }
+    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "" }
   ],
   parquet: [
-    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "" },
-    { title: "Natural Oak Plank", desc: "Geniş formatlı təbii palıd parket", img: "" }
+    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "" }
   ]
 };
 
@@ -949,6 +976,7 @@ let currentLang = 'az';
 let currentFilter = 'all';
 let revIndex = 0;
 let revTimer;
+let selectedBrand = null; // Выбранный бренд красок
 
 async function fetchJSON(path){
   try{
@@ -1060,7 +1088,6 @@ function renderProducts(lang){
     </article>
   `).join('');
 
-  // Гарантированная привязка клика к открытию
   document.querySelectorAll('.p-card').forEach((card, index) => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1081,30 +1108,86 @@ function closeCatalogModal() {
 }
 
 function switchCatalogCategory(catId) {
+  selectedBrand = null;
   document.querySelectorAll('.catalog-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.cat === catId);
   });
+  renderCatalogContent(catId);
+}
 
+function renderCatalogContent(catId) {
   const grid = document.getElementById('catalogGridInner');
-  const items = catalogDemoItems[catId] || [];
-
-  if (items.length === 0) {
-    grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
-    return;
-  }
-
-  grid.innerHTML = items.map(item => `
-    <div class="cat-item-card">
-      ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
-      <div class="cat-item-info">
-        <div>
-          <div class="cat-item-title">${item.title}</div>
-          <div class="cat-item-desc">${item.desc}</div>
+  
+  if (catId === 'paint') {
+    if (!selectedBrand) {
+      const brands = catalogData.paint.brands;
+      grid.innerHTML = brands.map(b => `
+        <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer; text-align:center; padding: 24px;">
+          <div class="cat-item-info">
+            <div class="cat-item-title" style="font-size: 22px; margin-bottom: 10px; color: var(--brass);">${b.name}</div>
+            <div class="cat-item-desc">${b.desc}</div>
+            <div class="cat-item-btn" style="margin-top:20px;">Məhsullara bax &rarr;</div>
+          </div>
         </div>
-        <a href="#contact" onclick="closeCatalogModal()" class="cat-item-btn">Sifariş et / Məsləhət al</a>
+      `).join('');
+    } else {
+      const brandObj = catalogData.paint.brands.find(b => b.id === selectedBrand);
+      const items = catalogData.paint.items[selectedBrand] || [];
+      
+      let html = `
+        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+          <button onclick="backToBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px;">&larr; Bütün brendlər</button>
+          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} boyaları</h3>
+        </div>
+      `;
+      
+      if (items.length === 0) {
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə tezliklə yeni məhsullar əlavə olunacaq.</p>';
+      } else {
+        html += items.map(item => `
+          <div class="cat-item-card">
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+            <div class="cat-item-info">
+              <div>
+                <div class="cat-item-title">${item.title}</div>
+                <div class="cat-item-desc">${item.desc}</div>
+              </div>
+              <a href="#contact" onclick="closeCatalogModal()" class="cat-item-btn">Sifariş et / Məsləhət al</a>
+            </div>
+          </div>
+        `).join('');
+      }
+      grid.innerHTML = html;
+    }
+  } else {
+    const items = catalogData[catId] || [];
+    if (items.length === 0) {
+      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
+      return;
+    }
+    grid.innerHTML = items.map(item => `
+      <div class="cat-item-card">
+        ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+        <div class="cat-item-info">
+          <div>
+            <div class="cat-item-title">${item.title}</div>
+            <div class="cat-item-desc">${item.desc}</div>
+          </div>
+          <a href="#contact" onclick="closeCatalogModal()" class="cat-item-btn">Sifariş et / Məsləhət al</a>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `).join('');
+  }
+}
+
+function openPaintBrand(brandId) {
+  selectedBrand = brandId;
+  renderCatalogContent('paint');
+}
+
+function backToBrands() {
+  selectedBrand = null;
+  renderCatalogContent('paint');
 }
 
 document.getElementById('catalogClose').addEventListener('click', closeCatalogModal);
