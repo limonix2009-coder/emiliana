@@ -173,20 +173,17 @@ section{ position:relative; }
 .wordmark{ font-family: var(--font-display); font-size:21px; letter-spacing:0.01em; font-weight:600; }
 .wordmark span{ color:var(--brass); font-style:italic; font-weight:500; }
 
-/* ИСПРАВЛЕНИЕ РАЗМЕРА ЛОГОТИПА */
+/* ИСПРАВЛЕНИЕ РАЗМЕРА И ПОЗИЦИИ ЛОГОТИПА */
 .logo-link{ 
-  display:flex; 
-  align-items:center; 
-  line-height:0; 
-  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  line-height: 0; 
 }
 .logo-img{ 
-  height: 48px; /* Увеличено для нормального визуального восприятия */
+  height: 42px; /* Аккуратная высота логотипа в шапке */
   width: auto; 
   display: block; 
-  vertical-align: middle; 
-  transform: scale(2.2); /* Масштабирование внутренней графики логотипа */
-  transform-origin: left center;
+  object-fit: contain;
 }
 
 .nav-links{ display:flex; align-items:center; gap:34px; }
@@ -1068,7 +1065,7 @@ const catalogData = {
           title: "Decorazza Travertino Naturale",
           desc: "Təbii travertin daşının nəcib fakturasını yaradan klassik suvaq.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/9aa/qmqlmxtni1sdpfd64y1i9n2ekk3ispcq.png.webp?174238947085534",
-          details: "Təbii daşın antik gözəlliyini və möhkəmliyini interyerə daşıyan premium mişar daşı effekti. Həm klassik, həm də müasir memarlıq layihələrində fasad və divar bəzəyi kimi geniş istifadə olunur.",
+          details: "Təbii daşın antik gözəlliyini və möhkəmliyini interyerə daşıyan mişar daşı effekti. Həm klassik, həm də müasir memarlıq layihələrində fasad və divar bəzəyi kimi geniş istifadə olunur.",
           purpose: "Fasad və interyer divarları üçün",
           origin: "Rusiya"
         },
