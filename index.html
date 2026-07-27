@@ -264,27 +264,6 @@ section{ position:relative; }
 .offer-list li::before{ content:""; width:6px; height:6px; border-radius:50%; background: var(--brass); display:inline-block; }
 .offer-tag{ font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); }
 
-.swatch-strip{ display:flex; gap:14px; }
-.swatch{
-  border-radius: 3px; position:relative; overflow:hidden; flex:1;
-  box-shadow: 0 18px 40px -18px rgba(31,28,23,.35);
-}
-.swatch-paint{ background: radial-gradient(circle at 32% 28%, #6C7C67 0%, var(--verde) 55%, var(--verde-deep) 100%); }
-.swatch-wallpaper{
-  background-color: var(--cream-card);
-  background-image: radial-gradient(circle at 8px 8px, rgba(169,121,59,.55) 1.6px, transparent 2px);
-  background-size: 16px 16px;
-}
-.swatch-door{
-  background: repeating-linear-gradient(95deg, #6E4430 0px 3px, #7C4E36 3px 7px, #663D2A 7px 9px, #86583F 9px 14px);
-}
-.swatch-parquet{
-  background-color:#B8895A;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(31,28,23,.16) 0 2px, transparent 2px 18px),
-    repeating-linear-gradient(-45deg, rgba(250,248,243,.22) 0 2px, transparent 2px 18px);
-}
-
 /* ============================= ABOUT ============================= */
 .about-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(30px,6vw,90px); align-items:start; }
 .about-visual{ position:sticky; top:120px; }
@@ -927,7 +906,6 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <script>
 /* ==============================================================
    CONTENT LOADING
-   All text/image content now lives in /content/*.json
    ============================================================== */
 const CONTENT_BASE = 'content/';
 
@@ -946,7 +924,7 @@ let data = {
   settings: {}
 };
 
-// Демо-данные для товаров каталога
+// Каталог материалов
 const catalogDemoItems = {
   paint: [
     { title: "Deco Razza Premium", desc: "Davamlı daxili boya, mat görünüş", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
@@ -1064,27 +1042,29 @@ function applySettings(){
 
 /* ============================= PRODUCTS & MODAL ============================= */
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const catOrder = ['paint', 'wallpaper', 'doors', 'parquet'];
 
 function renderProducts(lang){
   const grid = document.getElementById('productsGrid');
   if(!grid) return;
-  grid.innerHTML = data.products.items.map(p => `
-    <article class="p-card" data-cat-id="${p.id}">
+  grid.innerHTML = data.products.items.map((p, idx) => `
+    <article class="p-card" data-cat-id="${p.id || catOrder[idx] || 'paint'}">
       <div class="p-texture tex-${p.texture}" ${p.image ? `style="background-image:url('${fixPath(p.image)}')"` : ''}></div>
       <div class="p-peel"></div>
       <div class="p-body">
         <span class="p-index">${(p.index && p.index[lang]) || ''}</span>
-        <h3>${(dict[lang] && dict[lang][p.id + '_name']) || ''}</h3>
+        <h3>${(dict[lang] && dict[lang][(p.id || catOrder[idx]) + '_name']) || ''}</h3>
         <p>${(p.desc && p.desc[lang]) || ''}</p>
         <div class="p-link"><span>${(p.cta && p.cta[lang]) || ''}</span>${arrowSVG}</div>
       </div>
     </article>
   `).join('');
 
-  // Навешиваем клик для открытия модалки
-  document.querySelectorAll('.p-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const catId = card.getAttribute('data-cat-id') || 'paint';
+  // Гарантированная привязка клика к открытию
+  document.querySelectorAll('.p-card').forEach((card, index) => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const catId = card.getAttribute('data-cat-id') || catOrder[index] || 'paint';
       openCatalogModal(catId);
     });
   });
