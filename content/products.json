@@ -3,7 +3,7 @@
     {
       "id": "paint",
       "texture": "paint",
-      "image": "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png",
+      "image": "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png",
       "index": { "az": "01 — BOYA", "en": "01 — PAINT", "ru": "01 — КРАСКА" },
       "desc": {
         "az": "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi, mat təbaşirdən dərin lak parıltısına qədər örtüklər.",
@@ -51,7 +51,7 @@
     {
       "id": "parquet",
       "texture": "parquet",
-      "image": "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg",
+      "image": "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png",
       "index": { "az": "04 — PARKET", "en": "04 — PARQUET", "ru": "04 — ПАРКЕТ" },
       "desc": {
         "az": "Təbii palıd, fransız və klassik yolka parketlər, uzunömürlü yağ və lak örtükləri.",
