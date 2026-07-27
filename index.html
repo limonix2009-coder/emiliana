@@ -832,13 +832,13 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ С ПОЛЕМ ДЛЯ КАРТИНКИ -->
+    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ -->
     <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
       <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
         <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/ foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
       </div>
     </div>
@@ -937,24 +937,24 @@ const catalogData = {
     ],
     items: {
       decorazza: [
-        { title: "Decorazza Lucetezza", desc: "İpək effekti verən dekorativ boya", img: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png" },
-        { title: "Decorazza Traverto", desc: "Təbii travertin daşı effekti", img: "" },
-        { title: "Decorazza Velours", desc: "Məxmər effekti yaradan örtük", img: "" }
+        { title: "Decorazza Lucetezza", desc: "İpək effekti verən dekorativ boya", img: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png", details: "Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir. Toxunuş effekti və rəng çalarları məkanınıza xüsusi üslub qatır.", purpose: "Divar və səth örtüyü", origin: "İtaliya / Avropa" },
+        { title: "Decorazza Traverto", desc: "Təbii travertin daşı effekti", img: "", details: "Təbii daş fakturasını mükəmməl təqlid edən möhkəm dekorativ suvaq.", purpose: "Fasad və interyer", origin: "İtaliya" },
+        { title: "Decorazza Velours", desc: "Məxmər effekti yaradan örtük", img: "", details: "İpək məxmər toxunması ilə divarlara dərinlik və yumşaqlıq bəxş edir.", purpose: "İnteryer divarları", origin: "İtaliya" }
       ]
     }
   },
   wallpaper: [
-    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png" }
+    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png", details: "Klassik üslubda zəngin ornamentlərə malik İtaliya divar kağızı.", purpose: "Divar örtüyü", origin: "İtaliya" }
   ],
   doors: [
-    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" }
+    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png", details: "Yüksək keyfiyyətli təbii ağacdan hazırlanmış müasir dizaynlı qapı.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
   ],
   parquet: [
-    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png" }
+    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
   ]
 };
 
-// Загружаем сохраненные в браузере кастомные элементы
+// Загружаем сохраненные кастомные элементы
 function loadCustomItems() {
   const saved = localStorage.getItem('emiliana_custom_paint_items');
   if (saved) {
@@ -964,7 +964,11 @@ function loadCustomItems() {
         if (!catalogData.paint.items[brandId]) {
           catalogData.paint.items[brandId] = [];
         }
-        catalogData.paint.items[brandId].push(...parsed[brandId]);
+        parsed[brandId].forEach(item => {
+          if (!catalogData.paint.items[brandId].some(existing => existing.title === item.title)) {
+            catalogData.paint.items[brandId].push(item);
+          }
+        });
       }
     } catch(e) { console.error(e); }
   }
@@ -1221,7 +1225,6 @@ function renderCatalogContent(catId) {
   }
 }
 
-// Функция добавления новой краски с учетом ссылки на картинку
 function addNewPaintItem() {
   const titleInput = document.getElementById('newPaintTitle');
   const descInput = document.getElementById('newPaintDesc');
@@ -1235,7 +1238,10 @@ function addNewPaintItem() {
   const newItem = {
     title: titleInput.value,
     desc: descInput.value || 'Dekorativ interyer örtüyü',
-    img: imgInput.value.trim()
+    img: imgInput.value.trim(),
+    details: 'Bu material interyerdə yüksək estetik görünüş təmin edir.',
+    purpose: 'Divar və səth örtüyü',
+    origin: 'İtaliya / Avropa'
   };
 
   if (!catalogData.paint.items[selectedBrand]) {
@@ -1243,10 +1249,7 @@ function addNewPaintItem() {
   }
   catalogData.paint.items[selectedBrand].push(newItem);
 
-  let customItems = JSON.parse(localStorage.getItem('emiliana_custom_paint_items') || '{}');
-  if (!customItems[selectedBrand]) customItems[selectedBrand] = [];
-  customItems[selectedBrand].push(newItem);
-  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
+  saveCustomItemsToStorage();
 
   titleInput.value = '';
   descInput.value = '';
@@ -1254,6 +1257,16 @@ function addNewPaintItem() {
   renderCatalogContent('paint');
 }
 
+function saveCustomItemsToStorage() {
+  let customItems = {};
+  for (let brandId in catalogData.paint.items) {
+    // Сохраняем только созданные пользователем (или все обновленные)
+    customItems[brandId] = catalogData.paint.items[brandId];
+  }
+  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
+}
+
+// Открытие карточки с возможностью редактирования полей
 function openMaterialDetails(title) {
   const grid = document.getElementById('catalogGridInner');
   const adminPanel = document.getElementById('adminAddPanel');
@@ -1265,29 +1278,126 @@ function openMaterialDetails(title) {
   }
 
   document.getElementById('catalogTitle').textContent = title;
-  
+
+  // Ищем товар по всем категориям и брендам
+  let foundItem = null;
+  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
+    foundItem = catalogData.paint.items[selectedBrand].find(i => i.title === title);
+  }
+  if (!foundItem) {
+    for (let cat in catalogData) {
+      if (Array.isArray(catalogData[cat])) {
+        foundItem = catalogData[cat].find(i => i.title === title);
+      } else if (cat === 'paint') {
+        for (let b in catalogData.paint.items) {
+          let m = catalogData.paint.items[b].find(i => i.title === title);
+          if (m) foundItem = m;
+        }
+      }
+    }
+  }
+
+  const detailsText = foundItem && foundItem.details ? foundItem.details : 'Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir.';
+  const purposeText = foundItem && foundItem.purpose ? foundItem.purpose : 'Divar və səth örtüyü';
+  const originText = foundItem && foundItem.origin ? foundItem.origin : 'İtaliya / Avropa';
+
   grid.innerHTML = `
     <div style="grid-column: 1/-1;">
       <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Geri qayıt</button>
+      
       <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line);">
-        <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px; color: var(--ink);">${title}</h3>
-        <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
-          Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir. Toxunuş effekti və rəng çalarları məkanınıza xüsusi üslub qatır.
+        <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
+        
+        <!-- Панель редактирования деталей -->
+        <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Bu səhifəni redaktə et (Admin)</h4>
+          
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Ətraflı mətn təsviri:</label>
+            <textarea id="editDetails" rows="3" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 10px; border-radius: 4px; font-size: 14px;">${detailsText}</textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Təyinat:</label>
+              <input type="text" id="editPurpose" value="${purposeText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">İstehsal / Ölkə:</label>
+              <input type="text" id="editOrigin" value="${originText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+            </div>
+          </div>
+
+          <button onclick="saveItemDetails('${title}')" class="btn btn-primary" style="padding: 10px 20px; font-size: 12px; cursor:pointer;">Yadda saxla</button>
+        </div>
+
+        <!-- Отображение информации на сайте -->
+        <p id="displayDetails" style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
+          ${detailsText}
         </p>
         <div style="display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap;">
           <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
             <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">Təyinat</span>
-            <span style="font-size: 14px; font-weight: 600;">Divar və səth örtüyü</span>
+            <span id="displayPurpose" style="font-size: 14px; font-weight: 600;">${purposeText}</span>
           </div>
           <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
             <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">İstehsal</span>
-            <span style="font-size: 14px; font-weight: 600;">İtaliya / Avropa</span>
+            <span id="displayOrigin" style="font-size: 14px; font-weight: 600;">${originText}</span>
           </div>
         </div>
         <p style="font-size: 13px; color: var(--stone);">* Qiymət və sərfiyyat haqqında ətraflı məlumat üçün şourumumuza yaxınlaşa bilərsiniz.</p>
       </div>
     </div>
   `;
+}
+
+// Сохранение отредактированных данных товара
+function saveItemDetails(title) {
+  const newDetails = document.getElementById('editDetails').value;
+  const newPurpose = document.getElementById('editPurpose').value;
+  const newOrigin = document.getElementById('editOrigin').value;
+
+  // Обновляем в объекте данных
+  let found = false;
+  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
+    let item = catalogData.paint.items[selectedBrand].find(i => i.title === title);
+    if (item) {
+      item.details = newDetails;
+      item.purpose = newPurpose;
+      item.origin = newOrigin;
+      found = true;
+    }
+  }
+  if (!found) {
+    for (let cat in catalogData) {
+      if (Array.isArray(catalogData[cat])) {
+        let item = catalogData[cat].find(i => i.title === title);
+        if (item) {
+          item.details = newDetails;
+          item.purpose = newPurpose;
+          item.origin = newOrigin;
+        }
+      } else if (cat === 'paint') {
+        for (let b in catalogData.paint.items) {
+          let item = catalogData.paint.items[b].find(i => i.title === title);
+          if (item) {
+            item.details = newDetails;
+            item.purpose = newPurpose;
+            item.origin = newOrigin;
+          }
+        }
+      }
+    }
+  }
+
+  saveCustomItemsToStorage();
+
+  // Обновляем текст на экране без перезагрузки
+  document.getElementById('displayDetails').textContent = newDetails;
+  document.getElementById('displayPurpose').textContent = newPurpose;
+  document.getElementById('displayOrigin').textContent = newOrigin;
+
+  alert('Məlumatlar uğurla yadda saxlanıldı!');
 }
 
 function backToCatalogGrid() {
