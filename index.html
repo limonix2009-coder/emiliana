@@ -1109,10 +1109,12 @@ function openCatalogModal(catId) {
 
 function closeCatalogModal() {
   document.getElementById('catalogModal').classList.remove('open');
+  backToCatalogGrid();
 }
 
 function switchCatalogCategory(catId) {
   selectedBrand = null;
+  window.catalogPreviousContent = null;
   document.querySelectorAll('.catalog-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.cat === catId);
   });
@@ -1142,7 +1144,7 @@ function renderCatalogContent(catId) {
       
       let html = `
         <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-          <button onclick="backToBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px;">&larr; Bütün brendlər</button>
+          <button onclick="backToBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
           <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} boyaları</h3>
         </div>
       `;
@@ -1187,16 +1189,56 @@ function renderCatalogContent(catId) {
 }
 
 function openMaterialDetails(title) {
-  alert(title + ' haqqında ətraflı məlumat və qiymət tezliklə burada göstəriləcək.');
+  const grid = document.getElementById('catalogGridInner');
+  
+  if (!window.catalogPreviousContent) {
+    window.catalogPreviousContent = grid.innerHTML;
+    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
+  }
+
+  document.getElementById('catalogTitle').textContent = title;
+  
+  grid.innerHTML = `
+    <div style="grid-column: 1/-1;">
+      <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Geri qayıt</button>
+      <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line);">
+        <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px; color: var(--ink);">${title}</h3>
+        <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
+          Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir. Toxunuş effekti və rəng çalarları məkanınıza xüsusi üslub qatır.
+        </p>
+        <div style="display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap;">
+          <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
+            <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">Təyinat</span>
+            <span style="font-size: 14px; font-weight: 600;">Divar və səth örtüyü</span>
+          </div>
+          <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
+            <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">İstehsal</span>
+            <span style="font-size: 14px; font-weight: 600;">İtaliya / Avropa</span>
+          </div>
+        </div>
+        <p style="font-size: 13px; color: var(--stone);">* Qiymət və sərfiyyat haqqında ətraflı məlumat üçün şourumumuza yaxınlaşa bilərsiniz.</p>
+      </div>
+    </div>
+  `;
+}
+
+function backToCatalogGrid() {
+  if (window.catalogPreviousContent) {
+    document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
+    document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
+    window.catalogPreviousContent = null;
+  }
 }
 
 function openPaintBrand(brandId) {
   selectedBrand = brandId;
+  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
 function backToBrands() {
   selectedBrand = null;
+  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
