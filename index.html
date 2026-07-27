@@ -21,12 +21,12 @@
   "foundingDate": "2006",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Nizami Street",
+    "streetAddress": "Xətai prospekti 142",
     "addressLocality": "Baku",
     "addressCountry": "AZ"
   },
-  "telephone": "+994-12-555-04-04",
-  "email": "hello@emilianaparati.az",
+  "telephone": "+994-55-674-44-04",
+  "email": "efendiyevnihad1@gmail.com",
   "openingHours": "Mo-Sa 10:00-19:00",
   "priceRange": "$$$"
 }
@@ -262,17 +262,19 @@ section{ position:relative; }
 .about-visual{ position:sticky; top:120px; }
 .about-visual .frame{
   aspect-ratio: 4/5; border-radius: 4px; overflow:hidden; position:relative;
-  background: linear-gradient(155deg, var(--verde-deep), var(--verde) 60%, #566a55 100%);
+  background-image: url('uploads/gemini_generated_image_bu51ddbu51ddbu51-clean.png');
+  background-size: cover;
+  background-position: center;
 }
-.about-visual .frame::after{
+.about-visual .frame::before{
   content:""; position:absolute; inset:0;
-  background-image: repeating-linear-gradient(115deg, rgba(250,248,243,.05) 0 2px, transparent 2px 22px);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
 }
 .about-visual .frame-caption{
-  position:absolute; left:26px; bottom:26px; right:26px; color: var(--paper);
+  position:absolute; left:26px; bottom:26px; right:26px; color: var(--paper); z-index: 2;
 }
 .about-visual .frame-caption .yr{ font-family: var(--font-display); font-style:italic; font-size:44px; line-height:1; }
-.about-visual .frame-caption .lbl{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; opacity:.75; margin-top:8px; }
+.about-visual .frame-caption .lbl{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; opacity:.85; margin-top:8px; font-weight:600; }
 
 .about-copy h2{ margin-bottom:22px; }
 .about-copy p{ color: var(--ink-soft); margin-bottom:18px; max-width:60ch; }
@@ -569,7 +571,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <header class="nav" id="siteNav">
   <div class="container">
     <a href="#main" class="logo-link" aria-label="Emiliana Parati">
-      <img src="uploads/logo.png" alt="Emiliana Parati" class="logo-img" id="siteLogo">
+      <img src="uploads/images-2-.jpeg" alt="Emiliana Parati" class="logo-img" id="siteLogo">
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#about" data-i18n="nav_about">Haqqımızda</a>
@@ -611,7 +613,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <div class="hero-since">
         <span class="num" id="foundingYearNum">2006</span>
         <div class="divider"></div>
-        <span class="txt" data-i18n-html="hero_since">2006-cı ildən fəaliyyətdə<br>Nizami küçəsi, Bakı</span>
+        <span class="txt" data-i18n-html="hero_since">2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı</span>
       </div>
     </div>
 
@@ -805,12 +807,12 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
 
       <div class="contact-side reveal">
-        <div class="info-block"><div class="lbl" data-i18n="contact_address_label">Şourum ünvanı</div><div class="val" id="valAddress">Nizami küçəsi, Bakı, Azərbaycan</div></div>
+        <div class="info-block"><div class="lbl" data-i18n="contact_address_label">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
         <div class="info-block"><div class="lbl" data-i18n="contact_hours_label">İş saatları</div><div class="val" data-i18n="contact_hours_value">B.e.–Şənbə, 10:00–19:00</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_phone_label">Telefon</div><div class="val" id="valPhone">+994 12 555 04 04</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_email_label">E-poçt</div><div class="val" id="valEmail">hello@emilianaparati.az</div></div>
+        <div class="info-block"><div class="lbl" data-i18n="contact_phone_label">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
+        <div class="info-block"><div class="lbl" data-i18n="contact_email_label">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
         <div class="map-frame">
-          <iframe id="mapFrame" src="https://maps.google.com/maps?q=Nizami%20Street%2C%20Baku%2C%20Azerbaijan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Emiliana Parati showroom location"></iframe>
+          <iframe id="mapFrame" src="https://maps.google.com/maps?q=Xetai%20pr%2C%20142%20Khatai%20Ave%2C%20Baku%201008&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Emiliana Parati showroom location"></iframe>
         </div>
       </div>
     </div>
@@ -896,7 +898,6 @@ function fixPath(url) {
   return url.replace(/^\//, '');
 }
 
-// Переводы с учетом всех исправлений
 let dict = {
   az: {
     hero_eyebrow: "MATERİAL ATELYESİ · BAKI",
@@ -1066,6 +1067,30 @@ function applySettings(){
     const logo = document.getElementById('siteLogo');
     if(logo) logo.src = fixPath(s.logo);
   }
+  if(s.about_image){
+    const frame = document.getElementById('aboutFrame');
+    if(frame) {
+      frame.style.backgroundImage = `url('${fixPath(s.about_image)}')`;
+      frame.style.backgroundSize = 'cover';
+      frame.style.backgroundPosition = 'center';
+    }
+  }
+  if(s.address){
+    const el = document.getElementById('valAddress');
+    if(el) el.textContent = s.address;
+  }
+  if(s.phone){
+    const el = document.getElementById('valPhone');
+    if(el) el.textContent = s.phone;
+  }
+  if(s.email){
+    const el = document.getElementById('valEmail');
+    if(el) el.textContent = s.email;
+  }
+  if(s.map_query){
+    const iframe = document.getElementById('mapFrame');
+    if(iframe) iframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(s.map_query)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  }
 }
 
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -1085,7 +1110,7 @@ function renderProducts(lang){
     {
       id: "wallpaper",
       image: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png",
-      index: { az: "02 — DİVAR KAĞIZI", en: "02 — WALLPAPER", ru: "02 — ОБОИ" },
+      index: { az: "02 — DİVAR KAĞIZI", en: "02 — WALLPAPER", ru: "02 — ОBOИ" },
       desc: { az: "İtaliya və Avropa istehsalı premium divar kağızları.", en: "European wallpapers.", ru: "Европейские обои." },
       cta: { az: "Divar kağızı çeşidinə bax", en: "View wallpaper range", ru: "Смотреть обои" }
     },
