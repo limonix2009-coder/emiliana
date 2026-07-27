@@ -396,6 +396,24 @@ section{ position:relative; }
   transition: transform .3s ease, box-shadow .3s ease;
 }
 .cat-item-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
+
+/* Стиль для плашки с логотипом бренда */
+.brand-logo-container {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--stone-line);
+}
+.brand-logo-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .cat-item-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--plaster-2); }
 .cat-item-info { padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .cat-item-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
@@ -924,16 +942,16 @@ let data = {
   settings: {}
 };
 
-// Структура брендов и красок
+// Структура брендов (с логотипами) и красок
 const catalogData = {
   paint: {
     brands: [
-      { id: 'decorazza', name: 'Decorazza', desc: 'İtalyan üslublu dekorativ boyalar və suvaqlar' },
-      { id: 'olsta', name: 'Olsta', desc: 'Ekoloji təmiz premium interyer boyaları' },
-      { id: 'swisslake', name: 'Swiss Lake', desc: 'İsveçrə keyfiyyətli zəngin rəng palitrası' },
-      { id: 'bayramix', name: 'Bayramix', desc: 'Mərmər qırıntılı mozaik və dekorativ örtüklər' },
-      { id: 'teknos', name: 'Teknos', desc: 'Fin texnologiyalı yüksək davamlılıqlı boyalar' },
-      { id: 'daricco', name: 'Daricco', desc: 'Eleqant teksturalı dekorativ örtüklər' }
+      { id: 'decorazza', name: 'Decorazza', logo: 'uploads/decorazza.png', desc: 'İtalyan üslublu dekorativ boyalar və suvaqlar' },
+      { id: 'olsta', name: 'Olsta', logo: 'uploads/olsta.png', desc: 'Ekoloji təmiz premium interyer boyaları' },
+      { id: 'swisslake', name: 'Swiss Lake', logo: 'uploads/swisslake.png', desc: 'İsveçrə keyfiyyətli zəngin rəng palitrası' },
+      { id: 'bayramix', name: 'Bayramix', logo: 'uploads/bayramix.png', desc: 'Mərmər qırıntılı mozaik və dekorativ örtüklər' },
+      { id: 'teknos', name: 'Teknos', logo: 'uploads/teknos.png', desc: 'Fin texnologiyalı yüksək davamlılıqlı boyalar' },
+      { id: 'daricco', name: 'Daricco', logo: 'uploads/daricco.png', desc: 'Eleqant teksturalı dekorativ örtüklər' }
     ],
     items: {
       decorazza: [
@@ -976,7 +994,7 @@ let currentLang = 'az';
 let currentFilter = 'all';
 let revIndex = 0;
 let revTimer;
-let selectedBrand = null; // Выбранный бренд красок
+let selectedBrand = null; 
 
 async function fetchJSON(path){
   try{
@@ -1122,11 +1140,13 @@ function renderCatalogContent(catId) {
     if (!selectedBrand) {
       const brands = catalogData.paint.brands;
       grid.innerHTML = brands.map(b => `
-        <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer; text-align:center; padding: 24px;">
+        <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer;">
+          <div class="brand-logo-container">
+            ${b.logo ? `<img src="${fixPath(b.logo)}" class="brand-logo-img" alt="${b.name}">` : `<span style="font-family: var(--font-display); font-size:22px; color:var(--brass);">${b.name}</span>`}
+          </div>
           <div class="cat-item-info">
-            <div class="cat-item-title" style="font-size: 22px; margin-bottom: 10px; color: var(--brass);">${b.name}</div>
-            <div class="cat-item-desc">${b.desc}</div>
-            <div class="cat-item-btn" style="margin-top:20px;">Məhsullara bax &rarr;</div>
+            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
+            <div class="cat-item-btn" style="margin-top:14px;">Məhsullara bax &rarr;</div>
           </div>
         </div>
       `).join('');
