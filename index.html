@@ -348,7 +348,6 @@ section{ position:relative; }
 }
 .p-card::before{
   content:""; position:absolute; inset:0;
-  /* Темный градиент снизу вверх для максимальной контрастности текста */
   background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.1) 75%);
   z-index:1;
 }
@@ -361,7 +360,6 @@ section{ position:relative; }
 }
 .p-card:hover .p-peel{ width:92px; height:92px; }
 
-/* ОБНОВЛЕННЫЕ СТИЛИ ТЕКСТА В КАРТОЧКАХ */
 .p-body{ position:relative; z-index:2; padding: 26px 26px 30px; color: #ffffff; }
 .p-index{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom:10px; display:block; font-weight:700; }
 .p-body h3{ font-family: var(--font-display); font-size:26px; font-weight:500; margin-bottom:10px; color: #ffffff !important; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
@@ -370,6 +368,65 @@ section{ position:relative; }
 .p-link{ font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:8px; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 .p-link svg{ width:13px; height:13px; transition: transform .35s var(--ease); }
 .p-card:hover .p-link svg{ transform: translateX(4px); }
+
+/* ============================= CATALOG MODAL ============================= */
+.catalog-modal {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(31, 28, 23, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s var(--ease);
+  padding: 20px;
+}
+.catalog-modal.open { opacity: 1; pointer-events: auto; }
+.catalog-content {
+  background: var(--paper);
+  width: 100%; max-width: 1100px; max-height: 90vh;
+  border-radius: 12px; overflow-y: auto;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  padding: clamp(24px, 4vw, 48px);
+  position: relative;
+  transform: translateY(20px); transition: transform .4s var(--ease);
+}
+.catalog-modal.open .catalog-content { transform: translateY(0); }
+.catalog-close {
+  position: absolute; top: 20px; right: 24px;
+  font-size: 28px; cursor: pointer; color: var(--ink-soft);
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--plaster-2);
+  transition: background .3s ease;
+}
+.catalog-close:hover { background: var(--stone); color: var(--ink); }
+
+.catalog-nav { display: flex; gap: 12px; margin: 24px 0 36px; border-bottom: 1px solid var(--stone-line); padding-bottom: 12px; flex-wrap: wrap; }
+.catalog-tab {
+  padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 600;
+  cursor: pointer; background: transparent; color: var(--ink-soft);
+  transition: all .3s ease;
+}
+.catalog-tab.active, .catalog-tab:hover { background: var(--ink); color: var(--paper); }
+
+.catalog-grid-inner {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px;
+}
+.cat-item-card {
+  background: var(--cream-card); border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--stone-line); display: flex; flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.cat-item-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
+.cat-item-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--plaster-2); }
+.cat-item-info { padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.cat-item-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.cat-item-desc { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.4; }
+.cat-item-btn {
+  margin-top: auto; padding: 10px; background: var(--ink); color: var(--paper);
+  text-align: center; border-radius: 4px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  transition: background .3s ease;
+}
+.cat-item-btn:hover { background: var(--verde); }
 
 /* ============================= WHY US ============================= */
 .why-wrap{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap:40px; align-items:flex-end; margin-bottom:48px; }
@@ -798,6 +855,23 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 </section>
 </main>
 
+<!-- ============================= CATALOG MODAL ============================= -->
+<div class="catalog-modal" id="catalogModal">
+  <div class="catalog-content">
+    <div class="catalog-close" id="catalogClose">&times;</div>
+    <h2 id="catalogTitle" style="font-size: 32px; font-weight: 500;">Kataloq</h2>
+    <div class="catalog-nav">
+      <button class="catalog-tab active" data-cat="paint" data-i18n="paint_name">Boya</button>
+      <button class="catalog-tab" data-cat="wallpaper" data-i18n="wallpaper_name">Divar kağızı</button>
+      <button class="catalog-tab" data-cat="doors" data-i18n="doors_name">Qapılar</button>
+      <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
+    </div>
+    <div class="catalog-grid-inner" id="catalogGridInner">
+      <!-- Динамические товары -->
+    </div>
+  </div>
+</div>
+
 <!-- ============================= FOOTER ============================= -->
 <footer>
   <div class="container">
@@ -853,26 +927,44 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <script>
 /* ==============================================================
    CONTENT LOADING
-   All text/image content now lives in /content/*.json, edited via
-   the Decap CMS admin at /admin. This script fetches it at runtime
-   and renders the page.
+   All text/image content now lives in /content/*.json
    ============================================================== */
 const CONTENT_BASE = 'content/';
 
-// Вспомогательная функция для чистки путей к файлам (убираем слэш в начале)
 function fixPath(url) {
   if (!url) return '';
   return url.replace(/^\//, '');
 }
 
-let dict = { az:{}, en:{}, ru:{} };   // static text dictionaries
-let data = {                          // dynamic collections
+let dict = { az:{}, en:{}, ru:{} };   
+let data = {                          
   hero: { slides: [] },
   products: { items: [] },
   gallery: { items: [] },
   reviews: { items: [] },
   brands: { items: [] },
   settings: {}
+};
+
+// Демо-данные для товаров каталога
+const catalogDemoItems = {
+  paint: [
+    { title: "Deco Razza Premium", desc: "Davamlı daxili boya, mat görünüş", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
+    { title: "Travertin Finish", desc: "Dekorativ suvaq və boya effekti", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
+    { title: "Ceiling Matt", desc: "Tavanlar üçün xüsusi əks-etdirməyən boya", img: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" }
+  ],
+  wallpaper: [
+    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "" },
+    { title: "Textured Linen Wallpaper", desc: "Kətan toxumalı tekstura", img: "" }
+  ],
+  doors: [
+    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "" },
+    { title: "Minimalist Flush Door", desc: "Gizli çərçivəli interyer qapısı", img: "" }
+  ],
+  parquet: [
+    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "" },
+    { title: "Natural Oak Plank", desc: "Geniş formatlı təbii palıd parket", img: "" }
+  ]
 };
 
 let currentLang = 'az';
@@ -937,7 +1029,7 @@ function applyStaticText(lang){
   if(pill) pill.style.transform = `translateX(${idx*34}px)`;
 }
 
-/* ============================= SETTINGS (language independent) ============================= */
+/* ============================= SETTINGS ============================= */
 function applySettings(){
   const s = data.settings || {};
   if(s.logo){
@@ -970,25 +1062,78 @@ function applySettings(){
   }
 }
 
-/* ============================= PRODUCTS ============================= */
+/* ============================= PRODUCTS & MODAL ============================= */
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 function renderProducts(lang){
   const grid = document.getElementById('productsGrid');
   if(!grid) return;
   grid.innerHTML = data.products.items.map(p => `
-    <article class="p-card">
+    <article class="p-card" data-cat-id="${p.id}">
       <div class="p-texture tex-${p.texture}" ${p.image ? `style="background-image:url('${fixPath(p.image)}')"` : ''}></div>
       <div class="p-peel"></div>
       <div class="p-body">
         <span class="p-index">${(p.index && p.index[lang]) || ''}</span>
         <h3>${(dict[lang] && dict[lang][p.id + '_name']) || ''}</h3>
         <p>${(p.desc && p.desc[lang]) || ''}</p>
-        <a href="#contact" class="p-link"><span>${(p.cta && p.cta[lang]) || ''}</span>${arrowSVG}</a>
+        <div class="p-link"><span>${(p.cta && p.cta[lang]) || ''}</span>${arrowSVG}</div>
       </div>
     </article>
   `).join('');
+
+  // Навешиваем клик для открытия модалки
+  document.querySelectorAll('.p-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const catId = card.getAttribute('data-cat-id') || 'paint';
+      openCatalogModal(catId);
+    });
+  });
 }
+
+function openCatalogModal(catId) {
+  const modal = document.getElementById('catalogModal');
+  modal.classList.add('open');
+  switchCatalogCategory(catId);
+}
+
+function closeCatalogModal() {
+  document.getElementById('catalogModal').classList.remove('open');
+}
+
+function switchCatalogCategory(catId) {
+  document.querySelectorAll('.catalog-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.cat === catId);
+  });
+
+  const grid = document.getElementById('catalogGridInner');
+  const items = catalogDemoItems[catId] || [];
+
+  if (items.length === 0) {
+    grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
+    return;
+  }
+
+  grid.innerHTML = items.map(item => `
+    <div class="cat-item-card">
+      ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+      <div class="cat-item-info">
+        <div>
+          <div class="cat-item-title">${item.title}</div>
+          <div class="cat-item-desc">${item.desc}</div>
+        </div>
+        <a href="#contact" onclick="closeCatalogModal()" class="cat-item-btn">Sifariş et / Məsləhət al</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('catalogClose').addEventListener('click', closeCatalogModal);
+document.getElementById('catalogModal').addEventListener('click', (e) => {
+  if (e.target.id === 'catalogModal') closeCatalogModal();
+});
+document.querySelectorAll('.catalog-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchCatalogCategory(tab.dataset.cat));
+});
 
 /* ============================= GALLERY ============================= */
 function renderGallery(lang){
@@ -1063,7 +1208,7 @@ function renderHero(){
   const total = slides.length;
   if(total === 0) return;
   
-  const cycleTime = 4; // Время показа одного слайда в секундах
+  const cycleTime = 4;
   const totalDuration = total * cycleTime;
   
   wrap.innerHTML = slides.map((url, i) => {
@@ -1131,7 +1276,7 @@ document.getElementById('revNext').addEventListener('click', ()=> goToSlide(revI
 document.querySelector('.reviews-band').addEventListener('mouseenter', ()=> clearInterval(revTimer));
 document.querySelector('.reviews-band').addEventListener('mouseleave', resetRevTimer);
 
-/* ============================= FORMS (design preview — no backend) ============================= */
+/* ============================= FORMS ============================= */
 document.getElementById('contactForm').addEventListener('submit', function(e){
   e.preventDefault();
   document.getElementById('formSuccess').classList.add('show');
