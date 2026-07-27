@@ -173,14 +173,13 @@ section{ position:relative; }
 .wordmark{ font-family: var(--font-display); font-size:21px; letter-spacing:0.01em; font-weight:600; }
 .wordmark span{ color:var(--brass); font-style:italic; font-weight:500; }
 
-/* ИСПРАВЛЕНИЕ РАЗМЕРА И ПОЗИЦИИ ЛОГОТИПА */
 .logo-link{ 
   display: flex; 
   align-items: center; 
   line-height: 0; 
 }
 .logo-img{ 
-  height: 42px; /* Аккуратная высота логотипа в шапке */
+  height: 42px;
   width: auto; 
   display: block; 
   object-fit: contain;
@@ -913,7 +912,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 
 <script>
 /* ==============================================================
-   CONTENT LOADING & CATALOG LOGIC
+    CONTENT LOADING & CATALOG LOGIC
    ============================================================== */
 const CONTENT_BASE = 'content/';
 
@@ -1095,7 +1094,7 @@ const catalogData = {
         },
         {
           title: "Decorazza Rustic",
-          desc: "Qوپ-qaba və təbii kənd üslubunda (rustik) səth effekti.",
+          desc: "Kobud və təbii kənd üslubunda (rustik) səth effekti.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/609/68ghqoh8tnnypcbgkhhpz4nr058ssgqn.png.webp?174240173694708",
           details: "Təbiətə yaxınlığı və qədimliyi sevənlər üçün işlənmiş rustik üslublu dekorativ suvaq. Qeyri-adi kobud toxunması ilə məkana xüsusi istilik və rahatlıq hissi verir.",
           purpose: "Rustik və ecotech üslublu interyerlər üçün",
@@ -1111,7 +1110,7 @@ const catalogData = {
         },
         {
           title: "Decorazza Cera Decor",
-          desc: "Dekorativ suvaqlar üçün qoruyucu və bəzək mumdu.",
+          desc: "Dekorativ suvaqlar üçün qoruyucu və bəzək mumu.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/18c/8tkmwk0p9ec2mhq1br2ezizipastzcbi.png.webp?174240174390770",
           details: "Dekorativ örtüklərin üzərinə çəkilən, onları nəmə və çirklənməyə qarşı qoruyan, eyni zamanda əlavə parıltı və dərinlik verən şəffaf mum tərkibli qoruyucu vasitə.",
           purpose: "Suvaq və boyaların qorunması və dekorativ işlənməsi",
@@ -1120,7 +1119,7 @@ const catalogData = {
         {
           title: "Decorazza Pastello Vernici",
           desc: "Səthlərə pastel çalarlar və zərif qoruma qatığı verən lak.",
-          img: "https://decorazza.ru/upload/iblock/de0/crqg212l37s2oh3y6meb344tn2248hnl.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/de0/crqg212l37s2oh3y6meb344tn2248hnl.png",
           details: "Dekorativ örtüklərin üzərindən tətbiq edilərək rəng tonlarını yumşaldan, pastel və sakit keçidlər yaradan xüsusi peşəkar vernik.",
           purpose: "Dekorativ qoruma və tonlama üçün",
           origin: "Rusiya"
@@ -1136,7 +1135,7 @@ const catalogData = {
         {
           title: "Decorazza Finitura",
           desc: "Dekorativ səthlər üçün son tamamlayıcı və qoruyucu lak-örtük.",
-          img: "https://decorazza.ru/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
           details: "Divar örtüklərinin ömrünü uzadan, mexaniki təsirlərə və nəmə qarşı davamlılığı təmin edən yüksək keyfiyyətli son qat qoruyucu material.",
           purpose: "Son tamamlayıcı qoruyucu qat",
           origin: "Rusiya"
@@ -1144,7 +1143,7 @@ const catalogData = {
         {
           title: "Decorazza Cera di Veneziano",
           desc: "Venesiya suvaqları üçün xüsusi parıldadıcı və qoruyucu mum.",
-          img: "https://decorazza.ru/upload/iblock/eb8/4nduacuxr6jzng6y5s3pgtsak0ve2ldu.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/eb8/4nduacuxr6jzng6y5s3pgtsak0ve2ldu.png",
           details: "Venesiya suvağının təbii mərmər parıltısını maksimum dərəcədə üzə çıxaran, cilalanmanı gücləndirən və nəmə qarşı etibarlı qoruma təmin edən peşəkar mum.",
           purpose: "Venesiya suvaqları üçün qoruyucu mum",
           origin: "Rusiya"
@@ -1160,7 +1159,7 @@ const catalogData = {
         {
           title: "Decorazza Mica",
           desc: "Tərkibində təbii mika hissəcikləri olan parlaq dekorativ örtük.",
-          img: "https://decorazza.ru/upload/iblock/83a/xbj832ea3fmbm18to29qt2jxmll4ytw9.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/83a/xbj832ea3fmbm18to29qt2jxmll4ytw9.png",
           details: "Mika minerallarının xüsusi parıltısı sayəsində divarlarda unikal işıq effekti yaradan, interyerə dəbdəbə qatan dekorativ material.",
           purpose: "İnteryerlərdə xüsusi effektlər üçün",
           origin: "Rusiya"
@@ -1176,7 +1175,7 @@ const catalogData = {
         {
           title: "Decorazza Primer",
           desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://decorazza.ru/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
           details: "Dekorativ materialların tətbiqindən əvvəl səth hazırlığı üçün istifadə olunan, boya və suvaqların divara möhkəm yapışmasını təmin edən universal astar.",
           purpose: "Səth hazırlığı və yapışmanın yaxşılaşdırılması",
           origin: "Rusiya"
@@ -1199,257 +1198,257 @@ const catalogData = {
         }
       ],
       olsta: [
-    {
-      title: "Olsta Kids & Bedroom",
-      desc: "Uşaq və yataq otaqları üçün tamamilə ekoloji təmiz, qoxusuz və təhlükəsiz interyer boyası.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/e22/8u9zw3u5rmmp5ppwve7ob6ks00kzxwsg.png.webp?1748002266154924",
-      details: "Uşaq otaqları üçün xüsusi hazırlanmış, hipoallergen və ekoloji təhlükəsizlik sertifikatına malik premium boya. Təmizlənməyə davamlıdır.",
-      purpose: "Uşaq və yataq otaqları üçün divar boyası",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Kitchen & Bathroom",
-      desc: "Mətbəx və hamam otaqları üçün nəmə, buxara və küfə qarşı xüsusi qoruyucu tərkibli boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/7d3/s11k3vysl9wrb04j9jmpa2mltc2afb31.png.webp?1748002267149254",
-      details: "Yüksək rütubətli və tez-tez yuyulma tələb edən məkanlar üçün nəzərdə tutulmuş nəmə davamlı interyer boyası.",
-      purpose: "Mətbəx və sanitar qovşaqlar üçün",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Wood & Metal",
-      desc: "Tağ, mebel, qapı və metal səthlər üçün yüksək möhkəmlikli universal boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/7ef/8x5n2iwu3gl9acshjohkxvnu82trroev.png.webp?1748002264142346",
-      details: "Tağ, metal və müxtəlif interyer detalları üzərində mükəmməl örtücülük yaradan, mexaniki təsirlərə davamlı boya növü.",
-      purpose: "Taxta və metal səthlər üçün",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Фасадная силиконизированная",
-      desc: "Fasadlar üçün silikonla gücləndirilmiş, hava şəraitinə və yağıntılara qarşı ultra davamlı akril boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1bd/gd4vk8j4nvpg28n5tr1vhclzmwpel01w.png.webp?1748003462165510",
-      details: "Binaların xarici fasadları üçün nəzərdə tutulmuş, nəmi dəf edən və rəngini uzun illər qoruyan silikonlaşdırılmış akril fasad boyası.",
-      purpose: "Xarici fasad işləri üçün",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Ceramic Paint",
-      desc: "Səthində keramika hissəcikləri olan, ən yüksək mexaniki yüklərə və yuyulmaya dözümlü premium boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d75/n6jxbk5dxmx1u49zgd95xdu3prn9701u.png.webp?1748007334146916",
-      details: "Tərkibindəki mikroskopik keramika mikrohissəcikləri sayəsində divarlarda demək olar ki, cızılmayan və sürtünməyə qarşı maksimum dözümlü səth yaradır.",
-      purpose: "İntensiv istismar olunan dəhliz və ictimai məkanlar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Socket Paint",
-      desc: "Sərt şəraitlər və xüsusi daxili/fasad zonaları üçün davamlı Socket Paint boyası.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGf9l61Yf-7xIIA4OMll7gvdsJJaKREhyp17ieSZvA&s=10",
-      details: "Aktiv istifadə olunan və sərt xarici təsirlərə məruz qalan səthlər üçün xüsusi formula ilə hazırlanmış dayanıqlı boya növü.",
-      purpose: "Xüsusi və texniki zonalar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Краска для влажных помещений",
-      desc: "Rütubətli otaqlar üçün nəmə və suya qarşı dayanıqlı mat interyer boyası.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/20c/fmsrkutubov40y2gnwk7cjb6p3vincgb.png.webp?1748002268156736",
-      details: "Buxara və nəmə qarşı dözümlü, divarların nəfəs almasına imkan verən xüsusi tərkibli nəm otaq boyası.",
-      purpose: "Hamam, duş və nəm zonalar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Краска для стен, обоев и потолков",
-      desc: "Bütün növ divar kağızları, divar və tavanlar üçün qoxusuz universal praktiki boya.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSn3INWHbDQPWENxyG97WGcHeuEgv0lTT-RdeZyGbDxQ&s=10",
-      details: "İstənilən növ divar kağızının üzərindən boyamaq, həmçinin adi divar və tavanları rəngləmək üçün ideal universallıq.",
-      purpose: "Divar kağızı və tavanlar üçün",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Office & Hall",
-      desc: "Ofislər, dəhlizlər və intensiv gediş-gəliş olan ictimai hallar üçün aşınmaya dözümlü boya.",
-      img: "https://olsta.ru/upload/iblock/ccc/c24de3ahw2k8fonyz7oylfytd159xvqi.png",
-      details: "İnsan axını çox olan və divarların tez-tez toxunulduğu ictimai məkanlar üçün xüsusi möhkəmləndirilmiş ipək-mat boya.",
-      purpose: "Ofis və ictimai hallar üçün",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Фасадная акриловая",
-      desc: "Mineral əsaslar üçün yüksək dayanıqlılığa malik atmosferə davamlı fasad akril boyası.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/8d1/fu2pz9u2p531ln03n4svlq0qh6jbuzoi.png.webp?1748003461134418", // пример из каталога
-      details: "Xarici fasad səthləri üçün xüsusi işlənmiş, yağıntılara və ultrabənövşəyi şüalara qarşı davamlı akril boya növü.",
-      purpose: "Xarici fasad səthləri",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Wall & Ceiling",
-      desc: "Divar və tavanlar üçün mat, yuyulan və yüksək örtücülü interyer boyası.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/567/e10vyhrnihdl7uns4nlwxvuokejn06x7.png.webp?1748002269141030",
-      details: "Otaqların divar və tavanları üçün nəzərdə tutulmuş, asan təmizlənən və qoxusuz mat boya.",
-      purpose: "Divar və tavanlar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Ceiling",
-      desc: "Tavanlar üçün xüsusi olaraq hazırlanmış dərin mat, əks etdirməyən və nəfəs alan boya.",
-      img: "https://olsta.ru/upload/iblock/cde/oh98lw2a3j1tovv3t61pvrnrls2xoe77.png",
-      details: "Tavan səthlərindəki kiçik qüsurları gizlədən, ləkə buraxmayan və mükəmməl mat görünüş verən tavan boyası.",
-      purpose: "Tavan səthləri",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Chalky Paint",
-      desc: "Mebel, divar və qapılar üçün xüsusi tərkibli qrunt-kraska (təbaşir boyası).",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/012/ph5ikood9s8v6mq6h9qwuv5kgnj4i25j.png.webp?1748002271149476",
-      details: "Mebel və interyer elementləri üzərində vintage və ya hamar mat effekt yaratmaq üçün unikal tərkibli boya.",
-      purpose: "Mebel, divar və qapılar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Chalky Furniture Paint",
-      desc: "Rütubətli otaqlardakı taxta mebellər üçün yarımpaslanmaz, nəmə davamlı mebel boyası.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/9ba/jjn251an9fxffn9mmnumr2dbhoi03yja.png.webp?1748002270159982",
-      details: "Hamam və mətbəx kimi nəm zonalardakı taxta mebelləri qoruyan, kondensata qarşı dayanıqlı yarımyaltırlıq boya.",
-      purpose: "Nəm zonalardakı taxta mebellər",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Wood Paint",
-      desc: "Taxta səthlər üçün daxili və xarici işlərdə istifadə olunan elastik ipək-mat boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/f81/39b5ibdxskdokr0huch17vxpdly7pm21.png.webp?1748007161158390",
-      details: "Taxtanın təbii strukturunu qoruyan, çürümənin qarşısını alan və hava şəraitinə dözümlü taxta boyası.",
-      purpose: "Taxta səthlər",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Interior & Exterior Primer",
-      desc: "Daxili və xarici işlər üçün universal dərin hopdurucu astar.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1fd/cmqq1517vza5v81gwa6bfilxnylsz9vo.png.webp?1781766838162976",
-      details: "Səthlərin möhkəmliyini artıran və sonrakı boya qatının yapışmasını gücləndirən universal astar.",
-      purpose: "Daxili və xarici səth hazırlığı",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Exterior Silicone",
-      desc: "Fasadlar üçün yüksək rütubətdaşıyan və buxarkeçirən silikon əsaslı boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/b28/20n7kig6syswpi311xq4jzip6y79bdjh.png.webp?1748003463146358",
-      details: "Su damcılarını dəf edən, kir tutmayan və fasadın ömrünü uzadan silikon tərkibli xarici boya.",
-      purpose: "Xarici fasad örtükləri",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Primer Concentrate",
-      desc: "Su ilə durulaşdırılan qənaətcil və dərin təsirli qrunt-konsentrat.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/ab4/b9wu0d6t71yod9ziq4zqm6ejlx27xlvb.png.webp?1765545383100044",
-      details: "Səthlərin tozunu alaraq möhkəmləndirən və boya sərfiyyatını azaldan peşəkar konsentrat astar.",
-      purpose: "Səthlərin qruntlanması",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Multi Primer",
-      desc: "Şüşə, plastik, metal və çətin əsaslar üçün adgeziya yaradan astar.",
-      img: "https://olsta.ru/upload/iblock/3a8/wjfxu25jeq64u77k6pb0r9gnjmih1zux.png",
-      details: "Adətən boyanın yapışmadığı çətin və hamar səthlərdə belə mükəmməl tutuş təmin edən xüsusi astar.",
-      purpose: "Çətin və hamar səthlər",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Pigmented Primer",
-      desc: "Rəngləndirilə bilən, yüksək örtücülü və gizlədici xüsusiyyətli astar.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBnf2aCrAemh0IZzvDNeeRWxXAKlfuMMsJ6vGX1z-Weg&s=10",
-      details: "Əsasın rəngini bərabərləşdirən və sonrakı rəngin tonunu daha canlı göstərən rəngli astar qatı.",
-      purpose: "Boya altı rəng bərabərləşdirmə",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Wood Primer",
-      desc: "Taxta səthlər üçün xüsusi qoruyucu və hopdurucu astar.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/c61/wz56r4docjt8astyw43reb4apw0zx98m.png.webp?1781766189171758",
-      details: "Taxtanın içərisinə nüfuz edərək onu çürümədən, göbələkdən və nəm təsirindən qoruyan ilkin qat.",
-      purpose: "Taxta səthlərin qorunması",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Silicone Primer",
-      desc: "Silikon əsaslı boyalar üçün yüksək dərinlikli silikon hopdurucu astar.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d42/sbqllracio6ubvlkkqk3r952tt6uq4ml.png.webp?1781766226173488",
-      details: "Silikon fasad sistemləri ilə tam uyğunluq təşkil edən, hidrofob xüsusiyyətli peşəkar astar.",
-      purpose: "Silikon sistemlər üçün astar",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Wood Renovator",
-      desc: "Taxta səthlər üçün dekorativ qoruyucu lazuq-boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/cbf/x34rq6sxgx87c5z1ncrhcnaxd8xdwjw7.png.webp?1748003459160766",
-      details: "Taxtanın təbii damarlarını vurğulayan, günəşə və nəmə qarşı qoruyucu dekorativ örtük.",
-      purpose: "Taxta dekorativ bəzək",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Waterblock",
-      desc: "Daxili işlər üçün xüsusi su-hidroizolyasiya tərkibli qoruyucu məhlul.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR2bdWMHEMEk99mzNj4Dq0tS54T84qc-_QVFYzCCUBWg&s=10",
-      details: "Su ilə birbaşa təmasda olan daxili zonalarda nəm keçirməz maneə yaradan etibarlı hidroizolyasiya.",
-      purpose: "Daxili hidroizolyasiya",
-      origin: "Rusiya"
-    },
-    {
-      title: "Olsta Exterior Acrylic",
-      desc: "Xarici fasadlar üçün aşınmaya və hava şəraitinə davamlı akrilik boya.",
-      img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/a08/xnm7y52m8du73qc68a6fo275o62pfzwl.png.webp?1749471533146738",
-      details: "Fasadların rəngini uzun müddət qoruyan, günəşə və sərt iqlimə dözümlü xarici akril boya.",
-      purpose: "Fasad işləri",
-      origin: "Rusiya"
-    },
-  ],
-    swisslake: [
-    {
-      title: "Swiss Lake Intense Resistance Plus",
-      desc: "İnteryerlər üçün yüksək aşınma və yuyulmaya davamlı dərin mat premium boya.",
-      img: "https://masterdom.ru/upload/iblock/d52/wv1nd7msh1vfc8fbeqvzl2jqvi6ai6qm.jpg",
-      details: "Tərkibi sayəsində ən ağır istismar şərtlərinə belə dözən, parlaqlıq yaratmayan dərin mat (3%) interyer boyası.",
-      purpose: "İntensiv istismar olunan daxili məkanlar",
-      origin: "İsveçrə"
-    },
-    {
-      title: "Swiss Lake Matt Pro",
-      desc: "Divarlar üçün zərif mat effektli, hamar və qüsursuz örtük yaradan premium boya.",
-      img: "https://loymina.ru/upload/iblock/64f/vhjz9mzesvi52mzd4pa9e0mqi7z6yr3s.png",
-      details: "Mükəmməl örtücülüyə malik, divarlarda ipək kimi zərif mat (5%) səth formalaşdıran yüksək keyfiyyətli boya.",
-      purpose: "Yataq və qonaq otaqları üçün divar boyası",
-      origin: "İsveçrə"
-    },
-    {
-      title: "Swiss Lake Wall Comfort 7",
-      desc: "Gündəlik istifadə üçün əlverişli, yuyulan və nəfəs alan mat interyer boyası.",
-      img: "https://iz-nn.ru/upload/iblock/d42/05rttpv0nbyriwpp11jbo4nc2pax18uw.webp",
-      details: "Ev şəraitində təmizlənməyə tam uyğun, səthdə rahatlıq və estetik mat (7%) görünüş təmin edən praktiki boya.",
-      purpose: "Məişət və yaşayış sahələri",
-      origin: "İsveçrə"
-    },
-    {
-      title: "Swiss Lake Semi-matt 20",
-      desc: "Yüksək rütubətli və tez-tez yuyulan otaqlar üçün yarımmat interyer boyası.",
-      img: "https://www.oboykin.ru/assets/images/products/65850/semi-matt.png",
-      details: "Tərkibindəki xüsusi komponentlər sayəsində nəmə və intensiv yuyulmaya qarşı dözümlü yarımmat (20%) örtük.",
-      purpose: "Dəhliz, mətbəx və nəm zonalar",
-      origin: "İsveçrə"
-    },
-    {
-      title: "Swiss Lake White Brilliant",
-      desc: "İnteryerlər üçün dərin mat (3%) ağ boya.",
-      img: "https://masterdom.ru/upload/iblock/590/ca9nbcr8tifh0uno9fu7pltw5ytetgwo.jpg",
-      details: "Səthdə qüsursuz və dərin mat örtük yaradan, mükəmməl ağlıq təmin edən interyer boyası.",
-      purpose: "İnteryer divarları və tavanlar",
-      origin: "İsveçrə"
-    },
-    {
-      title: "Swiss Lake Tactile 3",
-      desc: "Zərif toxunuş hissi verən dərin mat (3%) interyer boyası.",
-      img: "https://masterdom.ru/upload/iblock/f57/1xmo3ucem3t3zob8tr88kfr2hbb9aclm.jpg",
-      details: "Divarlara incə və xoş toxunuş effekti bəxş edən, dərin mat görünüşlü yüksək keyfiyyətli boya.",
-      purpose: "Yataq və qonaq otaqları",
-      origin: "İsveçrə"
-    },
-  ]
+        {
+          title: "Olsta Kids & Bedroom",
+          desc: "Uşaq və yataq otaqları üçün tamamilə ekoloji təmiz, qoxusuz və təhlükəsiz interyer boyası.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/e22/8u9zw3u5rmmp5ppwve7ob6ks00kzxwsg.png.webp?1748002266154924",
+          details: "Uşaq otaqları üçün xüsusi hazırlanmış, hipoallergen və ekoloji təhlükəsizlik sertifikatına malik premium boya. Təmizlənməyə davamlıdır.",
+          purpose: "Uşaq və yataq otaqları üçün divar boyası",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Kitchen & Bathroom",
+          desc: "Mətbəx və hamam otaqları üçün nəmə, buxara və küfə qarşı xüsusi qoruyucu tərkibli boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/7d3/s11k3vysl9wrb04j9jmpa2mltc2afb31.png.webp?1748002267149254",
+          details: "Yüksək rütubətli və tez-tez yuyulma tələb edən məkanlar üçün nəzərdə tutulmuş nəmə davamlı interyer boyası.",
+          purpose: "Mətbəx və sanitar qovşaqlar üçün",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Wood & Metal",
+          desc: "Tağ, mebel, qapı və metal səthlər üçün yüksək möhkəmlikli universal boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/7ef/8x5n2iwu3gl9acshjohkxvnu82trroev.png.webp?1748002264142346",
+          details: "Tağ, metal və müxtəlif interyer detalları üzərində mükəmməl örtücülük yaradan, mexaniki təsirlərə davamlı boya növü.",
+          purpose: "Taxta və metal səthlər üçün",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Фасадная силиконизированная",
+          desc: "Fasadlar üçün silikonla gücləndirilmiş, hava şəraitinə və yağıntılara qarşı ultra davamlı akril boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1bd/gd4vk8j4nvpg28n5tr1vhclzmwpel01w.png.webp?1748003462165510",
+          details: "Binaların xarici fasadları üçün nəzərdə tutulmuş, nəmi dəf edən və rəngini uzun illər qoruyan silikonlaşdırılmış akril fasad boyası.",
+          purpose: "Xarici fasad işləri üçün",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Ceramic Paint",
+          desc: "Səthində keramika hissəcikləri olan, ən yüksək mexaniki yüklərə və yuyulmaya dözümlü premium boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d75/n6jxbk5dxmx1u49zgd95xdu3prn9701u.png.webp?1748007334146916",
+          details: "Tərkibindəki mikroskopik keramika mikrohissəcikləri sayəsində divarlarda demək olar ki, cızılmayan və sürtünməyə qarşı maksimum dözümlü səth yaradır.",
+          purpose: "İntensiv istismar olunan dəhliz və ictimai məkanlar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Socket Paint",
+          desc: "Sərt şəraitlər və xüsusi daxili/fasad zonaları üçün davamlı Socket Paint boyası.",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGf9l61Yf-7xIIA4OMll7gvdsJJaKREhyp17ieSZvA&s=10",
+          details: "Aktiv istifadə olunan və sərt xarici təsirlərə məruz qalan səthlər üçün xüsusi formula ilə hazırlanmış dayanıqlı boya növü.",
+          purpose: "Xüsusi və texniki zonalar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Краска для влажных помещений",
+          desc: "Rütubətli otaqlar üçün nəmə və suya qarşı dayanıqlı mat interyer boyası.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/20c/fmsrkutubov40y2gnwk7cjb6p3vincgb.png.webp?1748002268156736",
+          details: "Buxara və nəmə qarşı dözümlü, divarların nəfəs almasına imkan verən xüsusi tərkibli nəm otaq boyası.",
+          purpose: "Hamam, duş və nəm zonalar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Краска для стен, обоев и потолков",
+          desc: "Bütün növ divar kağızları, divar və tavanlar üçün qoxusuz universal praktiki boya.",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSn3INWHbDQPWENxyG97WGcHeuEgv0lTT-RdeZyGbDxQ&s=10",
+          details: "İstənilən növ divar kağızının üzərindən boyamaq, həmçinin adi divar və tavanları rəngləmək üçün ideal universallıq.",
+          purpose: "Divar kağızı və tavanlar üçün",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Office & Hall",
+          desc: "Ofislər, dəhlizlər və intensiv gediş-gəliş olan ictimai hallar üçün aşınmaya dözümlü boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/ccc/c24de3ahw2k8fonyz7oylfytd159xvqi.png",
+          details: "İnsan axını çox olan və divarların tez-tez toxunulduğu ictimai məkanlar üçün xüsusi möhkəmləndirilmiş ipək-mat boya.",
+          purpose: "Ofis və ictimai hallar üçün",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Фасадная акриловая",
+          desc: "Mineral əsaslar üçün yüksək dayanıqlılığa malik atmosferə davamlı fasad akril boyası.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/8d1/fu2pz9u2p531ln03n4svlq0qh6jbuzoi.png.webp?1748003461134418",
+          details: "Xarici fasad səthləri üçün xüsusi işlənmiş, yağıntılara və ultrabənövşəyi şüalara qarşı davamlı akril boya növü.",
+          purpose: "Xarici fasad səthləri",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Wall & Ceiling",
+          desc: "Divar və tavanlar üçün mat, yuyulan və yüksək örtücülü interyer boyası.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/567/e10vyhrnihdl7uns4nlwxvuokejn06x7.png.webp?1748002269141030",
+          details: "Otaqların divar və tavanları üçün nəzərdə tutulmuş, asan təmizlənən və qoxusuz mat boya.",
+          purpose: "Divar və tavanlar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Ceiling",
+          desc: "Tavanlar üçün xüsusi olaraq hazırlanmış dərin mat, əks etdirməyən və nəfəs alan boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/cde/oh98lw2a3j1tovv3t61pvrnrls2xoe77.png",
+          details: "Tavan səthlərindəki kiçik qüsurları gizlədən, ləkə buraxmayan və mükəmməl mat görünüş verən tavan boyası.",
+          purpose: "Tavan səthləri",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Chalky Paint",
+          desc: "Mebel, divar və qapılar üçün xüsusi tərkibli qrunt-kraska (təbaşir boyası).",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/012/ph5ikood9s8v6mq6h9qwuv5kgnj4i25j.png.webp?1748002271149476",
+          details: "Mebel və interyer elementləri üzərində vintage və ya hamar mat effekt yaratmaq üçün unikal tərkibli boya.",
+          purpose: "Mebel, divar və qapılar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Chalky Furniture Paint",
+          desc: "Rütubətli otaqlardakı taxta mebellər üçün yarımpaslanmaz, nəmə davamlı mebel boyası.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/9ba/jjn251an9fxffn9mmnumr2dbhoi03yja.png.webp?1748002270159982",
+          details: "Hamam və mətbəx kimi nəm zonalardakı taxta mebelləri qoruyan, kondensata qarşı dayanıqlı yarımyaltırlıq boya.",
+          purpose: "Nəm zonalardakı taxta mebellər",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Wood Paint",
+          desc: "Taxta səthlər üçün daxili və xarici işlərdə istifadə olunan elastik ipək-mat boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/f81/39b5ibdxskdokr0huch17vxpdly7pm21.png.webp?1748007161158390",
+          details: "Taxtanın təbii strukturunu qoruyan, çürümənin qarşısını alan və hava şəraitinə dözümlü taxta boyası.",
+          purpose: "Taxta səthlər",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Interior & Exterior Primer",
+          desc: "Daxili və xarici işlər üçün universal dərin hopdurucu astar.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1fd/cmqq1517vza5v81gwa6bfilxnylsz9vo.png.webp?1781766838162976",
+          details: "Səthlərin möhkəmliyini artıran və sonrakı boya qatının yapışmasını gücləndirən universal astar.",
+          purpose: "Daxili və xarici səth hazırlığı",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Exterior Silicone",
+          desc: "Fasadlar üçün yüksək rütubətdaşıyan və buxarkeçirən silikon əsaslı boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/b28/20n7kig6syswpi311xq4jzip6y79bdjh.png.webp?1748003463146358",
+          details: "Su damcılarını dəf edən, kir tutmayan və fasadın ömrünü uzadan silikon tərkibli xarici boya.",
+          purpose: "Xarici fasad örtükləri",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Primer Concentrate",
+          desc: "Su ilə durulaşdırılan qənaətcil və dərin təsirli qrunt-konsentrat.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/ab4/b9wu0d6t71yod9ziq4zqm6ejlx27xlvb.png.webp?1765545383100044",
+          details: "Səthlərin tozunu alaraq möhkəmləndirən və boya sərfiyyatını azaldan peşəkar konsentrat astar.",
+          purpose: "Səthlərin qruntlanması",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Multi Primer",
+          desc: "Şüşə, plastik, metal və çətin əsaslar üçün adgeziya yaradan astar.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/3a8/wjfxu25jeq64u77k6pb0r9gnjmih1zux.png",
+          details: "Adətən boyanın yapışmadığı çətin və hamar səthlərdə belə mükəmməl tutuş təmin edən xüsusi astar.",
+          purpose: "Çətin və hamar səthlər",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Pigmented Primer",
+          desc: "Rəngləndirilə bilən, yüksək örtücülü və gizlədici xüsusiyyətli astar.",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBnf2aCrAemh0IZzvDNeeRWxXAKlfuMMsJ6vGX1z-Weg&s=10",
+          details: "Əsasın rəngini bərabərləşdirən və sonrakı rəngin tonunu daha canlı göstərən rəngli astar qatı.",
+          purpose: "Boya altı rəng bərabərləşdirmə",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Wood Primer",
+          desc: "Taxta səthlər üçün xüsusi qoruyucu və hopdurucu astar.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/c61/wz56r4docjt8astyw43reb4apw0zx98m.png.webp?1781766189171758",
+          details: "Taxtanın içərisinə nüfuz edərək onu çürümədən, göbələkdən və nəm təsirindən qoruyan ilkin qat.",
+          purpose: "Taxta səthlərin qorunması",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Silicone Primer",
+          desc: "Silikon əsaslı boyalar üçün yüksək dərinlikli silikon hopdurucu astar.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d42/sbqllracio6ubvlkkqk3r952tt6uq4ml.png.webp?1781766226173488",
+          details: "Silikon fasad sistemləri ilə tam uyğunluq təşkil edən, hidrofob xüsusiyyətli peşəkar astar.",
+          purpose: "Silikon sistemlər üçün astar",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Wood Renovator",
+          desc: "Taxta səthlər üçün dekorativ qoruyucu lazuq-boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/cbf/x34rq6sxgx87c5z1ncrhcnaxd8xdwjw7.png.webp?1748003459160766",
+          details: "Taxtanın təbii damarlarını vurğulayan, günəşə və nəmə qarşı qoruyucu dekorativ örtük.",
+          purpose: "Taxta dekorativ bəzək",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Waterblock",
+          desc: "Daxili işlər üçün xüsusi su-hidroizolyasiya tərkibli qoruyucu məhlul.",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR2bdWMHEMEk99mzNj4Dq0tS54T84qc-_QVFYzCCUBWg&s=10",
+          details: "Su ilə birbaşa təmasda olan daxili zonalarda nəm keçirməz maneə yaradan etibarlı hidroizolyasiya.",
+          purpose: "Daxili hidroizolyasiya",
+          origin: "Rusiya"
+        },
+        {
+          title: "Olsta Exterior Acrylic",
+          desc: "Xarici fasadlar üçün aşınmaya və hava şəraitinə davamlı akrilik boya.",
+          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/a08/xnm7y52m8du73qc68a6fo275o62pfzwl.png.webp?1749471533146738",
+          details: "Fasadların rəngini uzun müddət qoruyan, günəşə və sərt iqlimə dözümlü xarici akril boya.",
+          purpose: "Fasad işləri",
+          origin: "Rusiya"
+        }
+      ],
+      swisslake: [
+        {
+          title: "Swiss Lake Intense Resistance Plus",
+          desc: "İnteryerlər üçün yüksək aşınma və yuyulmaya davamlı dərin mat premium boya.",
+          img: "https://masterdom.ru/upload/iblock/d52/wv1nd7msh1vfc8fbeqvzl2jqvi6ai6qm.jpg",
+          details: "Tərkibi sayəsində ən ağır istismar şərtlərinə belə dözən, parlaqlıq yaratmayan dərin mat (3%) interyer boyası.",
+          purpose: "İntensiv istismar olunan daxili məkanlar",
+          origin: "İsveçrə"
+        },
+        {
+          title: "Swiss Lake Matt Pro",
+          desc: "Divarlar üçün zərif mat effektli, hamar və qüsursuz örtük yaradan premium boya.",
+          img: "https://loymina.ru/upload/iblock/64f/vhjz9mzesvi52mzd4pa9e0mqi7z6yr3s.png",
+          details: "Mükəmməl örtücülüyə malik, divarlarda ipək kimi zərif mat (5%) səth formalaşdıran yüksək keyfiyyətli boya.",
+          purpose: "Yataq və qonaq otaqları üçün divar boyası",
+          origin: "İsveçrə"
+        },
+        {
+          title: "Swiss Lake Wall Comfort 7",
+          desc: "Gündəlik istifadə üçün əlverişli, yuyulan və nəfəs alan mat interyer boyası.",
+          img: "https://iz-nn.ru/upload/iblock/d42/05rttpv0nbyriwpp11jbo4nc2pax18uw.webp",
+          details: "Ev şəraitində təmizlənməyə tam uyğun, səthdə rahatlıq və estetik mat (7%) görünüş təmin edən praktiki boya.",
+          purpose: "Məişət və yaşayış sahələri",
+          origin: "İsveçrə"
+        },
+        {
+          title: "Swiss Lake Semi-matt 20",
+          desc: "Yüksək rütubətli və tez-tez yuyulan otaqlar üçün yarımmat interyer boyası.",
+          img: "https://www.oboykin.ru/assets/images/products/65850/semi-matt.png",
+          details: "Tərkibindəki xüsusi komponentlər sayəsində nəmə və intensiv yuyulmaya qarşı dözümlü yarımmat (20%) örtük.",
+          purpose: "Dəhliz, mətbəx və nəm zonalar",
+          origin: "İsveçrə"
+        },
+        {
+          title: "Swiss Lake White Brilliant",
+          desc: "İnteryerlər üçün dərin mat (3%) ağ boya.",
+          img: "https://masterdom.ru/upload/iblock/590/ca9nbcr8tifh0uno9fu7pltw5ytetgwo.jpg",
+          details: "Səthdə qüsursuz və dərin mat örtük yaradan, mükəmməl ağlıq təmin edən interyer boyası.",
+          purpose: "İnteryer divarları və tavanlar",
+          origin: "İsveçrə"
+        },
+        {
+          title: "Swiss Lake Tactile 3",
+          desc: "Zərif toxunuş hissi verən dərin mat (3%) interyer boyası.",
+          img: "https://masterdom.ru/upload/iblock/f57/1xmo3ucem3t3zob8tr88kfr2hbb9aclm.jpg",
+          details: "Divarlara incə və xoş toxunuş effekti bəxş edən, dərin mat görünüşlü yüksək keyfiyyətli boya.",
+          purpose: "Yataq və qonaq otaqları",
+          origin: "İsveçrə"
+        }
+      ]
     }
   },
   wallpaper: [
@@ -1463,7 +1462,6 @@ const catalogData = {
   ]
 };
 
-// Принудительное обновление и очистка старого кэша localStorage
 function loadCustomItems() {
   localStorage.removeItem('emiliana_custom_paint_items');
   let customItems = {};
