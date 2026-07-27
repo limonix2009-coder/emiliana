@@ -304,27 +304,15 @@ section{ position:relative; }
 .p-texture{ 
   position:absolute; 
   inset:0; 
-  background-size: cover; 
-  background-repeat: no-repeat;
-  background-position: center; 
+  background-size: cover !important; 
+  background-repeat: no-repeat !important;
+  background-position: center !important; 
   transition: transform 0.6s var(--ease);
 }
 .p-card:hover .p-texture{
   transform: scale(1.05);
 }
-.p-texture.tex-paint{ background-color: #2D2923; }
-.p-texture.tex-wallpaper{
-  background-color:#E7DEC9;
-  background-image: radial-gradient(circle at 9px 9px, rgba(139,85,70,.5) 2px, transparent 2.4px), radial-gradient(circle at 20px 20px, rgba(169,121,59,.35) 1.6px, transparent 2px);
-  background-size: 30px 30px, 30px 30px;
-}
-.p-texture.tex-doors{ background: repeating-linear-gradient(95deg, #5C3623 0px 4px, #6E4430 4px 9px, #4E2D1D 9px 11px, #7C4E36 11px 17px); }
-.p-texture.tex-parquet{
-  background-color:#B8895A;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(31,28,23,.18) 0 2px, transparent 2px 20px),
-    repeating-linear-gradient(-45deg, rgba(250,248,243,.24) 0 2px, transparent 2px 20px);
-}
+
 .p-card::before{
   content:""; position:absolute; inset:0;
   background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.1) 75%);
@@ -482,7 +470,7 @@ section{ position:relative; }
 .g-tile:nth-child(3n+1){ grid-column: span 2; }
 .g-tile:nth-child(4n){ aspect-ratio: 4/5; }
 
-/* ИСПРАВЛЕННЫЙ ИЗОБРАЗИТЕЛЬНЫЙ СТИЛЬ ГАЛЕРЕИ */
+/* ИСПРАВЛЕННЫЙ СТИЛЬ ГАЛЕРЕИ (БЕЗ ПЛИТКИ) */
 .g-tex { 
   position: absolute; 
   inset: 0; 
@@ -986,14 +974,13 @@ const catalogData = {
     }
   },
   wallpaper: [
-    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "" },
-    { title: "Textured Linen Wallpaper", desc: "Kətan toxumalı tekstura", img: "" }
+    { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/wallpapers.png" }
   ],
   doors: [
-    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "" }
+    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/doors.png" }
   ],
   parquet: [
-    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "" }
+    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg" }
   ]
 };
 
@@ -1100,18 +1087,36 @@ const catOrder = ['paint', 'wallpaper', 'doors', 'parquet'];
 function renderProducts(lang){
   const grid = document.getElementById('productsGrid');
   if(!grid) return;
-  grid.innerHTML = data.products.items.map((p, idx) => `
-    <article class="p-card" data-cat-id="${p.id || catOrder[idx] || 'paint'}">
-      <div class="p-texture tex-${p.texture}" ${p.image ? `style="background-image:url('${fixPath(p.image)}')"` : ''}></div>
-      <div class="p-peel"></div>
-      <div class="p-body">
-        <span class="p-index">${(p.index && p.index[lang]) || ''}</span>
-        <h3>${(dict[lang] && dict[lang][(p.id || catOrder[idx]) + '_name']) || ''}</h3>
-        <p>${(p.desc && p.desc[lang]) || ''}</p>
-        <div class="p-link"><span>${(p.cta && p.cta[lang]) || ''}</span>${arrowSVG}</div>
-      </div>
-    </article>
-  `).join('');
+
+  const items = (data.products && data.products.items && data.products.items.length > 0) 
+    ? data.products.items 
+    : [
+        { id: "paint", image: "uploads/Gemini_Generated_Image_2gnhce2gnhce2gnh-clean (1).png" },
+        { id: "wallpaper", image: "uploads/wallpapers.png" },
+        { id: "doors", image: "uploads/doors.png" },
+        { id: "parquet", image: "uploads/Gemini_Generated_Image_v58e9nv58e9nv58e.jpeg" }
+      ];
+
+  grid.innerHTML = items.map((p, idx) => {
+    const imgUrl = p.image ? fixPath(p.image) : '';
+    const indexText = (p.index && p.index[lang]) ? p.index[lang] : '0' + (idx + 1) + ' — ' + (p.id || catOrder[idx]).toUpperCase();
+    const titleText = (dict[lang] && dict[lang][(p.id || catOrder[idx]) + '_name']) ? dict[lang][(p.id || catOrder[idx]) + '_name'] : '';
+    const descText = (p.desc && p.desc[lang]) ? p.desc[lang] : '';
+    const ctaText = (p.cta && p.cta[lang]) ? p.cta[lang] : 'Bax';
+
+    return `
+      <article class="p-card" data-cat-id="${p.id || catOrder[idx] || 'paint'}">
+        <div class="p-texture" style="background-image: url('${imgUrl}');"></div>
+        <div class="p-peel"></div>
+        <div class="p-body">
+          <span class="p-index">${indexText}</span>
+          <h3>${titleText}</h3>
+          <p>${descText}</p>
+          <div class="p-link"><span>${ctaText}</span>${arrowSVG}</div>
+        </div>
+      </article>
+    `;
+  }).join('');
 
   document.querySelectorAll('.p-card').forEach((card, index) => {
     card.addEventListener('click', (e) => {
