@@ -1952,7 +1952,9 @@ function openMaterialDetails(title) {
   const detailsText = foundItem && foundItem.details ? foundItem.details : 'Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir.';
   const purposeText = foundItem && foundItem.purpose ? foundItem.purpose : 'Divar və səth örtüyü';
   const originText = foundItem && foundItem.origin ? foundItem.origin : 'İtaliya / Avropa';
-  const imgUrl = foundItem && foundItem.img ? foundItem.img : '';
+  
+  // Исправлено: корректное извлечение картинки независимо от названия ключа (img или image)
+  const imgUrl = foundItem ? (foundItem.img || foundItem.image || '') : '';
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1;">
