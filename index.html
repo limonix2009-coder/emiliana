@@ -340,7 +340,38 @@ section{ position:relative; }
 .p-link svg{ width:13px; height:13px; transition: transform .35s var(--ease); }
 .p-card:hover .p-link svg{ transform: translateX(4px); }
 
-/* ============================= CONFIGURATOR SECTION (ДОБАВЛЕНО ДЛЯ ДВЕРЕЙ) ============================= */
+/* ============================= МОДАЛЬНОЕ ОКНО КОНФИГУРАТОРА ДВЕРЕЙ ============================= */
+.door-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(31, 28, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s var(--ease);
+  padding: 20px;
+}
+.door-modal.open { opacity: 1; pointer-events: auto; }
+.door-modal-content {
+  background: var(--paper);
+  width: 100%; max-width: 1150px; max-height: 90vh;
+  border-radius: 14px; overflow-y: auto;
+  box-shadow: 0 35px 70px rgba(0,0,0,0.35);
+  padding: clamp(30px, 4vw, 50px);
+  position: relative;
+  transform: translateY(20px); transition: transform .4s var(--ease);
+}
+.door-modal.open .door-modal-content { transform: translateY(0); }
+.door-modal-close {
+  position: absolute; top: 20px; right: 24px;
+  font-size: 32px; cursor: pointer; color: var(--ink-soft);
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--plaster-2);
+  transition: background .3s ease, color .3s ease;
+  z-index: 10;
+}
+.door-modal-close:hover { background: var(--ink); color: var(--paper); }
+
 .conf-tab {
   font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--stone); background: none; border: none; padding-bottom: 12px; cursor: pointer;
@@ -352,7 +383,7 @@ section{ position:relative; }
 }
 .conf-thumbs-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  max-height: 400px; overflow-y: auto; padding-right: 4px;
+  max-height: 380px; overflow-y: auto; padding-right: 4px;
 }
 .conf-thumb-card {
   background: var(--cream-card); border-radius: 6px; overflow: hidden; border: 1px solid var(--stone-line);
@@ -711,54 +742,6 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   </div>
 </section>
 
-<!-- ============================= КОНФИГУРАТОР КОЛЛЕКЦИИ ДВЕРЕЙ ============================= -->
-<section id="door-configurator" class="section-pad" style="background: var(--paper);">
-  <div class="container">
-    
-    <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
-      <p class="eyebrow" style="justify-content: center;">KOLLEKSİYA</p>
-      <h2 style="margin: 12px 0 16px;">Segmenti Kolleksiyası</h2>
-      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.6;">
-        Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.
-      </p>
-    </div>
-
-    <div class="door-conf-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;">
-      
-      <!-- ЛЕВАЯ ЧАСТЬ -->
-      <div class="door-preview-side" style="display: flex; flex-direction: column; align-items: center;">
-        <div style="width: 100%; max-width: 420px; aspect-ratio: 3/5; border-radius: 8px; overflow: hidden; background: var(--plaster-2); box-shadow: 0 20px 40px rgba(0,0,0,0.12); position: relative;">
-          <img id="activeDoorImg" src="uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" alt="Model" style="width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease;">
-        </div>
-        
-        <div style="width: 100%; max-width: 420px; margin-top: 24px;">
-          <h3 id="activeDoorTitle" style="font-family: var(--font-display); font-size: 26px; margin-bottom: 8px;">Mod. SG1</h3>
-          <div style="display: flex; gap: 24px; font-size: 14px; color: var(--ink-soft); margin-bottom: 16px;">
-            <div><span>Отделка: </span><b id="activeDoorFinish" style="color: var(--ink);">Laccato ARGILLA</b></div>
-            <div><span>Портал: </span><b id="activeDoorPortal" style="color: var(--ink);">Evo50</b></div>
-          </div>
-          <div id="activeDoorPrice" style="font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--verde);">
-            64 790 ₴
-          </div>
-        </div>
-      </div>
-
-      <!-- ПРАВАЯ ЧАСТЬ (ВКЛАДКИ) -->
-      <div class="door-controls-side">
-        <div style="display: flex; gap: 28px; border-bottom: 1px solid var(--stone-line); margin-bottom: 30px; position: relative; flex-wrap: wrap;">
-          <button class="conf-tab active" onclick="switchConfTab('models', this)">МОДЕЛИ +</button>
-          <button class="conf-tab" onclick="switchConfTab('colors', this)">ЦВЕТА +</button>
-          <button class="conf-tab" onclick="switchConfTab('glasses', this)">СТЕКЛА +</button>
-          <button class="conf-tab" onclick="switchConfTab('portals', this)">ПОРТАЛЫ +</button>
-        </div>
-
-        <div id="confTabContent"></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ============================= WHY US ============================= -->
 <section id="why" class="section-pad">
   <div class="container">
@@ -902,6 +885,54 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   </div>
 </section>
 </main>
+
+<!-- ============================= МОДАЛЬНОЕ ОКНО КОНФИГУРАТОРА ДВЕРЕЙ ============================= -->
+<div class="door-modal" id="doorModal">
+  <div class="door-modal-content">
+    <div class="door-modal-close" id="doorModalClose">&times;</div>
+    
+    <div style="text-align: center; max-width: 600px; margin: 0 auto 35px;">
+      <p class="eyebrow" style="justify-content: center;">KOLLEKSİYA</p>
+      <h2 style="margin: 8px 0 12px; font-size: 28px;">Segmenti Kolleksiyası</h2>
+      <p style="color: var(--ink-soft); font-size: 14px; line-height: 1.5;">
+        Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров.
+      </p>
+    </div>
+
+    <div class="door-conf-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center;">
+      <!-- ЛЕВАЯ ЧАСТЬ -->
+      <div class="door-preview-side" style="display: flex; flex-direction: column; align-items: center;">
+        <div style="width: 100%; max-width: 360px; aspect-ratio: 3/5; border-radius: 8px; overflow: hidden; background: var(--plaster-2); box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+          <img id="activeDoorImg" src="uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" alt="Model" style="width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease;">
+        </div>
+        
+        <div style="width: 100%; max-width: 360px; margin-top: 20px;">
+          <h3 id="activeDoorTitle" style="font-family: var(--font-display); font-size: 24px; margin-bottom: 6px;">Mod. SG1</h3>
+          <div style="display: flex; gap: 20px; font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">
+            <div><span>Отделка: </span><b id="activeDoorFinish" style="color: var(--ink);">Laccato ARGILLA</b></div>
+            <div><span>Портал: </span><b id="activeDoorPortal" style="color: var(--ink);">Evo50</b></div>
+          </div>
+          <div id="activeDoorPrice" style="font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--verde);">
+            64 790 ₴
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ ЧАСТЬ (ВКЛАДКИ) -->
+      <div class="door-controls-side">
+        <div style="display: flex; gap: 24px; border-bottom: 1px solid var(--stone-line); margin-bottom: 24px; position: relative; flex-wrap: wrap;">
+          <button class="conf-tab active" onclick="switchConfTab('models', this)">МОДЕЛИ +</button>
+          <button class="conf-tab" onclick="switchConfTab('colors', this)">ЦВЕТА +</button>
+          <button class="conf-tab" onclick="switchConfTab('glasses', this)">СТЕКЛА +</button>
+          <button class="conf-tab" onclick="switchConfTab('portals', this)">ПОРТАЛЫ +</button>
+        </div>
+
+        <div id="confTabContent"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- ============================= CATALOG MODAL ============================= -->
 <div class="catalog-modal" id="catalogModal">
@@ -1185,13 +1216,27 @@ function renderProducts(lang){
       e.preventDefault();
       const catId = card.getAttribute('data-cat-id') || 'paint';
       if(catId === 'doors') {
-        document.getElementById('door-configurator').scrollIntoView({ behavior: 'smooth' });
+        openDoorModal(); // Открывает конфигуратор дверей во всплывающем окне
       } else {
         openCatalogModal(catId);
       }
     });
   });
 }
+
+function openDoorModal() {
+  const modal = document.getElementById('doorModal');
+  modal.classList.add('open');
+  switchConfTab('models', document.querySelector('.door-modal .conf-tab'));
+}
+function closeDoorModal() {
+  document.getElementById('doorModal').classList.remove('open');
+}
+
+document.getElementById('doorModalClose').addEventListener('click', closeDoorModal);
+document.getElementById('doorModal').addEventListener('click', (e) => {
+  if (e.target.id === 'doorModal') closeDoorModal();
+});
 
 function openCatalogModal(catId) {
   const modal = document.getElementById('catalogModal');
@@ -1325,7 +1370,7 @@ let selectedModelId = 'sg1';
 
 function switchConfTab(tabName, btnElement) {
   currentConfTab = tabName;
-  document.querySelectorAll('.conf-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.door-modal .conf-tab').forEach(t => t.classList.remove('active'));
   if(btnElement) btnElement.classList.add('active');
   renderConfContent();
 }
@@ -1516,7 +1561,7 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
   renderHero();
   applyLanguage('az');
   resetRevTimer();
-  switchConfTab('models', document.querySelector('.conf-tab'));
+  switchConfTab('models', document.querySelector('.door-modal .conf-tab'));
 })();
 </script>
 
