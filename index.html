@@ -340,6 +340,30 @@ section{ position:relative; }
 .p-link svg{ width:13px; height:13px; transition: transform .35s var(--ease); }
 .p-card:hover .p-link svg{ transform: translateX(4px); }
 
+/* ============================= CONFIGURATOR SECTION (ДОБАВЛЕНО ДЛЯ ДВЕРЕЙ) ============================= */
+.conf-tab {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--stone); background: none; border: none; padding-bottom: 12px; cursor: pointer;
+  position: relative; transition: color .3s ease;
+}
+.conf-tab:hover, .conf-tab.active { color: var(--ink); }
+.conf-tab.active::after {
+  content: ""; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: var(--ink);
+}
+.conf-thumbs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  max-height: 400px; overflow-y: auto; padding-right: 4px;
+}
+.conf-thumb-card {
+  background: var(--cream-card); border-radius: 6px; overflow: hidden; border: 1px solid var(--stone-line);
+  cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  display: flex; flex-direction: column; align-items: center; padding: 10px; text-align: center;
+}
+.conf-thumb-card:hover { transform: translateY(-3px); border-color: var(--ink); }
+.conf-thumb-card.selected { border-color: var(--verde); box-shadow: 0 4px 12px rgba(60,74,59,0.2); background: #ffffff; }
+.conf-thumb-img { width: 100%; aspect-ratio: 1/2; object-fit: cover; border-radius: 4px; margin-bottom: 8px; background: var(--plaster-2); }
+.conf-thumb-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+
 /* ============================= CATALOG MODAL ============================= */
 .catalog-modal {
   position: fixed; inset: 0; z-index: 999;
@@ -687,6 +711,54 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   </div>
 </section>
 
+<!-- ============================= КОНФИГУРАТОР КОЛЛЕКЦИИ ДВЕРЕЙ ============================= -->
+<section id="door-configurator" class="section-pad" style="background: var(--paper);">
+  <div class="container">
+    
+    <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
+      <p class="eyebrow" style="justify-content: center;">KOLLEKSİYA</p>
+      <h2 style="margin: 12px 0 16px;">Segmenti Kolleksiyası</h2>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.6;">
+        Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.
+      </p>
+    </div>
+
+    <div class="door-conf-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;">
+      
+      <!-- ЛЕВАЯ ЧАСТЬ -->
+      <div class="door-preview-side" style="display: flex; flex-direction: column; align-items: center;">
+        <div style="width: 100%; max-width: 420px; aspect-ratio: 3/5; border-radius: 8px; overflow: hidden; background: var(--plaster-2); box-shadow: 0 20px 40px rgba(0,0,0,0.12); position: relative;">
+          <img id="activeDoorImg" src="uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" alt="Model" style="width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease;">
+        </div>
+        
+        <div style="width: 100%; max-width: 420px; margin-top: 24px;">
+          <h3 id="activeDoorTitle" style="font-family: var(--font-display); font-size: 26px; margin-bottom: 8px;">Mod. SG1</h3>
+          <div style="display: flex; gap: 24px; font-size: 14px; color: var(--ink-soft); margin-bottom: 16px;">
+            <div><span>Отделка: </span><b id="activeDoorFinish" style="color: var(--ink);">Laccato ARGILLA</b></div>
+            <div><span>Портал: </span><b id="activeDoorPortal" style="color: var(--ink);">Evo50</b></div>
+          </div>
+          <div id="activeDoorPrice" style="font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--verde);">
+            64 790 ₴
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ ЧАСТЬ (ВКЛАДКИ) -->
+      <div class="door-controls-side">
+        <div style="display: flex; gap: 28px; border-bottom: 1px solid var(--stone-line); margin-bottom: 30px; position: relative; flex-wrap: wrap;">
+          <button class="conf-tab active" onclick="switchConfTab('models', this)">МОДЕЛИ +</button>
+          <button class="conf-tab" onclick="switchConfTab('colors', this)">ЦВЕТА +</button>
+          <button class="conf-tab" onclick="switchConfTab('glasses', this)">СТЕКЛА +</button>
+          <button class="conf-tab" onclick="switchConfTab('portals', this)">ПОРТАЛЫ +</button>
+        </div>
+
+        <div id="confTabContent"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============================= WHY US ============================= -->
 <section id="why" class="section-pad">
   <div class="container">
@@ -843,17 +915,6 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ -->
-    <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/ foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
-      </div>
-    </div>
-
     <div class="catalog-grid-inner" id="catalogGridInner"></div>
   </div>
 </div>
@@ -954,412 +1015,6 @@ const catalogData = {
           details: "Süni zamş effektli ekoloji Decorazza ALCANTARA örtüyü istənilən interyer üçün uyğundur. Az sərfiyyatla toxunmaq istənilən məxməri səth yaradır, sərt dizayna belə istilik qatır. Xüsusilə qum və tünd çalarlarda zəngin görünür; latun və qara detallarla mükəmməl uyğunlaşır.",
           purpose: "Daxili məkanlar üçün dekorativ örtük",
           origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Stucco Veneziano",
-          desc: "Təbii və cilalanmış mərmər effekti yaradan klassik venesiya suvağı.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/0b9/rzdkjh2amus5glwp2eayxtjc2et5o9zm.png.webp?174238947283958",
-          details: "Söndürülmüş əhəng və mərmər ununun əsasında hazırlanmış yüksək keyfiyyətli klassik venesiya suvağı. Məkanda təbii və nəcib mərmər kəsiyini mükəmməl təqlid edən hamar, parıldayan səthlər yaratmağa imkan verir.",
-          purpose: "Klassik interyerlər və sütunlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Calce Veneziana",
-          desc: "Antik daş və dünya xəritəsi üslubunda ekoloji fakturalı suvaq.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2022/11/decorazza-calce-veneziana.png?fit=2000%2C2000&ssl=1",
-          details: "Təbii əhəng əsasında yaradılmış peşəkar mineral örtük. Dünya xəritəsi, travertin və ya qədim divar effektlərini əldə etmək üçün istifadə olunur. Tamamilə ekoloji təmizdir və divarların sağlam mikroiqlimini qoruyur.",
-          purpose: "Fasad və interyer üçün dekorativ suvaq",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Velours",
-          desc: "Məxməri teksturalı, yaşayış və ictimai məkanlar üçün lüks dekorativ boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/d88/dpq4cegk2hucstmmgdb9kpzm2a7y28dn.png.webp?174237141784132",
-          details: "Məxməri teksturaya malik unikal Decorazza Velours dekorativ boyası yaşayış və ictimai məkanlarda lüks interyerlər yaradır. Bir qat tətbiqi ilə hamar və ya drapirovka olunmuş məxmər effekti əldə edilir, asan bərpa olunur və qoruyucu örtük tələb etmir.",
-          purpose: "Daxili məkanlarda tikişsiz səthlər üçün dekorativ örtük.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Seta da Vinci",
-          desc: "Gümüşü bazaya və zərif ipək effektinə malik ekoloji Decorazza Seta da Vinci boyası klassik interyerlər üçün nəm təmizliyə davamlı lüks örtük yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/7a5/fcfl7oqigwx5nblfkuquor4c6xn3rm3e.png.webp?174239243985616",
-          details: "Gümüşü baza və təkmilləşdirilmiş örtücülük qabiliyyəti ilə seçilən, nəm təmizlərə davamlı ekoloji dekorativ boya. Tərkibindəki mirvari hissəcikləri sayəsində dərin və ifadəli \"yaş ipək\" effekti yaradır, qoruyucu örtük tələb etmir və kompüter üsulu ilə rənglənir.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun və digər memarlıq elementlərində tikişsiz dekorativ örtük üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Velluto",
-          desc: "Yumşaq mat ipək və zərif məxməri tekstura effekti yaradan Velluto dekorativ boyası geniş və işıqlı interyerlər üçün incə həlldir.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/dcf/0mp3ejdzk8afk3obabf637kerfgoaamy.png.webp?174238920183698",
-          details: "Zərif məxməri teksturaya və incə parıltıya malik, yumşaq mat ipək effekti yaradan dekorativ boya. Sakit rəng gaməsində sərbəst məkan və günəş işığı bolluğunu vurğulayan incə dizayn həllidir.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz dekorativ örtük yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Aretino",
-          desc: "Rəngli metalların zərif fakturasına və yumşaq parıltıya malik Aretino dekorativ boyası orijinal və parlaq səthlər yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/af2/yvnpa30t9irl7cgxv2vf6sj8mxl0shch.png.webp?174239243786562",
-          details: "Tərkibindəki mirvari əsası və xırda fraksiyalı doldurucu sayəsində günəş şüaları altında parıldayan, xaoslu və ya dəqiq istiqamətlənmiş yumşaq keçidlərə malik orijinal dekorativ örtük yaradır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari keçidləri effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Lucetezza",
-          desc: "Qiymətli metalların və incə qum naxışının parıltısını yaradan Lucetezza dekorativ boyası interyerə zəriflik qatır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/200/oq191fvttf0yz56utx5zg8br69hc2m1z.png.webp?174239181984704",
-          details: "Tərkibindəki mirvari əsası və incə qum naxışı sayəsində günəş şüaları altında yumşaq şəkildə parıldayan, antik interyerlərə sərinlik, art-deko və modern üslublarına isə istilik gətirən dekorativ örtük.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari qum burulğanları effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Brezza",
-          desc: "Parıldayan mirvari əsas və mat qum dənəciklərinin ikili fakturası sayəsində həcmli və təbii qum burulğanı effekti yaradan Breeza dekorativ boyası.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/ff4/8nmkx7xcf12xhazx8mknbkd4f23v25i0.png.webp?174239182182232",
-          details: "Parıldayan mirvari səth üzərində səpələnmiş mat qum dənəcikləri vasitəsilə unikal həcm, dərinlik və daxili parıltı effekti yaradan dekorativ boya. Nəm təmizliyə davamlıdır, lokal bərpa oluna bilir və normal istismar yükü olan yaşayış, eləcə də ictimai məkanlar üçün idealdır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz qum burulğanları effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Wall Arte",
-          desc: "Loft, high-tech və art-deko üslubları üçün ifadəli hamar bədii beton effekti yaradan dekorativ mat boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/c20/55iju4flv2phj0q3hg651c7e5lxyfw1w.png.webp?174245694992942",
-          details: "Müxtəlif üsullarla tətbiq edilərək unikal müəllif işləri, panno və faktiki imitasiyalar yaratmağa imkan verən, hamar bədii beton effektli dekorativ mat boya.",
-          purpose: "Daxili məkanlarda müxtəlif mineral səthlər üzərində — divarlar, tavanlar, sütunlar, frizlər və digər memarlıq detallarında tikişsiz bədii beton effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Effetto metallico",
-          desc: "Soyuq mirvari parıltısına malik Effetto Metallico metallik boyası müasir və klassik interyerlərdə qızıl və ya gümüş kimi unikal metal effektləri yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/85f/o84zofzq605vas8y8knv4h89hrenlot5.png.webp?174239243888830",
-          details: "Oro, bianco və argento olmaqla üç bazada təqdim olunan, soyuq mirvari parıltısı ilə seçilən dekorativ metalllaşdırılmış boya. Müasir və klassik interyerlərdə orijinal dizayn həllərini vurğulayır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq elementlərində müxtəlif növ metalları imitasiya edən tikişsiz dekorativ örtük yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Microcemento",
-          desc: "Müasir interyerlər üçün dözümlü və tikişsiz mikrosement örtüyü.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/06f/z0hstj35z9os34qdry4ln4ybxr1xd77a.png.webp?174240173784082",
-          details: "Minimalist, loft və müasir üslublu məkanlar üçün xüsusi hazırlanmış yüksək möhkəmliyə malik mikrosement örtüyü. Divarlar, döşəmələr və mürəkkəb memarlıq elementləri üzərində monolit beton effekti yaratmağa imkan verir.",
-          purpose: "Müasir interyerlər və döşəmələr üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Barilievo",
-          desc: "Həcmli və bədii relyeflər yaratmaq üçün peşəkar dekorativ suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/a2f/zzp7gnmsc8rkx6jdt55x9xpfol6wdoiz.png.webp?174239310187840",
-          details: "Məkanda fərdi bədii kompozisiyalar, dərin fakturalar və relyefli naxışlar yaratmaq üçün ideal material. Dizaynerlərə divarlarda unikal teksturalar və heykəltəraşlıq effektləri işləməyə şərait yaradır.",
-          purpose: "Bədii interyer dizaynı və pannolar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Art Beton",
-          desc: "Təbii beton səthini imitasiya edən şık və müasir dekorativ örtük.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2018/03/decorazza-art-beton.png?fit=2000%2C2000&ssl=1",
-          details: "Urbanistik və loft üslubunun tələblərinə mükəmməl cavab verən, sənaye dizaynı elementlərini xatırladan dekorativ material. Səthə xarakterik sərtlik və müasir estetik görünüş bəxş edir.",
-          purpose: "Loft və müasir interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Travertino Naturale",
-          desc: "Təbii travertin daşının nəcib fakturasını yaradan klassik suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/9aa/qmqlmxtni1sdpfd64y1i9n2ekk3ispcq.png.webp?174238947085534",
-          details: "Təbii daşın antik gözəlliyini və möhkəmliyini interyerə daşıyan mişar daşı effekti. Həm klassik, həm də müasir memarlıq layihələrində fasad və divar bəzəyi kimi geniş istifadə olunur.",
-          purpose: "Fasad və interyer divarları üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Traverta",
-          desc: "Travertin daşının zərif və səliqəli fakturasını təqlid edən örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/c10/4z0gq8nxnaug22hoz3ls3b2wf1lomr8q.png.webp?174238946984042",
-          details: "Təbii travertinin yüngülləşdirilmiş və incə naxışlı versiyası. Divarlara xüsusi ritm, dərinlik və klassik İtaliya memarlığının ab-havasını gətirir.",
-          purpose: "İnteryer divarları və sütunlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Romano",
-          desc: "Qədim Roma üslubunda monumental və tarixi divar effektləri.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2018/03/decorazza-romano.png?fit=2000%2C2000&ssl=1",
-          details: "Qədim dövrlərin möhtəşəm memarlıq üslubunu əks etdirən, tarixi daş və qədim suvaq elementlərini birləşdirən eksklüziv dekorativ material.",
-          purpose: "Klassik və monumental interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Sollievo",
-          desc: "Zərif relyefli və hamar keçidli dekorativ fakturalı suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/514/5t4lb43vhuz2c0ybrxkucqp7lveng32z.png.webp?174237142099910",
-          details: "Divarlarda yüngül relyef və yumşaq kölgə oyunları yaradan peşəkar örtük. Məkana vizual həcm və toxunulmaz zəriflik qatır.",
-          purpose: "İnteryer dizaynı və xüsusi zonalar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Rustic",
-          desc: "Kobud və təbii kənd üslubunda (rustik) səth effekti.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/609/68ghqoh8tnnypcbgkhhpz4nr058ssgqn.png.webp?174240173694708",
-          details: "Təbiətə yaxınlığı və qədimliyi sevənlər üçün işlənmiş rustik üslublu dekorativ suvaq. Qeyri-adi kobud toxunması ilə məkana xüsusi istilik və rahatlıq hissi verir.",
-          purpose: "Rustik və ecotech üslublu interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Fiora",
-          desc: "İnteryerlər üçün zərif çiçək və ya naxış effektli dekorativ örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/7e0/2ivnpsq21c3u8z2wvulnti3k2jllexsf.png.webp?174237142184748",
-          details: "Məkanlara incəlik və estetik toxunuş qatan xüsusi dekorativ material. Divarlarda unikal vizual effektlər və işıq oyunları yaratmaq üçün istifadə olunur.",
-          purpose: "Dekorativ interyer bəzəyi üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Cera Decor",
-          desc: "Dekorativ suvaqlar üçün qoruyucu və bəzək mumu.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/18c/8tkmwk0p9ec2mhq1br2ezizipastzcbi.png.webp?174240174390770",
-          details: "Dekorativ örtüklərin üzərinə çəkilən, onları nəmə və çirklənməyə qarşı qoruyan, eyni zamanda əlavə parıltı və dərinlik verən şəffaf mum tərkibli qoruyucu vasitə.",
-          purpose: "Suvaq və boyaların qorunması və dekorativ işlənməsi",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Pastello Vernici",
-          desc: "Səthlərə pastel çalarlar və zərif qoruma qatığı verən lak.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/de0/crqg212l37s2oh3y6meb344tn2248hnl.png",
-          details: "Dekorativ örtüklərin üzərindən tətbiq edilərək rəng tonlarını yumşaldan, pastel və sakit keçidlər yaradan xüsusi peşəkar vernik.",
-          purpose: "Dekorativ qoruma və tonlama üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Fleur Deco",
-          desc: "İnteryerə bədii və zərif dizayn elementləri qatan dekorativ boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/76e/3bix7lwnxq88l7d8dji2g8cfngc786vt.png.webp?174240174185594",
-          details: "Fərdi dizayn ideyalarını həyata keçirmək üçün nəzərdə tutulmuş, zərif teksturaya malik dekorativ boya materialı.",
-          purpose: "İnteryer divarları üçün dekorativ örtük",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Finitura",
-          desc: "Dekorativ səthlər üçün son tamamlayıcı və qoruyucu lak-örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
-          details: "Divar örtüklərinin ömrünü uzadan, mexaniki təsirlərə və nəmə qarşı davamlılığı təmin edən yüksək keyfiyyətli son qat qoruyucu material.",
-          purpose: "Son tamamlayıcı qoruyucu qat",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Cera di Veneziano",
-          desc: "Venesiya suvaqları üçün xüsusi parıldadıcı və qoruyucu mum.",
-          img: "https://kraski-trade.ru/upload/resize_cache/iblock/105/1500_1500_1/vsdki3spcjvj32rmym8r3eicfov3hvfs.png",
-          details: "Venesiya suvağının təbii mərmər parıltısını maksimum dərəcədə üzə çıxaran, cilalanmanı gücləndirən və nəmə qarşı etibarlı qoruma təmin edən peşəkar mum.",
-          purpose: "Venesiya suvaqları üçün qoruyucu mum",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Perla Vernici",
-          desc: "Mirvari parıltılı dekorativ lak və örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/17f/51gb77d9zsz4bz4s42c6e2d7vfusdhvf.png.webp?174237142189966",
-          details: "Səthlərə incə mirvari effekti və işıqda parıldayan zərif çalarlar bəxş edən dekorativ lak növü.",
-          purpose: "Dekorativ parıltı və effekt vermək üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Mica",
-          desc: "Tərkibində təbii mika hissəcikləri olan parlaq dekorativ örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/83a/xbj832ea3fmbm18to29qt2jxmll4ytw9.png",
-          details: "Mika minerallarının xüsusi parıltısı sayəsində divarlarda unikal işıq effekti yaradan, interyerə dəbdəbə qatan dekorativ material.",
-          purpose: "İnteryerlərdə xüsusi effektlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Lucente",
-          desc: "Zərif parıltı və qum naxışlı dekorativ örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/ccb/idbdmbuegb20huyc22hhf26339tu518v.png.webp?1757407938481474",
-          details: "İncə qum naxışları və mirvari əsası ilə işıqda yumşaq parıldayan, interyerə istilik və zəriflik qatan dekorativ boya.",
-          purpose: "Daxili məkanlar üçün dekorativ qum effekti",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Primer",
-          desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
-          details: "Dekorativ materialların tətbiqindən əvvəl səth hazırlığı üçün istifadə olunan, boya və suvaqların divara möhkəm yapışmasını təmin edən universal astar.",
-          purpose: "Səth hazırlığı və yapışmanın yaxşılaşdırılması",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Base",
-          desc: "Dekorativ örtüklər üçün əsas yaradıcı rəngləndirilə bilən baza.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/972/5roovurzg38q1zvsea0rcdiuido1emjf.png.webp?174237141883254",
-          details: "Müxtəlif dekorativ boya və suvaqların tətbiqindən əvvəl səthin rəng balansını tənzimləyən və əsas yaradan texniki məhsul.",
-          purpose: "Dekorativ sistemlər üçün əsas qat",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Primer di Quarzo",
-          desc: "Kvars qumlu, güclü yapışdırıcı xüsusiyyətli qrunt-astar.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/f5d/8zzzzgq5i3vgbbg3ddzk8dh20pkqkg5m.png.webp?174237141984058",
-          details: "Tərkibindəki incə kvars qumu sayəsində dekorativ suvaqların səthə mükəmməl yapışmasını təmin edən, qabarıq fakturalı peşəkar astar.",
-          purpose: "Dekorativ suvaqlar üçün kvarslı astar",
-          origin: "Rusiya"
-        }
-      ],
-      olsta: [
-        {
-          title: "Olsta Фасадная силиконизированная",
-          desc: "Fasadlar üçün silikonla gücləndirilmiş, hava şəraitinə və yağıntılara qarşı ultra davamlı akril boya.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1bd/gd4vk8j4nvpg28n5tr1vhclzmwpel01w.png.webp?1748003462165510",
-          details: "Binaların xarici fasadları üçün nəzərdə tutulmuş, nəmi dəf edən və rəngini uzun illər qoruyan silikonlaşdırılmış akril fasad boyası.",
-          purpose: "Xarici fasad işləri üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Краска для влажных помещений",
-          desc: "Rütubətli otaqlar üçün nəmə və suya qarşı dayanıqlı mat interyer boyası.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/20c/fmsrkutubov40y2gnwk7cjb6p3vincgb.png.webp?1748002268156736",
-          details: "Buxara və nəmə qarşı dözümlü, divarların nəfəs almasına imkan verən xüsusi tərkibli nəm otaq boyası.",
-          purpose: "Hamam, duş və nəm zonalar",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Краска для стен, обоев и потолков",
-          desc: "Bütün növ divar kağızları, divar və tavanlar üçün qoxusuz universal praktiki boya.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSn3INWHbDQPWENxyG97WGcHeuEgv0lTT-RdeZyGbDxQ&s=10",
-          details: "İstənilən növ divar kağızının üzərindən boyamaq, həmçinin adi divar və tavanları rəngləmək üçün ideal universallıq.",
-          purpose: "Divar kağızı və tavanlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Фасадная акриловая",
-          desc: "Mineral əsaslar üçün yüksək dayanıqlılığa malik atmosferə davamlı fasad akril boyası.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/8d1/fu2pz9u2p531ln03n4svlq0qh6jbuzoi.png.webp?1748003461134418",
-          details: "Xarici fasad səthləri üçün xüsusi işlənmiş, yağıntılara və ultrabənövşəyi şüalara qarşı davamlı akril boya növü.",
-          purpose: "Xarici fasad səthləri",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Interior & Exterior Primer",
-          desc: "Daxili və xarici işlər üçün universal dərin hopdurucu astar.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1fd/cmqq1517vza5v81gwa6bfilxnylsz9vo.png.webp?1781766838162976",
-          details: "Səthlərin möhkəmliyini artıran və sonrakı boya qatının yapışmasını gücləndirən universal astar.",
-          purpose: "Daxili və xarici səth hazırlığı",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Multi Primer",
-          desc: "Şüşə, plastik, metal və çətin əsaslar üçün adgeziya yaradan astar.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/3a8/wjfxu25jeq64u77k6pb0r9gnjmih1zux.png",
-          details: "Adətən boyanın yapışmadığı çətin və hamar səthlərdə belə mükəmməl tutuş təmin edən xüsusi astar.",
-          purpose: "Çətin və hamar səthlər",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Pigmented Primer",
-          desc: "Rəngləndirilə bilən, yüksək örtücülü və gizlədici xüsusiyyətli astar.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBnf2aCrAemh0IZzvDNeeRWxXAKlfuMMsJ6vGX1z-Weg&s=10",
-          details: "Əsasın rəngini bərabərləşdirən və sonrakı rəngin tonunu daha canlı göstərən rəngli astar qatı.",
-          purpose: "Boya altı rəng bərabərləşdirmə",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Silicone Primer",
-          desc: "Silikon əsaslı boyalar üçün yüksək dərinlikli silikon hopdurucu astar.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d42/sbqllracio6ubvlkkqk3r952tt6uq4ml.png.webp?1781766226173488",
-          details: "Silikon fasad sistemləri ilə tam uyğunluq təşkil edən, hidrofob xüsusiyyətli peşəkar astar.",
-          purpose: "Silikon sistemlər üçün astar",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Waterblock",
-          desc: "Daxili işlər üçün xüsusi su-hidroizolyasiya tərkibli qoruyucu məhlul.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR2bdWMHEMEk99mzNj4Dq0tS54T84qc-_QVFYzCCUBWg&s=10",
-          details: "Su ilə birbaşa təmasda olan daxili zonalarda nəm keçirməz maneə yaradan etibarlı hidroizolyasiya.",
-          purpose: "Daxili hidroizolyasiya",
-          origin: "Rusiya"
-        }
-      ],
-      swisslake: [
-        {
-          title: "Swiss Lake Matt Pro",
-          desc: "Divarlar üçün zərif mat effektli, hamar və qüsursuz örtük yaradan premium boya.",
-          img: "https://loymina.ru/upload/iblock/64f/vhjz9mzesvi52mzd4pa9e0mqi7z6yr3s.png",
-          details: "Mükəmməl örtücülüyə malik, divarlarda ipək kimi zərif mat (5%) səth formalaşdıran yüksək keyfiyyətli boya.",
-          purpose: "Yataq və qonaq otaqları üçün divar boyası",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Wall Comfort 7",
-          desc: "Gündəlik istifadə üçün əlverişli, yuyulan və nəfəs alan mat interyer boyası.",
-          img: "https://iz-nn.ru/upload/iblock/d42/05rttpv0nbyriwpp11jbo4nc2pax18uw.webp",
-          details: "Ev şəraitində təmizlənməyə tam uyğun, səthdə rahatlıq və estetik mat (7%) görünüş təmin edən praktiki boya.",
-          purpose: "Məişət və yaşayış sahələri",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Semi-matt 20",
-          desc: "Yüksək rütubətli və tez-tez yuyulan otaqlar üçün yarımmat interyer boyası.",
-          img: "https://www.oboykin.ru/assets/images/products/65850/semi-matt.png",
-          details: "Tərkibindəki xüsusi komponentlər sayəsində nəmə və intensiv yuyulmaya qarşı dözümlü yarımmat (20%) örtük.",
-          purpose: "Dəhliz, mətbəx və nəm zonalar",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Tactile 3",
-          desc: "Zərif toxunuş hissi verən dərin mat (3%) interyer boyası.",
-          img: "https://masterdom.ru/upload/iblock/f57/1xmo3ucem3t3zob8tr88kfr2hbb9aclm.jpg",
-          details: "Divarlara incə və xoş toxunuş effekti bəxş edən, dərin mat görünüşlü yüksək keyfiyyətli boya.",
-          purpose: "Yataq və qonaq otaqları",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Wall Control",
-          desc: "İnteryer işləri üçün peşəkar tənzimləyici astar-qrunt.",
-          img: "https://swisslake.store/upload/iblock/a61/syxua8weipxvoz93ueznnf1761ddgmv2/Wall-Control-2.7-litra-_gruntovka-Swiss-Lake_.jpg",
-          details: "Divar səthlərinin qüsurlarını gizlədən, əsasın hopduruculuğunu bərabərləşdirən və sonrakı boya örtüyü üçün ideal baza yaradan məhlul.",
-          purpose: "Divar səthlərinin qorunması və bərabərləşdirilməsi",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Covering Primer",
-          desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://swisslake.store/upload/iblock/a24/prw074ps3dztm9qk6cayc7rekxp2eu8u/Covering-Primer-9-litrov-_praymer-Swiss-Lake_.jpg",
-          details: "Səthlərin möhkəmliyini artıran, boya sərfiyyatını azaldan və sonrakı qatın yapışmasını gücləndirən dərin hopdurucu astar.",
-          purpose: "Səth hazırlığı və qruntlama",
-          origin: "İsveçrə"
-        }
-      ],
-      bayramix: [
-        {
-          title: "Bayramix Mineral",
-          desc: "Mərmər qırıntılı, fasad və interyerlər üçün dözümlü dekorativ suvaq.",
-          img: "https://bayramix.ru/upload/iblock/02e/j0jtyjrathz9ubyhotiyr6q1vidhi0ak.png",
-          details: "Təbii mərmər qırıntılarından ibarət, mexaniki təsirlərə və hava şəraitinə qarşı yüksək dayanıqlılıq nümayiş etdirən klassik dekorativ suvaq.",
-          purpose: "Fasad və daxili məkan divarları",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Bayramix Macro Mineral",
-          desc: "İri fraksiyalı mərmər qırıntılı, sərt və ifadəli fakturalı fasad suvağı.",
-          img: "https://bayramix.ru/upload/delight.webpconverter/upload/iblock/a24/9szaim9a6zt5pd9u6pc0keof1v15eann.png.webp?177485752754818",
-          details: "Daha iri dənəcik quruluşuna malik, binaların xarici səthlərində möhtəşəm və həcmli görünüş yaradan peşəkar dekorativ örtük.",
-          purpose: "Xarici fasadlar və memarlıq elementləri",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Bayramix Teratex",
-          desc: "Müxtəlif dənəvər strukturlu, fasadlar üçün dözümlü teksturalı boya-suvaq.",
-          img: "https://bayramix.ru/upload/delight.webpconverter/upload/iblock/eff/zt6bffoebip8fp2cogyaayy1um84sawb.png.webp?177487448057972",
-          details: "Səthlərdəki qüsurları mükəmməl örtən, atmosfer təsirlərinə və rütubətə qarşı dözümlü elastik fasad örtüyü.",
-          purpose: "Fasad işləri və divar qorunması",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Bayramix Gravol 1.5mm",
-          desc: "Qabıq böcəyi (koroed) effektli, klassik teksturalı fasad suvağı.",
-          img: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/otdelochnye-materialy/1365302/560x504/51541530.jpg",
-          details: "Tətbiq zamanı xarakterik cizgili və zərif naxışlar yaradan, fasadlara xüsusi estetik görünüş bəxş edən akril əsaslı suvaq.",
-          purpose: "Xarici fasadlar və divar bəzəyi",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Bayramix Gravol 2.5mm",
-          desc: "Qabıq böcəyi (koroed) effektli, klassik teksturalı fasad suvağı.",
-          img: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/otdelochnye-materialy/1365289/560x504/51199904.jpg",
-          details: "Tətbiq zamanı xarakterik cizgili və zərif naxışlar yaradan, fasadlara xüsusi estetik görünüş bəxş edən akril əsaslı suvaq.",
-          purpose: "Xarici fasadlar və divar bəzəyi",
-          origin: "İsveçrə"
         }
       ]
     }
@@ -1374,16 +1029,6 @@ const catalogData = {
     { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
   ]
 };
-
-function loadCustomItems() {
-  localStorage.removeItem('emiliana_custom_paint_items');
-  let customItems = {};
-  for (let brandId in catalogData.paint.items) {
-    customItems[brandId] = catalogData.paint.items[brandId];
-  }
-  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
-}
-loadCustomItems();
 
 let currentLang = 'az';
 let currentFilter = 'all';
@@ -1539,7 +1184,11 @@ function renderProducts(lang){
     card.addEventListener('click', (e) => {
       e.preventDefault();
       const catId = card.getAttribute('data-cat-id') || 'paint';
-      openCatalogModal(catId);
+      if(catId === 'doors') {
+        document.getElementById('door-configurator').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        openCatalogModal(catId);
+      }
     });
   });
 }
@@ -1552,12 +1201,10 @@ function openCatalogModal(catId) {
 
 function closeCatalogModal() {
   document.getElementById('catalogModal').classList.remove('open');
-  backToCatalogGrid();
 }
 
 function switchCatalogCategory(catId) {
   selectedBrand = null;
-  window.catalogPreviousContent = null;
   document.querySelectorAll('.catalog-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.cat === catId);
   });
@@ -1566,11 +1213,9 @@ function switchCatalogCategory(catId) {
 
 function renderCatalogContent(catId) {
   const grid = document.getElementById('catalogGridInner');
-  const adminPanel = document.getElementById('adminAddPanel');
   
   if (catId === 'paint') {
     if (!selectedBrand) {
-      if(adminPanel) adminPanel.style.display = 'none';
       const brands = catalogData.paint.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer;">
@@ -1584,7 +1229,6 @@ function renderCatalogContent(catId) {
         </div>
       `).join('');
     } else {
-      if(adminPanel) adminPanel.style.display = 'block';
       const brandObj = catalogData.paint.brands.find(b => b.id === selectedBrand);
       const items = catalogData.paint.items[selectedBrand] || [];
       
@@ -1596,17 +1240,16 @@ function renderCatalogContent(catId) {
       `;
       
       if (items.length === 0) {
-        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ məhsul yoxdur. Yuxarıdakı panel vasitəsilə əlavə edin.</p>';
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ məhsul yoxdur.</p>';
       } else {
         html += items.map(item => `
           <div class="cat-item-card">
-            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img" style="display:flex; align-items:center; justify-content:center; color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
             <div class="cat-item-info">
               <div>
                 <div class="cat-item-title">${item.title}</div>
                 <div class="cat-item-desc">${item.desc}</div>
               </div>
-              <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
             </div>
           </div>
         `).join('');
@@ -1614,12 +1257,7 @@ function renderCatalogContent(catId) {
       grid.innerHTML = html;
     }
   } else {
-    if(adminPanel) adminPanel.style.display = 'none';
     const items = catalogData[catId] || [];
-    if (items.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
-      return;
-    }
     grid.innerHTML = items.map(item => `
       <div class="cat-item-card">
         ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
@@ -1628,245 +1266,19 @@ function renderCatalogContent(catId) {
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
-          <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
         </div>
       </div>
     `).join('');
   }
 }
 
-function addNewPaintItem() {
-  const titleInput = document.getElementById('newPaintTitle');
-  const descInput = document.getElementById('newPaintDesc');
-  const imgInput = document.getElementById('newPaintImg');
-  
-  if (!titleInput.value) {
-    alert('Zəhmət olmasa məhsulun adını daxil edin.');
-    return;
-  }
-
-  const newItem = {
-    title: titleInput.value,
-    desc: descInput.value || 'Dekorativ interyer örtüyü',
-    img: imgInput.value.trim(),
-    details: 'Bu material interyerdə yüksək estetik görünüş təmin edir.',
-    purpose: 'Divar və səth örtüyü',
-    origin: 'İtaliya / Avropa'
-  };
-
-  if (!catalogData.paint.items[selectedBrand]) {
-    catalogData.paint.items[selectedBrand] = [];
-  }
-  catalogData.paint.items[selectedBrand].push(newItem);
-
-  saveCustomItemsToStorage();
-
-  titleInput.value = '';
-  descInput.value = '';
-  imgInput.value = '';
-  renderCatalogContent('paint');
-}
-
-function saveCustomItemsToStorage() {
-  let customItems = {};
-  for (let brandId in catalogData.paint.items) {
-    customItems[brandId] = catalogData.paint.items[brandId];
-  }
-  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
-}
-
-function openMaterialDetails(title) {
-  const grid = document.getElementById('catalogGridInner');
-  const adminPanel = document.getElementById('adminAddPanel');
-  if(adminPanel) adminPanel.style.display = 'none';
-  
-  if (!window.catalogPreviousContent) {
-    window.catalogPreviousContent = grid.innerHTML;
-    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
-  }
-
-  document.getElementById('catalogTitle').textContent = title;
-
-  let foundItem = null;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    foundItem = catalogData.paint.items[selectedBrand].find(i => i.title === title);
-  }
-  if (!foundItem) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        foundItem = catalogData[cat].find(i => i.title === title);
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let m = catalogData.paint.items[b].find(i => i.title === title);
-          if (m) foundItem = m;
-        }
-      }
-    }
-  }
-
-  const detailsText = foundItem && foundItem.details ? foundItem.details : 'Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir.';
-  const purposeText = foundItem && foundItem.purpose ? foundItem.purpose : 'Divar və səth örtüyü';
-  const originText = foundItem && foundItem.origin ? foundItem.origin : 'İtaliya / Avropa';
-
-  grid.innerHTML = `
-    <div style="grid-column: 1/-1;">
-      <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Geri qayıt</button>
-      
-      <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line);">
-        <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
-        
-        <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
-          <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Məhsulu idarə et (Admin)</h4>
-          
-          <div style="margin-bottom: 12px;">
-            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Ətraflı mətn təsviri:</label>
-            <textarea id="editDetails" rows="3" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 10px; border-radius: 4px; font-size: 14px;">${detailsText}</textarea>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-            <div>
-              <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Təyinat:</label>
-              <input type="text" id="editPurpose" value="${purposeText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-            </div>
-            <div>
-              <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">İstehsal / Ölkə:</label>
-              <input type="text" id="editOrigin" value="${originText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button onclick="saveItemDetails('${title}')" class="btn btn-primary" style="padding: 10px 20px; font-size: 12px; cursor:pointer;">Yadda saxla</button>
-            <button onclick="deleteItem('${title}')" class="btn" style="padding: 10px 20px; font-size: 12px; cursor:pointer; background: #c0392b; color: #ffffff;" onmouseover="this.style.background='#a93226'" onmouseout="this.style.background='#c0392b'">Məhsulu sil</button>
-          </div>
-        </div>
-
-        <p id="displayDetails" style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
-          ${detailsText}
-        </p>
-        <div style="display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap;">
-          <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
-            <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">Təyinat</span>
-            <span id="displayPurpose" style="font-size: 14px; font-weight: 600;">${purposeText}</span>
-          </div>
-          <div style="background: var(--paper); padding: 14px 20px; border-radius: 6px; border: 1px solid var(--stone-line);">
-            <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">İstehsal</span>
-            <span id="displayOrigin" style="font-size: 14px; font-weight: 600;">${originText}</span>
-          </div>
-        </div>
-        <p style="font-size: 13px; color: var(--stone);">* Qiymət və sərfiyyat haqqında ətraflı məlumat üçün şourumumuza yaxınlaşa bilərsiniz.</p>
-      </div>
-    </div>
-  `;
-}
-
-function deleteItem(title) {
-  if (!confirm(`"${title}" məhsulunu silmək istədiyinizə əminsinizmi?`)) return;
-
-  let deleted = false;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    let index = catalogData.paint.items[selectedBrand].findIndex(i => i.title === title);
-    if (index !== -1) {
-      catalogData.paint.items[selectedBrand].splice(index, 1);
-      deleted = true;
-    }
-  }
-
-  if (!deleted) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        let index = catalogData[cat].findIndex(i => i.title === title);
-        if (index !== -1) {
-          catalogData[cat].splice(index, 1);
-          deleted = true;
-        }
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let index = catalogData.paint.items[b].findIndex(i => i.title === title);
-          if (index !== -1) {
-            catalogData.paint.items[b].splice(index, 1);
-            deleted = true;
-          }
-        }
-      }
-    }
-  }
-
-  saveCustomItemsToStorage();
-  window.catalogPreviousContent = null;
-  backToCatalogGrid();
-  renderCatalogContent(selectedBrand ? 'paint' : 'paint');
-  alert('Məhsul uğurla silindi!');
-}
-
-function saveItemDetails(title) {
-  const newDetails = document.getElementById('editDetails').value;
-  const newPurpose = document.getElementById('editPurpose').value;
-  const newOrigin = document.getElementById('editOrigin').value;
-
-  let found = false;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    let item = catalogData.paint.items[selectedBrand].find(i => i.title === title);
-    if (item) {
-      item.details = newDetails;
-      item.purpose = newPurpose;
-      item.origin = newOrigin;
-      found = true;
-    }
-  }
-  if (!found) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        let item = catalogData[cat].find(i => i.title === title);
-        if (item) {
-          item.details = newDetails;
-          item.purpose = newPurpose;
-          item.origin = newOrigin;
-        }
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let item = catalogData.paint.items[b].find(i => i.title === title);
-          if (item) {
-            item.details = newDetails;
-            item.purpose = newPurpose;
-            item.origin = newOrigin;
-          }
-        }
-      }
-    }
-  }
-
-  saveCustomItemsToStorage();
-
-  document.getElementById('displayDetails').textContent = newDetails;
-  document.getElementById('displayPurpose').textContent = newPurpose;
-  document.getElementById('displayOrigin').textContent = newOrigin;
-
-  alert('Məlumatlar uğurla yadda saxlanıldı!');
-}
-
-function backToCatalogGrid() {
-  if (window.catalogPreviousContent) {
-    document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
-    document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
-    window.catalogPreviousContent = null;
-    const adminPanel = document.getElementById('adminAddPanel');
-    if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
-  } else {
-    renderCatalogContent(selectedBrand ? 'paint' : 'paint');
-    const adminPanel = document.getElementById('adminAddPanel');
-    if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
-  }
-}
-
 function openPaintBrand(brandId) {
   selectedBrand = brandId;
-  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
 function backToBrands() {
   selectedBrand = null;
-  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
@@ -1877,6 +1289,84 @@ document.getElementById('catalogModal').addEventListener('click', (e) => {
 document.querySelectorAll('.catalog-tab').forEach(tab => {
   tab.addEventListener('click', () => switchCatalogCategory(tab.dataset.cat));
 });
+
+/* ==============================================================
+    КОНФИГУРАТОР ДВЕРЕЙ (СКРИПТ)
+   ============================================================== */
+const doorData = {
+  models: [
+    { id: 'sg1', title: 'Mod. SG1', price: '64 790 ₴', img: 'uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png', finish: 'Laccato ARGILLA', portal: 'Evo50' },
+    { id: 'sg2', title: 'Mod. SG2', price: '67 200 ₴', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png', finish: 'Laccato ARGILLA', portal: 'Evo50' },
+    { id: 'sg3', title: 'Mod. SG3', price: '69 500 ₴', img: 'uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png', finish: 'Nut Wood', portal: 'Evo50' },
+    { id: 'sg4', title: 'Mod. SG4', price: '66 100 ₴', img: 'uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png', finish: 'Grafite Grey', portal: 'Evo70' },
+    { id: 'sg5', title: 'Mod. SG5', price: '71 000 ₴', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png', finish: 'Laccato ARGILLA', portal: 'Evo50' },
+    { id: 'sg6', title: 'Mod. SG6', price: '68 400 ₴', img: 'uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png', finish: 'White Silk', portal: 'Invisible' }
+  ],
+  colors: [
+    { id: 'c1', title: 'Laccato Argilla', img: 'uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png' },
+    { id: 'c2', title: 'Grafite Grey', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png' },
+    { id: 'c3', title: 'White Silk', img: 'uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png' },
+    { id: 'c4', title: 'Natural Oak', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png' }
+  ],
+  glasses: [
+    { id: 'g1', title: 'Bronze Mirror', img: 'uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png' },
+    { id: 'g2', title: 'Matte Fluted', img: 'uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png' },
+    { id: 'g3', title: 'Transparent Clear', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png' }
+  ],
+  portals: [
+    { id: 'p1', title: 'Evo50', img: 'uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png' },
+    { id: 'p2', title: 'Evo70', img: 'uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png' },
+    { id: 'p3', title: 'Invisible', img: 'uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png' }
+  ]
+};
+
+let currentConfTab = 'models';
+let selectedModelId = 'sg1';
+
+function switchConfTab(tabName, btnElement) {
+  currentConfTab = tabName;
+  document.querySelectorAll('.conf-tab').forEach(t => t.classList.remove('active'));
+  if(btnElement) btnElement.classList.add('active');
+  renderConfContent();
+}
+
+function renderConfContent() {
+  const container = document.getElementById('confTabContent');
+  const items = doorData[currentConfTab] || [];
+  
+  container.innerHTML = `
+    <div class="conf-thumbs-grid">
+      ${items.map(item => `
+        <div class="conf-thumb-card ${currentConfTab === 'models' && item.id === selectedModelId ? 'selected' : ''}" onclick="selectConfItem('${currentConfTab}', '${item.id}')">
+          <img src="${item.img}" class="conf-thumb-img" alt="${item.title}">
+          <span class="conf-thumb-title">${item.title}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function selectConfItem(category, id) {
+  const item = doorData[category].find(i => i.id === id);
+  if(!item) return;
+
+  if(category === 'models') {
+    selectedModelId = id;
+    document.getElementById('activeDoorTitle').textContent = item.title;
+    document.getElementById('activeDoorPrice').textContent = item.price;
+    document.getElementById('activeDoorFinish').textContent = item.finish;
+    document.getElementById('activeDoorPortal').textContent = item.portal;
+    document.getElementById('activeDoorImg').src = item.img;
+    renderConfContent();
+  } else if(category === 'colors') {
+    document.getElementById('activeDoorFinish').textContent = item.title;
+    document.getElementById('activeDoorImg').src = item.img;
+  } else if(category === 'portals') {
+    document.getElementById('activeDoorPortal').textContent = item.title;
+  } else if(category === 'glasses') {
+    document.getElementById('activeDoorImg').src = item.img;
+  }
+}
 
 function renderGallery(lang){
   const grid = document.getElementById('galleryGrid');
@@ -2026,132 +1516,8 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
   renderHero();
   applyLanguage('az');
   resetRevTimer();
+  switchConfTab('models', document.querySelector('.conf-tab'));
 })();
-</script>
-
-<!-- ============================= ПРОДВИНУТАЯ ПАНЕЛЬ УПРАВЛЕНИЯ (ADMIN CMS) ============================= -->
-<style>
-#siteAdminPanel {
-  position: fixed; bottom: 20px; right: 20px; z-index: 99999;
-  font-family: var(--font-body);
-}
-#adminToggleBtn {
-  background: var(--ink); color: var(--paper); border: 2px solid var(--brass);
-  padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 13px;
-  cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px;
-  transition: transform .3s ease, background .3s ease;
-}
-#adminToggleBtn:hover { background: var(--verde); transform: scale(1.05); }
-#adminModalBox {
-  position: fixed; bottom: 80px; right: 20px; width: 90vw; max-width: 600px; max-height: 80vh;
-  background: var(--paper); border-radius: 12px; border: 1px solid var(--stone-line);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.35); display: flex; flex-direction: column; overflow: hidden;
-  transform: translateY(20px); opacity: 0; pointer-events: none; transition: all .3s cubic-bezier(.16,.8,.3,1);
-}
-#adminModalBox.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-.adm-header { background: var(--ink); color: var(--paper); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
-.adm-header h3 { font-size: 16px; font-weight: 600; margin: 0; }
-.adm-close { background: none; border: none; color: var(--paper); font-size: 20px; cursor: pointer; }
-.adm-body { padding: 20px; overflow-y: auto; flex: 1; }
-.adm-section { margin-bottom: 24px; border-bottom: 1px solid var(--stone-line); padding-bottom: 20px; }
-.adm-section h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--brass); margin-bottom: 10px; font-weight: 700; }
-.adm-textarea { width: 100%; height: 120px; background: var(--plaster); border: 1px solid var(--stone-line); border-radius: 4px; padding: 10px; font-family: monospace; font-size: 12px; resize: vertical; }
-.adm-btn { background: var(--ink); color: var(--paper); border: none; padding: 10px 16px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 8px; transition: background .2s ease; }
-.adm-btn:hover { background: var(--verde); }
-.parse-list { max-height: 150px; overflow-y: auto; border: 1px solid var(--stone-line); padding: 8px; background: #fff; border-radius: 4px; margin-bottom: 10px; }
-.parse-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
-</style>
-
-<div id="siteAdminPanel">
-  <button id="adminToggleBtn" onclick="toggleAdminPanel()">
-    <span>⚙️ Admin Panel</span>
-  </button>
-
-  <div id="adminModalBox">
-    <div class="adm-header">
-      <h3>İdarəetmə və Kod Generatoru</h3>
-      <button class="adm-close" onclick="toggleAdminPanel()">&times;</button>
-    </div>
-    <div class="adm-body">
-      
-      <div class="adm-section">
-        <h4>1. Siyahıdan məhsul seçimi (Çekboks)</h4>
-        <p style="font-size:12px; color:var(--ink-soft); margin-bottom:8px;">Aşağıdakı nümunə siyahıdan lazımlı məhsulları qeyd edin və "Əlavə et" düyməsini basın:</p>
-        <div class="parse-list" id="parseListContainer"></div>
-        <button class="adm-btn" onclick="addSelectedParsedItems()">Seçilmişləri əlavə et</button>
-      </div>
-
-      <div class="adm-section" style="border:none; margin:0; padding:0;">
-        <h4>2. Domenə yükləmək üçün hazır kod</h4>
-        <p style="font-size:12px; color:var(--ink-soft); margin-bottom:8px;">Bütün əlavə edilən məhsullar avtomatik olaraq bu koda yazılır. Kodu kopyalayıb saytınıza yapışdırın:</p>
-        <textarea id="generatedCodeOutput" class="adm-textarea" readonly></textarea>
-        <button class="adm-btn" onclick="copyGeneratedCode()">Kodu kopyala</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script>
-function toggleAdminPanel() {
-  const box = document.getElementById('adminModalBox');
-  box.classList.toggle('open');
-  if(box.classList.contains('open')) {
-    loadParseCheckboxes();
-    updateGeneratedCodeBox();
-  }
-}
-
-const sampleParsedProducts = [
-  { title: "Swiss Lake Nova Pro", desc: "Yeni nəsil interyer boyası", price: "4 200 rub" },
-  { title: "Swiss Lake Eco Shield", desc: "Ekoloji qoruyucu boya", price: "5 100 rub" },
-  { title: "Teknos Pro Exterior", desc: "Fasad üçün sərt qoruma", price: "7 800 rub" }
-];
-
-function loadParseCheckboxes() {
-  const container = document.getElementById('parseListContainer');
-  container.innerHTML = sampleParsedProducts.map((p, idx) => `
-    <div class="parse-item">
-      <input type="checkbox" id="parse_chk_${idx}" value="${idx}">
-      <label for="parse_chk_${idx}"><b>${p.title}</b> — ${p.desc} (${p.price})</label>
-    </div>
-  `).join('');
-}
-
-function addSelectedParsedItems() {
-  const checkboxes = document.querySelectorAll('#parseListContainer input[type="checkbox"]:checked');
-  checkboxes.forEach(chk => {
-    const item = sampleParsedProducts[chk.value];
-    if (!catalogData.paint.items.swisslake) {
-      catalogData.paint.items.swisslake = [];
-    }
-    catalogData.paint.items.swisslake.push({
-      title: item.title,
-      desc: item.desc,
-      img: "https://masterdom.ru/upload/iblock/d52/wv1nd7msh1vfc8fbeqvzl2jqvi6ai6qm.jpg",
-      details: "Seçilmiş və idxal edilmiş peşəkar seriya.",
-      purpose: "İnteryer və divarlar",
-      origin: "İsveçrə"
-    });
-  });
-  saveCustomItemsToStorage();
-  updateGeneratedCodeBox();
-  alert('Seçilmiş məhsullar kataloqa əlavə olundu və kod yeniləndi!');
-}
-
-function updateGeneratedCodeBox() {
-  const output = document.getElementById('generatedCodeOutput');
-  let codeSnippet = "/* Əlavə olunmuş məhsulların JSON/JS kodu */\n";
-  codeSnippet += JSON.stringify(catalogData.paint.items.swisslake, null, 2);
-  output.value = codeSnippet;
-}
-
-function copyGeneratedCode() {
-  const output = document.getElementById('generatedCodeOutput');
-  output.select();
-  document.execCommand('copy');
-  alert('Kod müvəffəqiyyətlə kopyalandı! Onu faylınıza əlavə edə bilərsiniz.');
-}
 </script>
 
 </body>
