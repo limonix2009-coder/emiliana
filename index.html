@@ -198,16 +198,27 @@ section{ position:relative; }
 .nav-links a:hover::after{ width:100%; }
 
 .nav-right{ display:flex; align-items:center; gap:22px; }
-.lang-switch{ display:flex; border:1px solid var(--stone-line); border-radius:20px; padding:3px; position:relative; }
-.lang-switch button{
-  font-size:12px; font-weight:700; letter-spacing:.03em; padding:6px 11px; border-radius:16px; position:relative; z-index:2;
-  color: var(--ink-soft); transition: color .3s ease;
+
+/* Google Translate Widget Custom Styling */
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0 !important; }
+.goog-te-gadget { font-size: 0px !important; color: transparent; }
+.goog-te-gadget span { display: none; }
+.goog-te-combo {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid var(--stone-line);
+  padding: 8px 12px;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
 }
-.lang-switch button.active{ color: var(--paper); }
-.lang-switch .pill{
-  position:absolute; top:3px; left:3px; height:calc(100% - 6px); width:34px; background:var(--ink); border-radius:16px;
-  transition: transform .4s var(--ease); z-index:1;
-}
+.goog-logo-link { display: none !important; }
+.goog-te-gadget { color: transparent !important; }
+
 .nav-cta{ display:inline-flex; }
 .menu-toggle{ display:none; width:36px; height:36px; align-items:center; justify-content:center; cursor:pointer; }
 .menu-toggle span, .menu-toggle::before, .menu-toggle::after{ content:""; display:block; width:22px; height:1.5px; background:var(--ink); position:relative; transition: transform .3s ease, opacity .3s ease; }
@@ -603,22 +614,19 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <img src="uploads/Gemini_Generated_Image_m65fh3m65fh3m65f-removebg-preview.png" alt="Emiliana Parati" class="logo-img" id="siteLogo">
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#about" data-i18n="nav_about">Haqqımızda</a>
-      <a href="#products" data-i18n="nav_products">Məhsullar</a>
-      <a href="#why" data-i18n="nav_why">Niyə biz</a>
-      <a href="#brands" data-i18n="nav_brands">Brendlər</a>
-      <a href="#gallery" data-i18n="nav_gallery">Qalereya</a>
-      <a href="#reviews" data-i18n="nav_reviews">Rəylər</a>
-      <a href="#contact" data-i18n="nav_contact">Əlaqə</a>
+      <a href="#about">Haqqımızda</a>
+      <a href="#products">Məhsullar</a>
+      <a href="#why">Niyə biz</a>
+      <a href="#brands">Brendlər</a>
+      <a href="#gallery">Qalereya</a>
+      <a href="#reviews">Rəylər</a>
+      <a href="#contact">Əlaqə</a>
     </nav>
     <div class="nav-right">
-      <div class="lang-switch" role="group" aria-label="Language">
-        <span class="pill" id="langPill"></span>
-        <button type="button" data-lang="az" class="active">AZ</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ru">RU</button>
-      </div>
-      <a href="#contact" class="btn btn-primary nav-cta" data-i18n="nav_cta">Məsləhət al</a>
+      <!-- Google Translate Element -->
+      <div id="google_translate_element"></div>
+
+      <a href="#contact" class="btn btn-primary nav-cta">Məsləhət al</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -629,20 +637,20 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow" data-i18n="hero_eyebrow">MATERİAL ATELYESİ · BAKI</p>
-      <h1 data-i18n-html="hero_headline">Bir evi <em>fərqləndirən</em> səthlər.</h1>
-      <p class="lede" data-i18n="hero_sub">Emiliana Parati fərqi hiss edən insanlar üçün boya, divar kağızı, qapı və parket seçir. Bir ünvan, dörd sənət, tək standart.</p>
+      <p class="eyebrow">MATERİAL ATELYESİ · BAKI</p>
+      <h1>Bir evi <em>fərqləndirən</em> səthlər.</h1>
+      <p class="lede">Emiliana Parati fərqi hiss edən insanlar üçün boya, divar kağızı, qapı və parket seçir. Bir ünvan, dörd sənət, tək standart.</p>
       <div class="hero-actions">
         <a href="#products" class="btn btn-primary">
-          <span data-i18n="hero_cta_primary">Materialları kəşf et</span>
+          <span>Materialları kəşf et</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#contact" class="btn btn-ghost" data-i18n="hero_cta_secondary">Məsləhət al</a>
+        <a href="#contact" class="btn btn-ghost">Məsləhət al</a>
       </div>
       <div class="hero-since">
         <span class="num" id="foundingYearNum">2006</span>
         <div class="divider"></div>
-        <span class="txt" data-i18n-html="hero_since">2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı</span>
+        <span class="txt">2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı</span>
       </div>
     </div>
 
@@ -653,12 +661,12 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 
   <div class="hero-offer-row">
     <div class="container">
-      <span class="offer-tag" data-i18n="hero_offer_label">NƏ SATIRIQ</span>
+      <span class="offer-tag">NƏ SATIRIQ</span>
       <ul class="offer-list">
-        <li data-i18n="paint_name">Boya</li>
-        <li data-i18n="wallpaper_name">Divar kağızı</li>
-        <li data-i18n="doors_name">Qapılar</li>
-        <li data-i18n="parquet_name">Parket</li>
+        <li>Boya</li>
+        <li>Divar kağızı</li>
+        <li>Qapılar</li>
+        <li>Parket</li>
       </ul>
     </div>
   </div>
@@ -671,20 +679,20 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <div class="frame" id="aboutFrame">
         <div class="frame-caption">
           <div class="yr" id="foundingYearFrame">2006</div>
-          <div class="lbl" data-i18n="about_since_lbl">Bakıda ilk mağaza açılıb</div>
+          <div class="lbl">Bakıda ilk mağaza açılıb</div>
         </div>
       </div>
     </div>
     <div class="about-copy">
-      <p class="eyebrow" data-i18n="about_eyebrow">HAQQIMIZDA</p>
-      <h2 class="reveal" data-i18n="about_headline">Təxminən iyirmi illik düzgün seçim.</h2>
-      <p class="reveal" data-i18n="about_p1">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
-      <p class="reveal" data-i18n="about_p2">Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.</p>
-      <blockquote class="about-quote reveal" data-i18n="about_quote">"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir."</blockquote>
+      <p class="eyebrow">HAQQIMIZDA</p>
+      <h2 class="reveal">Təxminən iyirmi illik düzgün seçim.</h2>
+      <p class="reveal">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
+      <p class="reveal">Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.</p>
+      <blockquote class="about-quote reveal">"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir."</blockquote>
       <div class="about-stats reveal-stagger">
-        <div class="stat"><div class="n" id="statYears">20</div><div class="l" data-i18n="about_stat1_label">İl təcrübə</div></div>
-        <div class="stat"><div class="n" id="statProjects">1,200+</div><div class="l" data-i18n="about_stat2_label">Tamamlanmış layihə</div></div>
-        <div class="stat"><div class="n" id="statBrands">20+</div><div class="l" data-i18n="about_stat3_label">Partnyor brend</div></div>
+        <div class="stat"><div class="n" id="statYears">20</div><div class="l">İl təcrübə</div></div>
+        <div class="stat"><div class="n" id="statProjects">1,200+</div><div class="l">Tamamlanmış layihə</div></div>
+        <div class="stat"><div class="n" id="statBrands">20+</div><div class="l">Partnyor brend</div></div>
       </div>
     </div>
   </div>
@@ -695,10 +703,10 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow" data-i18n="products_eyebrow">NƏ SATIRIQ</p>
-        <h2 data-i18n="products_headline">Dörd sənət, bir ünvan.</h2>
+        <p class="eyebrow">NƏ SATIRIQ</p>
+        <h2>Dörd sənət, bir ünvan.</h2>
       </div>
-      <p class="lede" data-i18n="products_sub">Hər materialın üzərinə keçərək necə işlədiyimizi görün.</p>
+      <p class="lede">Hər materialın üzərinə keçərək necə işlədiyimizi görün.</p>
     </div>
 
     <div class="products-grid reveal-stagger" id="productsGrid"></div>
@@ -710,32 +718,32 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="why-wrap">
       <div class="reveal">
-        <p class="eyebrow" data-i18n="why_eyebrow">NİYƏ BİZ</p>
-        <h2 data-i18n="why_headline">Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.</h2>
+        <p class="eyebrow">NİYƏ BİZ</p>
+        <h2>Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.</h2>
       </div>
-      <p class="lede reveal" data-i18n="why_sub">Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.</p>
+      <p class="lede reveal">Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.</p>
     </div>
 
     <div class="why-deck reveal-stagger">
       <div class="why-chip">
         <span class="mk">01</span>
-        <div><h3 data-i18n="why1_title">Hər şey yox, seçilmiş</h3><p data-i18n="why1_desc">Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.</p></div>
+        <div><h3>Hər şey yox, seçilmiş</h3><p>Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">02</span>
-        <div><h3 data-i18n="why2_title">Öz rəng studiyamız</h3><p data-i18n="why2_desc">Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.</p></div>
+        <div><h3>Öz rəng studiyamız</h3><p>Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">03</span>
-        <div><h3 data-i18n="why3_title">Bir komanda, dörd sənət</h3><p data-i18n="why3_desc">Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.</p></div>
+        <div><h3>Bir komanda, dörd sənət</h3><p>Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">04</span>
-        <div><h3 data-i18n="why4_title">Ölçü xidməti daxildir</h3><p data-i18n="why4_desc">Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.</p></div>
+        <div><h3>Ölçü xidməti daxildir</h3><p>Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">05</span>
-        <div><h3 data-i18n="why5_title">Etibarlı zəmanət</h3><p data-i18n="why5_desc">Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.</p></div>
+        <div><h3>Etibarlı zəmanət</h3><p>Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.</p></div>
       </div>
     </div>
   </div>
@@ -745,9 +753,9 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <section id="brands" class="section-pad" style="background:var(--plaster-2)">
   <div class="container">
     <div class="brands-head reveal">
-      <p class="eyebrow" data-i18n="brands_eyebrow">TƏMSİL ETDİYİMİZ BRENDLƏR</p>
-      <h2 data-i18n="brands_headline">Örtüyün arxasındakı adlar.</h2>
-      <p data-i18n="brands_sub">Bu brendlərin bir çoxunu birbaşa idxal edir və Azərbaycanda rəsmi təmsilçiliyini həyata keçiririk.</p>
+      <p class="eyebrow">TƏMSİL ETDİYİMİZ BRENDLƏR</p>
+      <h2>Örtüyün arxasındakı adlar.</h2>
+      <p>Bu brendlərin bir çoxunu birbaşa idxal edir və Azərbaycanda rəsmi təmsilçiliyini həyata keçiririk.</p>
     </div>
     <div class="brands-grid reveal-stagger" id="brandsGrid"></div>
   </div>
@@ -758,18 +766,18 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow" data-i18n="gallery_eyebrow">İLHAM</p>
-        <h2 data-i18n="gallery_headline">Real layihələrdən harmonik həllər.</h2>
+        <p class="eyebrow">İLHAM</p>
+        <h2>Real layihələrdən harmonik həllər.</h2>
       </div>
-      <p class="lede" data-i18n="gallery_sub">Material nadir hallarda tək işləyir. Bunlar komandamızın seçib təhvil verdiyi kombinasiyalardır.</p>
+      <p class="lede">Material nadir hallarda tək işləyir. Bunlar komandamızın seçib təhvil verdiyi kombinasiyalardır.</p>
     </div>
 
     <div class="filters reveal">
-      <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Hamısı</button>
-      <button class="filter-btn" data-filter="living" data-i18n="filter_living">Qonaq otağı</button>
-      <button class="filter-btn" data-filter="bedroom" data-i18n="filter_bedroom">Yataq otağı</button>
-      <button class="filter-btn" data-filter="entrance" data-i18n="filter_entrance">Giriş</button>
-      <button class="filter-btn" data-filter="office" data-i18n="filter_office">Ofis</button>
+      <button class="filter-btn active" data-filter="all">Hamısı</button>
+      <button class="filter-btn" data-filter="living">Qonaq otağı</button>
+      <button class="filter-btn" data-filter="bedroom">Yataq otağı</button>
+      <button class="filter-btn" data-filter="entrance">Giriş</button>
+      <button class="filter-btn" data-filter="office">Ofis</button>
     </div>
 
     <div class="gallery-grid reveal-stagger" id="galleryGrid"></div>
@@ -779,8 +787,8 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <!-- ============================= REVIEWS ============================= -->
 <section id="reviews" class="section-pad reviews-band">
   <div class="container reviews-inner">
-    <p class="eyebrow reveal" data-i18n="reviews_eyebrow">MÜŞTƏRİ RƏYLƏRİ</p>
-    <h2 class="reveal" style="color:var(--paper); margin:14px 0 46px;" data-i18n="reviews_headline">Materiallarımızla yaşayan insanların sözləri.</h2>
+    <p class="eyebrow reveal">MÜŞTƏRİ RƏYLƏRİ</p>
+    <h2 class="reveal" style="color:var(--paper); margin:14px 0 46px;">Materiallarımızla yaşayan insanların sözləri.</h2>
 
     <div class="rev-track" id="revTrack"></div>
 
@@ -797,49 +805,49 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow" data-i18n="contact_eyebrow">ƏLAQƏ VƏ MƏKAN</p>
-        <h2 data-i18n="contact_headline">Materialları canlı olaraq görün.</h2>
+        <p class="eyebrow">ƏLAQƏ VƏ MƏKAN</p>
+        <h2>Materialları canlı olaraq görün.</h2>
       </div>
-      <p class="lede" data-i18n="contact_sub">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
+      <p class="lede">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
     </div>
 
     <div class="contact-grid">
       <div class="reveal">
         <div class="form-success" id="formSuccess">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          <span data-i18n="form_success_msg">Təşəkkür edirik. Müraciətiniz qəbul olundu.</span>
+          <span>Təşəkkür edirik. Müraciətiniz qəbul olundu.</span>
         </div>
         <form id="contactForm">
           <div class="field-row">
-            <div class="field"><label data-i18n="form_name">Adınız</label><input type="text" required></div>
-            <div class="field"><label data-i18n="form_phone">Telefon</label><input type="tel" required></div>
+            <div class="field"><label>Adınız</label><input type="text" required></div>
+            <div class="field"><label>Telefon</label><input type="tel" required></div>
           </div>
           <div class="field-row">
-            <div class="field"><label data-i18n="form_email">E-poçt</label><input type="email" required></div>
+            <div class="field"><label>E-poçt</label><input type="email" required></div>
             <div class="field">
-              <label data-i18n="form_interest">Maraqlandığınız sahə</label>
+              <label>Maraqlandığınız sahə</label>
               <select>
-                <option data-i18n="form_interest_opt1">Boya</option>
-                <option data-i18n="form_interest_opt2">Divar kağızı</option>
-                <option data-i18n="form_interest_opt3">Qapılar</option>
-                <option data-i18n="form_interest_opt4">Parket</option>
-                <option data-i18n="form_interest_opt5">Hələ dəqiqləşdirməmişəm</option>
+                <option>Boya</option>
+                <option>Divar kağızı</option>
+                <option>Qapılar</option>
+                <option>Parket</option>
+                <option>Hələ dəqiqləşdirməmişəm</option>
               </select>
             </div>
           </div>
-          <div class="field"><label data-i18n="form_message">Mesajınız</label><textarea rows="4"></textarea></div>
+          <div class="field"><label>Mesajınız</label><textarea rows="4"></textarea></div>
           <button type="submit" class="btn btn-primary">
-            <span data-i18n="form_submit">Mesajı göndər</span>
+            <span>Mesajı göndər</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
       </div>
 
       <div class="contact-side reveal">
-        <div class="info-block"><div class="lbl" data-i18n="contact_address_label">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_hours_label">İş saatları</div><div class="val" data-i18n="contact_hours_value">B.e.–Şənbə, 10:00–19:00</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_phone_label">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_email_label">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
+        <div class="info-block"><div class="lbl">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
+        <div class="info-block"><div class="lbl">İş saatları</div><div class="val">B.e.–Şənbə, 10:00–19:00</div></div>
+        <div class="info-block"><div class="lbl">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
+        <div class="info-block"><div class="lbl">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
         <div class="map-frame">
           <iframe id="mapFrame" src="https://maps.google.com/maps?q=Xetai%20pr%2C%20142%20Khatai%20Ave%2C%20Baku%201008&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Emiliana Parati showroom location"></iframe>
         </div>
@@ -855,10 +863,10 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <div class="catalog-close" id="catalogClose">&times;</div>
     <h2 id="catalogTitle" style="font-size: 32px; font-weight: 500;">Kataloq</h2>
     <div class="catalog-nav">
-      <button class="catalog-tab active" data-cat="paint" data-i18n="paint_name">Boya</button>
-      <button class="catalog-tab" data-cat="wallpaper" data-i18n="wallpaper_name">Divar kağızı</button>
-      <button class="catalog-tab" data-cat="doors" data-i18n="doors_name">Qapılar</button>
-      <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
+      <button class="catalog-tab active" data-cat="paint">Boya</button>
+      <button class="catalog-tab" data-cat="wallpaper">Divar kağızı</button>
+      <button class="catalog-tab" data-cat="doors">Qapılar</button>
+      <button class="catalog-tab" data-cat="parquet">Parket</button>
     </div>
 
     <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КРАСОК -->
@@ -893,7 +901,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#main" class="wordmark">Emiliana <span>Parati</span></a>
-        <p data-i18n="footer_tagline">Düşünülmüş interyerlər üçün materiallar atelyesi.</p>
+        <p>Düşünülmüş interyerlər üçün materiallar atelyesi.</p>
         <div class="footer-swatches" aria-hidden="true">
           <div class="swatch swatch-paint" style="flex:1"></div>
           <div class="swatch swatch-wallpaper" style="flex:1"></div>
@@ -902,27 +910,27 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
         </div>
       </div>
       <div>
-        <h4 data-i18n="footer_col_explore">Kəşf edin</h4>
+        <h4>Kəşf edin</h4>
         <ul class="footer-links">
-          <li><a href="#about" data-i18n="nav_about">Haqqımızda</a></li>
-          <li><a href="#products" data-i18n="nav_products">Məhsullar</a></li>
-          <li><a href="#gallery" data-i18n="nav_gallery">Qalereya</a></li>
-          <li><a href="#reviews" data-i18n="nav_reviews">Rəylər</a></li>
+          <li><a href="#about">Haqqımızda</a></li>
+          <li><a href="#products">Məhsullar</a></li>
+          <li><a href="#gallery">Qalereya</a></li>
+          <li><a href="#reviews">Rəylər</a></li>
         </ul>
       </div>
       <div>
-        <h4 data-i18n="footer_col_materials">Materiallar</h4>
+        <h4>Materiallar</h4>
         <ul class="footer-links">
-          <li><a href="#products" data-i18n="paint_name">Boya</a></li>
-          <li><a href="#products" data-i18n="wallpaper_name">Divar kağızı</a></li>
-          <li><a href="#products" data-i18n="doors_name">Qapılar</a></li>
-          <li><a href="#products" data-i18n="parquet_name">Parket</a></li>
+          <li><a href="#products">Boya</a></li>
+          <li><a href="#products">Divar kağızı</a></li>
+          <li><a href="#products">Qapılar</a></li>
+          <li><a href="#products">Parket</a></li>
         </ul>
       </div>
       <div>
-        <h4 data-i18n="newsletter_label">Yeniliklərdən xəbərdar olun.</h4>
+        <h4>Yeniliklərdən xəbərdar olun.</h4>
         <form class="newsletter-form" id="newsletterForm">
-          <input type="email" required data-i18n-placeholder="newsletter_placeholder" placeholder="E-poçt ünvanınız">
+          <input type="email" required placeholder="E-poçt ünvanınız">
           <button type="submit" aria-label="Subscribe">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
@@ -930,14 +938,27 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-i18n="footer_copyright">© 2026 Emiliana Parati. Bütün hüquqlar qorunur.</p>
+      <p>© 2026 Emiliana Parati. Bütün hüquqlar qorunur.</p>
       <div class="footer-legal">
-        <a href="#" data-i18n="footer_privacy">Məxfilik</a>
-        <a href="#" data-i18n="footer_terms">Qaydalar</a>
+        <a href="#">Məxfilik</a>
+        <a href="#">Qaydalar</a>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Google Translate Widget Script -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'az',
+    includedLanguages: 'az,en,ru',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
 /* ==============================================================
@@ -949,12 +970,6 @@ function fixPath(url) {
   if (!url) return '';
   return url.replace(/^\//, '');
 }
-
-let dict = {
-  az: {},
-  en: {},
-  ru: {}
-};
 
 let data = {                     
   hero: { slides: [] },
@@ -1421,9 +1436,47 @@ const catalogData = {
       ],
     }
   },
-  parquet: [
-    { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
-  ]
+  parquet: {
+    brands: [
+      { id: 'everbright', name: 'Everbright', logo: '', scale: 1.0, desc: 'Premium keyfiyyətli təbii parket və döşəmə sistemləri' }
+    ],
+    items: {
+      everbright: [
+        { 
+          title: "Oak Natural", 
+          desc: "Təbii palıdın unikal toxunmasını və isti rəng tonlarını əks etdirən klassik döşəmə örtüyü.", 
+          img: "", 
+          details: "Təbii palıd premium döşəmə örtüyü.", 
+          purpose: "Döşəmə örtüyü", 
+          origin: "Avropa" 
+        },
+        { 
+          title: "Milky", 
+          desc: "Məkanlara işıqlılıq, səliqəli və zərif ab-hava qatan açıq çalarlı parket modelidir.", 
+          img: "", 
+          details: "Açıq və zərif çalarlı parket.", 
+          purpose: "Döşəmə örtüyü", 
+          origin: "Avropa" 
+        },
+        { 
+          title: "Silver River", 
+          desc: "Gümüşü-boz tonların modern interyerlərlə uyğunlaşdığı sərin və şık dizayn həlli.", 
+          img: "", 
+          details: "Gümüşü-boz tonlarda müasir parket.", 
+          purpose: "Döşəmə örtüyü", 
+          origin: "Avropa" 
+        },
+        { 
+          title: "Millville", 
+          desc: "Dərin teksturası və xarakterik naxışları ilə istənilən otağa lüks görünüş bəxş edir.", 
+          img: "", 
+          details: "Dərin və zəngin teksturalı parket.", 
+          purpose: "Döşəmə örtüyü", 
+          origin: "Avropa" 
+        }
+      ]
+    }
+  }
 };
 
 function loadCustomItems() {
@@ -1453,7 +1506,6 @@ function loadCustomItems() {
 }
 loadCustomItems();
 
-let currentLang = 'az';
 let currentFilter = 'all';
 let revIndex = 0;
 let revTimer;
@@ -1471,10 +1523,7 @@ async function fetchJSON(path){
 }
 
 async function loadAllContent(){
-  const [az, en, ru, hero, products, gallery, reviews, brands, settings] = await Promise.all([
-    fetchJSON(CONTENT_BASE + 'i18n/az.json'),
-    fetchJSON(CONTENT_BASE + 'i18n/en.json'),
-    fetchJSON(CONTENT_BASE + 'i18n/ru.json'),
+  const [hero, products, gallery, reviews, brands, settings] = await Promise.all([
     fetchJSON(CONTENT_BASE + 'hero.json'),
     fetchJSON(CONTENT_BASE + 'products.json'),
     fetchJSON(CONTENT_BASE + 'gallery.json'),
@@ -1482,37 +1531,12 @@ async function loadAllContent(){
     fetchJSON(CONTENT_BASE + 'brands.json'),
     fetchJSON(CONTENT_BASE + 'settings.json'),
   ]);
-  if(az) dict.az = az;
-  if(en) dict.en = en;
-  if(ru) dict.ru = ru;
   if(hero) data.hero = hero;
   if(products) data.products = products;
   if(gallery) data.gallery = gallery;
   if(reviews && reviews.items && reviews.items.length) data.reviews = reviews;
   if(brands) data.brands = brands;
   if(settings) data.settings = settings;
-}
-
-function applyStaticText(lang){
-  const d = dict[lang] || {};
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if(d[key] !== undefined) el.textContent = d[key];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-html');
-    if(d[key] !== undefined) el.innerHTML = d[key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-placeholder');
-    if(d[key] !== undefined) el.placeholder = d[key];
-  });
-  document.querySelectorAll('.lang-switch button').forEach(btn=>{
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-  const idx = ['az','en','ru'].indexOf(lang);
-  const pill = document.getElementById('langPill');
-  if(pill) pill.style.transform = `translateX(${idx*34}px)`;
 }
 
 function applySettings(){
@@ -1549,7 +1573,7 @@ function applySettings(){
 
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-function renderProducts(lang){
+function renderProducts(){
   const grid = document.getElementById('productsGrid');
   if(!grid) return;
 
@@ -1557,34 +1581,34 @@ function renderProducts(lang){
     {
       id: "paint",
       image: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png",
-      index: { az: "01 — BOYA", en: "01 — PAINT", ru: "01 — КРАСКА" },
-      title: { az: "Boya", en: "Paint", ru: "Краска" },
-      desc: { az: "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi.", en: "Breathable lime paints.", ru: "Дышащие краски." },
-      cta: { az: "Boya çeşidinə bax", en: "View paint range", ru: "Смотреть краски" }
+      index: "01 — BOYA",
+      title: "Boya",
+      desc: "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi.",
+      cta: "Boya çeşidinə bax"
     },
     {
       id: "wallpaper",
       image: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png",
-      index: { az: "02 — DİVAR KAĞIZI", en: "02 — WALLPAPER", ru: "02 — ОБОИ" },
-      title: { az: "Divar kağızı", en: "Wallpaper", ru: "Обои" },
-      desc: { az: "İtaliya və Avropa istehsalı premium divar kağızları.", en: "European wallpapers.", ru: "Европейские обои." },
-      cta: { az: "Divar kağızı çeşidinə bax", en: "View wallpaper range", ru: "Смотреть обои" }
+      index: "02 — DİVAR KAĞIZI",
+      title: "Divar kağızı",
+      desc: "İtaliya və Avropa istehsalı premium divar kağızları.",
+      cta: "Divar kağızı çeşidinə bax"
     },
     {
       id: "doors",
       image: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png",
-      index: { az: "03 — QAPILAR", en: "03 — DOORS", ru: "03 — ДВЕРИ" },
-      title: { az: "Qapılar", en: "Doors", ru: "Двери" },
-      desc: { az: "İtalyan üslublu interyer qapıları, gizli çərçivələr.", en: "Italian interior doors.", ru: "Итальянские двери." },
-      cta: { az: "Qapı çeşidinə bax", en: "View door range", ru: "Смотреть двери" }
+      index: "03 — QAPILAR",
+      title: "Qapılar",
+      desc: "İtalyan üslublu interyer qapıları, gizli çərçivələr.",
+      cta: "Qapı çeşidinə bax"
     },
     {
       id: "parquet",
       image: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png",
-      index: { az: "04 — PARKET", en: "04 — PARQUET", ru: "04 — ПАРКЕТ" },
-      title: { az: "Parket", en: "Parquet", ru: "Паркет" },
-      desc: { az: "Təbii palıd, fransız və klassik yolka parketlər.", en: "Natural oak parquet.", ru: "Натуральный паркет." },
-      cta: { az: "Parket çeşidinə bax", en: "View parquet range", ru: "Смотреть паркет" }
+      index: "04 — PARKET",
+      title: "Parket",
+      desc: "Təbii palıd, fransız və klassik yolka parketlər.",
+      cta: "Parket çeşidinə bax"
     }
   ];
 
@@ -1594,10 +1618,10 @@ function renderProducts(lang){
         <div class="p-texture" style="background-image: url('${p.image}');"></div>
         <div class="p-peel"></div>
         <div class="p-body">
-          <span class="p-index">${p.index[lang] || p.index['az']}</span>
-          <h3>${p.title[lang] || p.title['az']}</h3>
-          <p>${p.desc[lang] || p.desc['az']}</p>
-          <div class="p-link"><span>${p.cta[lang] || p.cta['az']}</span>${arrowSVG}</div>
+          <span class="p-index">${p.index}</span>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <div class="p-link"><span>${p.cta}</span>${arrowSVG}</div>
         </div>
       </article>
     `;
@@ -1740,6 +1764,51 @@ function renderCatalogContent(catId) {
       }
       grid.innerHTML = html;
     }
+  } else if (catId === 'parquet') {
+    if (!selectedBrand) {
+      const brands = catalogData.parquet.brands;
+      grid.innerHTML = brands.map(b => `
+        <div class="cat-item-card" onclick="openParquetBrand('${b.id}')" style="cursor:pointer;">
+          <div class="brand-logo-container">
+            <span style="font-family: var(--font-display); font-size:22px; color:var(--brass); text-align:center;">${b.name}</span>
+          </div>
+          <div class="cat-item-info">
+            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
+            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      const brandObj = catalogData.parquet.brands.find(b => b.id === selectedBrand);
+      const items = catalogData.parquet.items[selectedBrand] || [];
+      
+      let html = `
+        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+          <button onclick="backToParquetBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
+          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} parketləri</h3>
+        </div>
+      `;
+      
+      if (items.length === 0) {
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ parket yoxdur.</p>';
+      } else {
+        html += items.map(item => `
+          <div class="cat-item-card">
+            <div class="cat-item-img-container">
+              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+            </div>
+            <div class="cat-item-info">
+              <div>
+                <div class="cat-item-title">${item.title}</div>
+                <div class="cat-item-desc">${item.desc}</div>
+              </div>
+              <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+            </div>
+          </div>
+        `).join('');
+      }
+      grid.innerHTML = html;
+    }
   } else {
     const items = catalogData[catId] || [];
     if (items.length === 0) {
@@ -1761,6 +1830,18 @@ function renderCatalogContent(catId) {
       </div>
     `).join('');
   }
+}
+
+function openParquetBrand(brandId) {
+  selectedBrand = brandId;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('parquet');
+}
+
+function backToParquetBrands() {
+  selectedBrand = null;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('parquet');
 }
 
 function addNewPaintItem() {
@@ -1869,6 +1950,9 @@ function openMaterialDetails(title, directImg = '') {
   if (!foundItem && currentCatTab === 'doors' && selectedBrand && catalogData.doors.items[selectedBrand]) {
     foundItem = catalogData.doors.items[selectedBrand].find(i => i.title === title);
   }
+  if (!foundItem && currentCatTab === 'parquet' && selectedBrand && catalogData.parquet.items[selectedBrand]) {
+    foundItem = catalogData.parquet.items[selectedBrand].find(i => i.title === title);
+  }
   if (!foundItem) {
     for (let cat in catalogData) {
       if (Array.isArray(catalogData[cat])) {
@@ -1881,6 +1965,11 @@ function openMaterialDetails(title, directImg = '') {
       } else if (cat === 'doors') {
         for (let b in catalogData.doors.items) {
           let m = catalogData.doors.items[b].find(i => i.title === title);
+          if (m) foundItem = m;
+        }
+      } else if (cat === 'parquet') {
+        for (let b in catalogData.parquet.items) {
+          let m = catalogData.parquet.items[b].find(i => i.title === title);
           if (m) foundItem = m;
         }
       }
@@ -1972,6 +2061,13 @@ function deleteItem(title) {
       deleted = true;
     }
   }
+  if (!deleted && selectedBrand && catalogData.parquet.items[selectedBrand]) {
+    let index = catalogData.parquet.items[selectedBrand].findIndex(i => i.title === title);
+    if (index !== -1) {
+      catalogData.parquet.items[selectedBrand].splice(index, 1);
+      deleted = true;
+    }
+  }
 
   if (!deleted) {
     for (let cat in catalogData) {
@@ -1994,6 +2090,14 @@ function deleteItem(title) {
           let index = catalogData.doors.items[b].findIndex(i => i.title === title);
           if (index !== -1) {
             catalogData.doors.items[b].splice(index, 1);
+            deleted = true;
+          }
+        }
+      } else if (cat === 'parquet') {
+        for (let b in catalogData.parquet.items) {
+          let index = catalogData.parquet.items[b].findIndex(i => i.title === title);
+          if (index !== -1) {
+            catalogData.parquet.items[b].splice(index, 1);
             deleted = true;
           }
         }
@@ -2032,6 +2136,15 @@ function saveItemDetails(title) {
       found = true;
     }
   }
+  if (!found && selectedBrand && catalogData.parquet.items[selectedBrand]) {
+    let item = catalogData.parquet.items[selectedBrand].find(i => i.title === title);
+    if (item) {
+      item.details = newDetails;
+      item.purpose = newPurpose;
+      item.origin = newOrigin;
+      found = true;
+    }
+  }
   if (!found) {
     for (let cat in catalogData) {
       if (Array.isArray(catalogData[cat])) {
@@ -2053,6 +2166,15 @@ function saveItemDetails(title) {
       } else if (cat === 'doors') {
         for (let b in catalogData.doors.items) {
           let item = catalogData.doors.items[b].find(i => i.title === title);
+          if (item) {
+            item.details = newDetails;
+            item.purpose = newPurpose;
+            item.origin = newOrigin;
+          }
+        }
+      } else if (cat === 'parquet') {
+        for (let b in catalogData.parquet.items) {
+          let item = catalogData.parquet.items[b].find(i => i.title === title);
           if (item) {
             item.details = newDetails;
             item.purpose = newPurpose;
@@ -2118,31 +2240,31 @@ document.querySelectorAll('.catalog-tab').forEach(tab => {
   tab.addEventListener('click', () => switchCatalogCategory(tab.dataset.cat));
 });
 
-function renderGallery(lang){
+function renderGallery(){
   const grid = document.getElementById('galleryGrid');
   if(!grid) return;
   grid.innerHTML = (data.gallery.items || []).map(g => `
     <div class="g-tile ${currentFilter !== 'all' && g.room !== currentFilter ? 'hide' : ''}" data-room="${g.room}">
       <div class="g-tex" ${g.image ? `style="background-image:url('${fixPath(g.image)}');"` : ''}></div>
       <div class="g-cap">
-        <div class="room">${(dict[lang] && dict[lang]['filter_' + g.room]) || ''}</div>
-        <p>${(g.caption && g.caption[lang]) || ''}</p>
+        <div class="room">${g.room}</div>
+        <p>${(g.caption && g.caption['az']) || ''}</p>
       </div>
     </div>
   `).join('');
 }
 
-function renderBrands(lang){
+function renderBrands(){
   const grid = document.getElementById('brandsGrid');
   if(!grid) return;
   grid.innerHTML = (data.brands.items || []).map(b => `
     <div class="brand-cell">
-      <div class="bn">${b.name}<small>${(dict[lang] && dict[lang][b.category + '_name']) || ''}</small></div>
+      <div class="bn">${b.name}<small>${b.category}</small></div>
     </div>
   `).join('');
 }
 
-function renderReviews(lang){
+function renderReviews(){
   const track = document.getElementById('revTrack');
   const dotsWrap = document.getElementById('revDots');
   if(!track) return;
@@ -2150,8 +2272,8 @@ function renderReviews(lang){
   if(revIndex >= items.length) revIndex = 0;
   track.innerHTML = items.map((r, i) => `
     <div class="rev-slide ${i === revIndex ? 'active' : ''}">
-      <blockquote>&ldquo;${(r.text && r.text[lang]) || r.text['az']}&rdquo;</blockquote>
-      <p class="author">${(r.author && r.author[lang]) || r.author['az']}</p>
+      <blockquote>&ldquo;${(r.text && r.text['az']) || r.text['az']}&rdquo;</blockquote>
+      <p class="author">${(r.author && r.author['az']) || r.author['az']}</p>
     </div>
   `).join('');
   if(dotsWrap && dotsWrap.children.length !== items.length){
@@ -2171,7 +2293,7 @@ function goToSlide(i){
   const items = data.reviews.items;
   if(!items.length) return;
   revIndex = (i + items.length) % items.length;
-  renderReviews(currentLang);
+  renderReviews();
   resetRevTimer();
 }
 
@@ -2193,20 +2315,6 @@ function renderHero(){
     return `<div class="slide" style="background-image:url('${fixPath(url)}'); animation-delay:${delay}s; animation-duration:${totalDuration}s;"></div>`;
   }).join('');
 }
-
-function applyLanguage(lang){
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  applyStaticText(lang);
-  renderProducts(lang);
-  renderGallery(lang);
-  renderBrands(lang);
-  renderReviews(lang);
-}
-
-document.querySelectorAll('.lang-switch button').forEach(btn=>{
-  btn.addEventListener('click', ()=> applyLanguage(btn.dataset.lang));
-});
 
 const navEl = document.getElementById('siteNav');
 window.addEventListener('scroll', ()=>{
@@ -2264,7 +2372,10 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
   await loadAllContent();
   applySettings();
   renderHero();
-  applyLanguage('az');
+  renderProducts();
+  renderGallery();
+  renderBrands();
+  renderReviews();
   resetRevTimer();
 })();
 </script> 
