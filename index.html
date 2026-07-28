@@ -1028,7 +1028,7 @@ const catalogData = {
           title: "Decorazza Aretino",
           desc: "Rəngli metalların zərif fakturasına və yumşaq parıltıya malik Aretino dekorativ boyası orijinal və parlaq səthlər yaradır.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/af2/yvnpa30t9irl7cgxv2vf6sj8mxl0shch.png.webp?174239243786562",
-          details: "Tərkibindəki mirvari əsası və xırda fraksiyalı doldurucu sayəsində günəş şüaları altında parıldayan, xaoslu və ya dəqiq istiqamətlənmiş yumşaq keçidlərə malik orijinal dekorativ örtük yaradır.",
+          details: "Tərkibindəki mirvari əsası və xırda fraksiyalı doldurucu sayəsində günəş şüaları altında parıldayan, xaoslu və ya dəqiq istiqamətləndirilmiş yumşaq keçidlərə malik orijinal dekorativ örtük yaradır.",
           purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari keçidləri effekti yaratmaq üçün.",
           origin: "Rusiya"
         },
@@ -1203,7 +1203,7 @@ const catalogData = {
         {
           title: "Decorazza Primer",
           desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://decorazza.ru/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
           details: "Dekorativ materialların tətbiqindən əvvəl səth hazırlığı üçün istifadə olunan, boya və suvaqların divara möhkəm yapışmasını təmin edən universal astar.",
           purpose: "Səth hazırlığı və yapışmanın yaxşılaşdırılması",
           origin: "Rusiya"
@@ -1784,7 +1784,7 @@ function renderCatalogContent(catId) {
                 <div class="cat-item-title">${item.title}</div>
                 <div class="cat-item-desc">${item.desc}</div>
               </div>
-              <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+              <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
             </div>
           </div>
         `).join('');
@@ -1809,7 +1809,7 @@ function renderCatalogContent(catId) {
             <div class="cat-item-desc">${item.desc}</div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: auto;">
-            <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
+            <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
             <button onclick="deleteDoorCollection(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Kolleksiyanı sil">Sil</button>
           </div>
         </div>
@@ -1831,7 +1831,7 @@ function renderCatalogContent(catId) {
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
-          <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+          <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
         </div>
       </div>
     `).join('');
@@ -1918,7 +1918,7 @@ function saveCustomItemsToStorage() {
   localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(catalogData.doors));
 }
 
-function openMaterialDetails(title) {
+function openMaterialDetails(title, directImg = '') {
   const grid = document.getElementById('catalogGridInner');
   const adminPanel = document.getElementById('adminAddPanel');
   const adminDoorPanel = document.getElementById('adminDoorAddPanel');
@@ -1953,8 +1953,7 @@ function openMaterialDetails(title) {
   const purposeText = foundItem && foundItem.purpose ? foundItem.purpose : 'Divar və səth örtüyü';
   const originText = foundItem && foundItem.origin ? foundItem.origin : 'İtaliya / Avropa';
   
-  // Исправлено: корректное извлечение картинки независимо от названия ключа (img или image)
-  const imgUrl = foundItem ? (foundItem.img || foundItem.image || '') : '';
+  const imgUrl = directImg || (foundItem ? (foundItem.img || foundItem.image || '') : '');
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1;">
