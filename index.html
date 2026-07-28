@@ -199,25 +199,26 @@ section{ position:relative; }
 
 .nav-right{ display:flex; align-items:center; gap:22px; }
 
-/* Google Translate Widget Custom Styling */
+/* Кастомный переключатель языков */
+.lang-switch{
+  display:flex; align-items:center; gap:2px; background: var(--paper);
+  border:1px solid var(--stone-line); padding:3px; border-radius:20px; position:relative;
+}
+.lang-switch button{
+  font-size:12px; font-weight:700; padding:5px 10px; border-radius:16px; cursor:pointer;
+  color: var(--ink-soft); z-index:2; transition: color .3s ease;
+}
+.lang-switch button.active{ color: var(--paper); }
+.lang-switch .pill{
+  position:absolute; top:3px; bottom:3px; left:3px; width:34px; background: var(--ink);
+  border-radius:16px; transition: transform .35s var(--ease), width .35s var(--ease); z-index:1;
+}
+
+/* Полное сокрытие верхней панели Google и фиксов подсветки */
 .goog-te-banner-frame.skiptranslate { display: none !important; }
 body { top: 0 !important; }
-.goog-te-gadget { font-size: 0px !important; color: transparent; }
-.goog-te-gadget span { display: none; }
-.goog-te-combo {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 700;
-  border: 1px solid var(--stone-line);
-  padding: 8px 12px;
-  border-radius: 20px;
-  outline: none;
-  cursor: pointer;
-}
-.goog-logo-link { display: none !important; }
-.goog-te-gadget { color: transparent !important; }
+.goog-tooltip { display: none !important; }
+.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
 
 .nav-cta{ display:inline-flex; }
 .menu-toggle{ display:none; width:36px; height:36px; align-items:center; justify-content:center; cursor:pointer; }
@@ -623,8 +624,13 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <a href="#contact">Əlaqə</a>
     </nav>
     <div class="nav-right">
-      <!-- Google Translate Element -->
-      <div id="google_translate_element"></div>
+      <!-- Старые кастомные кнопки выбора языка -->
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="pill" id="langPill"></span>
+        <button type="button" data-lang="az" onclick="triggerGoogleTranslate('az')" class="active">AZ</button>
+        <button type="button" data-lang="en" onclick="triggerGoogleTranslate('en')">EN</button>
+        <button type="button" data-lang="ru" onclick="triggerGoogleTranslate('ru')">RU</button>
+      </div>
 
       <a href="#contact" class="btn btn-primary nav-cta">Məsləhət al</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
@@ -947,15 +953,53 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   </div>
 </footer>
 
-<!-- Google Translate Widget Script -->
+<!-- Скрытый элемент виджета Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- Google Translate Widget Script & Controller -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'az',
     includedLanguages: 'az,en,ru',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: false
   }, 'google_translate_element');
+}
+
+// Функция управления языком через куки виджета
+function triggerGoogleTranslate(lang) {
+  document.cookie = "googtrans=/az/" + lang;
+  window.location.reload();
+}
+
+// Автоматическое выставление активной кнопки языка на основе куки
+window.addEventListener('DOMContentLoaded', () => {
+  const match = document.cookie.match(new RegExp('(^| )googtrans=([^;]+)'));
+  let currentLang = 'az';
+  if (match) {
+    let parts = match[2].split('/');
+    if (parts.length > 0) currentLang = parts[parts.length - 1];
+  }
+  updateLangPill(currentLang);
+});
+
+function updateLangPill(lang) {
+  const buttons = document.querySelectorAll('.lang-switch button');
+  buttons.forEach(btn => {
+    if (btn.dataset.lang === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  
+  // Передвигаем плашку внутри переключателя
+  const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
+  const pill = document.getElementById('langPill');
+  if (activeBtn && pill) {
+    pill.style.width = activeBtn.offsetWidth + 'px';
+    pill.style.transform = `translateX(${activeBtn.offsetLeft - 3}px)`;
+  }
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -1051,7 +1095,7 @@ const catalogData = {
           title: "Decorazza Lucetezza",
           desc: "Qiymətli metalların və incə qum naxışının parıltısını yaradan Lucetezza dekorativ boyası interyerə zəriflik qatır.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/200/oq191fvttf0yz56utx5zg8br69hc2m1z.png.webp?174239181984704",
-          details: "Tərkibindəki mirvari əsası və incə qum naxışı sayəsində günəş şüaları altında yumşaq şəkildə parıldayan, antik interyerlərə sərinlik, art-deko və modern üslublarına isə istilik gətirən dekorativ örtük.",
+          details: "Tərkibindəki mirvari əsası və incə qum naxışı sayəsində günəş şüaları altında yumşaq şəkildə parıldayan, antik interyerlərə sərinlik, art-deko və modern üslublarına isə islik gətirən dekorativ örtük.",
           purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari qum burulğanları effekti yaratmaq üçün.",
           origin: "Rusiya"
         },
