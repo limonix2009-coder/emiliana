@@ -854,11 +854,11 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ ДВЕРЕЙ -->
+    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КОЛЛЕКЦИЙ ДВЕРЕЙ -->
     <div id="adminDoorAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni qapı əlavə et (Admin)</h4>
+      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni qapı kolleksiyası əlavə et (Admin)</h4>
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newDoorTitle" placeholder="Qapının adı" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newDoorTitle" placeholder="Kolleksiya adı" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newDoorDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newDoorImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <button onclick="addNewDoorItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
@@ -1379,7 +1379,19 @@ const catalogData = {
     { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png", details: "Klassik üslubda zəngin ornamentlərə malik İtaliya divar kağızı.", purpose: "Divar örtüyü", origin: "İtaliya" }
   ],
   doors: [
-    { title: "Modern Wood Door", desc: "Təbii ağac örtüklü daxili qapı", img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png", details: "Yüksək keyfiyyətli təbii ağacdan hazırlanmış müasir dizaynlı qapı.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
+    { 
+      title: "Perfecto Porte Kolleksiyası", 
+      desc: "İtalyan üslublu premium interyer qapıları və gizli çərçivə sistemləri", 
+      img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png",
+      details: "Müasir memarlıq standartlarına cavab verən, yüksək səs izolyasiyalı və dayanıqlı interyer qapı seriyası.",
+      purpose: "Otaq qapısı",
+      origin: "İtaliya / Türkiyə",
+      models: [
+        { name: "Modern Wood Door", color: "Təbii Palıd", finish: "Matlak", img: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" },
+        { name: "Classic White Door", color: "Ağ Emal", finish: "Parıltılı", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" },
+        { name: "Dark Graphite Door", color: "Antrasit Qrafit", finish: "Soft-touch", img: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600&q=80" }
+      ]
+    }
   ],
   parquet: [
     { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
@@ -1648,7 +1660,7 @@ function renderCatalogContent(catId) {
     if(adminDoorPanel) adminDoorPanel.style.display = 'block';
     const items = catalogData.doors || [];
     if (items.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni qapılar əlavə olunacaq.</p>';
+      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni qapı kolleksiyaları əlavə olunacaq.</p>';
       return;
     }
     grid.innerHTML = items.map(item => `
@@ -1659,7 +1671,7 @@ function renderCatalogContent(catId) {
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
-          <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+          <button onclick="openDoorConfigurator('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
         </div>
       </div>
     `).join('');
@@ -1722,17 +1734,20 @@ function addNewDoorItem() {
   const imgInput = document.getElementById('newDoorImg');
   
   if (!titleInput.value) {
-    alert('Zəhmət olmasa qapının adını daxil edin.');
+    alert('Zəhmət olmasa kolleksiyanın adını daxil edin.');
     return;
   }
 
   const newItem = {
     title: titleInput.value,
-    desc: descInput.value || 'İnteryer qapısı',
+    desc: descInput.value || 'İnteryer qapı kolleksiyası',
     img: imgInput.value.trim(),
-    details: 'Yüksək keyfiyyətli materialdan hazırlanmış interyer qapısı.',
+    details: 'Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.',
     purpose: 'Otaq qapısı',
-    origin: 'Türkiyə / Avropa'
+    origin: 'Türkiyə / Avropa',
+    models: [
+      { name: titleInput.value + " Standart", color: "Təbii Ağac", finish: "Mat", img: imgInput.value.trim() || "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" }
+    ]
   };
 
   if (!Array.isArray(catalogData.doors)) {
@@ -1755,6 +1770,107 @@ function saveCustomItemsToStorage() {
   }
   localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
   localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(catalogData.doors));
+}
+
+function openDoorConfigurator(title) {
+  const grid = document.getElementById('catalogGridInner');
+  const adminPanel = document.getElementById('adminAddPanel');
+  const adminDoorPanel = document.getElementById('adminDoorAddPanel');
+  if(adminPanel) adminPanel.style.display = 'none';
+  if(adminDoorPanel) adminDoorPanel.style.display = 'none';
+  
+  if (!window.catalogPreviousContent) {
+    window.catalogPreviousContent = grid.innerHTML;
+    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
+  }
+
+  document.getElementById('catalogTitle').textContent = title + ' — Model və Rəng Konfiquratoru';
+
+  let collection = catalogData.doors.find(d => d.title === title);
+  if (!collection) return;
+
+  let models = collection.models || [
+    { name: "Modern Wood Door", color: "Təbii Palıd", finish: "Matlak", img: collection.img }
+  ];
+
+  let currentModelIndex = 0;
+
+  window.updateDoorPreview = function(idx) {
+    currentModelIndex = idx;
+    let m = models[idx];
+    document.getElementById('doorPreviewImg').src = fixPath(m.img);
+    document.getElementById('doorModelName').textContent = m.name;
+    document.getElementById('doorColorName').textContent = m.color;
+    document.getElementById('doorFinishName').textContent = m.finish;
+  };
+
+  window.addNewDoorModel = function() {
+    let name = document.getElementById('newModelName').value;
+    let color = document.getElementById('newModelColor').value;
+    let finish = document.getElementById('newModelFinish').value;
+    let img = document.getElementById('newModelImg').value;
+
+    if (!name) {
+      alert('Model adını daxil edin.');
+      return;
+    }
+
+    models.push({
+      name: name,
+      color: color || 'Standart',
+      finish: finish || 'Mat',
+      img: img || collection.img
+    });
+
+    saveCustomItemsToStorage();
+    openDoorConfigurator(title);
+  };
+
+  let modelsButtonsHtml = models.map((m, idx) => `
+    <button onclick="updateDoorPreview(${idx})" class="btn ${idx === 0 ? 'btn-primary' : 'btn-ghost'}" style="padding: 8px 14px; font-size: 12px; cursor:pointer;">${m.name}</button>
+  `).join('');
+
+  grid.innerHTML = `
+    <div style="grid-column: 1/-1;">
+      <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Kolleksiyalara qayıt</button>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+        <div>
+          <img id="doorPreviewImg" src="${fixPath(models[0].img)}" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; border: 1px solid var(--stone-line); background: var(--plaster-2);" alt="Door">
+        </div>
+
+        <div style="background: var(--cream-card); padding: 24px; border-radius: 8px; border: 1px solid var(--stone-line);">
+          <h3 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 12px; color: var(--ink);">Konfiqurator</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); margin-bottom: 20px;">İstədiyiniz modeli, rəngi və örtüyü seçərək qapınızı fərdiləşdirin.</p>
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--brass);">Modellər:</label>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              ${modelsButtonsHtml}
+            </div>
+          </div>
+
+          <div style="background: var(--paper); padding: 14px; border-radius: 6px; border: 1px solid var(--stone-line); margin-bottom: 20px;">
+            <div style="font-size: 13px; margin-bottom: 6px;"><b>Seçilmiş model:</b> <span id="doorModelName">${models[0].name}</span></div>
+            <div style="font-size: 13px; margin-bottom: 6px;"><b>Rəng / Çalar:</b> <span id="doorColorName">${models[0].color}</span></div>
+            <div style="font-size: 13px;"><b>Örtük növü:</b> <span id="doorFinishName">${models[0].finish}</span></div>
+          </div>
+
+          <!-- ADMIN PANEL ДЛЯ ДОБАВЛЕНИЯ МОДЕЛИ/ЦВЕТА -->
+          <div style="border-top: 1px dashed var(--brass); padding-top: 16px;">
+            <h4 style="font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; color: var(--ink);">+ Yeni Model / Rəng əlavə et (Admin)</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <input type="text" id="newModelName" placeholder="Model adı (məs: Premium Oak)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
+              <input type="text" id="newModelColor" placeholder="Rəng (məs: Qəhvəyi / Qrafit)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
+              <input type="text" id="newModelFinish" placeholder="Örtük (məs: Mat / Parıltılı)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
+              <input type="text" id="newModelImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
+              <button onclick="addNewDoorModel()" class="btn btn-primary" style="padding: 8px; font-size: 12px; cursor:pointer; justify-content: center;">Model əlavə et</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function openMaterialDetails(title) {
