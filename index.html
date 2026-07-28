@@ -200,25 +200,16 @@ section{ position:relative; }
 .nav-right{ display:flex; align-items:center; gap:22px; }
 
 /* Кастомный переключатель языков */
-.lang-switch{
-  display:flex; align-items:center; gap:2px; background: var(--paper);
-  border:1px solid var(--stone-line); padding:3px; border-radius:20px; position:relative;
-}
+.lang-switch{ display:flex; border:1px solid var(--stone-line); border-radius:20px; padding:3px; position:relative; }
 .lang-switch button{
-  font-size:12px; font-weight:700; padding:5px 10px; border-radius:16px; cursor:pointer;
-  color: var(--ink-soft); z-index:2; transition: color .3s ease;
+  font-size:12px; font-weight:700; letter-spacing:.03em; padding:6px 11px; border-radius:16px; position:relative; z-index:2;
+  color: var(--ink-soft); transition: color .3s ease; cursor: pointer;
 }
 .lang-switch button.active{ color: var(--paper); }
 .lang-switch .pill{
-  position:absolute; top:3px; bottom:3px; left:3px; width:34px; background: var(--ink);
-  border-radius:16px; transition: transform .35s var(--ease), width .35s var(--ease); z-index:1;
+  position:absolute; top:3px; left:3px; height:calc(100% - 6px); width:34px; background:var(--ink); border-radius:16px;
+  transition: transform .4s var(--ease); z-index:1;
 }
-
-/* Полное сокрытие верхней панели Google и фиксов подсветки */
-.goog-te-banner-frame.skiptranslate { display: none !important; }
-body { top: 0 !important; }
-.goog-tooltip { display: none !important; }
-.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
 
 .nav-cta{ display:inline-flex; }
 .menu-toggle{ display:none; width:36px; height:36px; align-items:center; justify-content:center; cursor:pointer; }
@@ -624,12 +615,12 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <a href="#contact">Əlaqə</a>
     </nav>
     <div class="nav-right">
-      <!-- Старые кастомные кнопки выбора языка -->
+      <!-- Переключатель языков (чистый интерфейс без Google Translate) -->
       <div class="lang-switch" role="group" aria-label="Language">
         <span class="pill" id="langPill"></span>
-        <button type="button" data-lang="az" onclick="triggerGoogleTranslate('az')" class="active">AZ</button>
-        <button type="button" data-lang="en" onclick="triggerGoogleTranslate('en')">EN</button>
-        <button type="button" data-lang="ru" onclick="triggerGoogleTranslate('ru')">RU</button>
+        <button type="button" data-lang="az" class="active">AZ</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ru">RU</button>
       </div>
 
       <a href="#contact" class="btn btn-primary nav-cta">Məsləhət al</a>
@@ -952,57 +943,6 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     </div>
   </div>
 </footer>
-
-<!-- Скрытый элемент виджета Google Translate -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<!-- Google Translate Widget Script & Controller -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'az',
-    includedLanguages: 'az,en,ru',
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-
-// Функция управления языком через куки виджета
-function triggerGoogleTranslate(lang) {
-  document.cookie = "googtrans=/az/" + lang;
-  window.location.reload();
-}
-
-// Автоматическое выставление активной кнопки языка на основе куки
-window.addEventListener('DOMContentLoaded', () => {
-  const match = document.cookie.match(new RegExp('(^| )googtrans=([^;]+)'));
-  let currentLang = 'az';
-  if (match) {
-    let parts = match[2].split('/');
-    if (parts.length > 0) currentLang = parts[parts.length - 1];
-  }
-  updateLangPill(currentLang);
-});
-
-function updateLangPill(lang) {
-  const buttons = document.querySelectorAll('.lang-switch button');
-  buttons.forEach(btn => {
-    if (btn.dataset.lang === lang) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-  
-  // Передвигаем плашку внутри переключателя
-  const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
-  const pill = document.getElementById('langPill');
-  if (activeBtn && pill) {
-    pill.style.width = activeBtn.offsetWidth + 'px';
-    pill.style.transform = `translateX(${activeBtn.offsetLeft - 3}px)`;
-  }
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
 /* ==============================================================
@@ -2360,6 +2300,19 @@ function renderHero(){
   }).join('');
 }
 
+/* Логика анимации плашки переключателя языков */
+document.querySelectorAll('.lang-switch button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const pill = document.getElementById('langPill');
+    if (pill) {
+      pill.style.width = btn.offsetWidth + 'px';
+      pill.style.transform = `translateX(${btn.offsetLeft - 3}px)`;
+    }
+  });
+});
+
 const navEl = document.getElementById('siteNav');
 window.addEventListener('scroll', ()=>{
   navEl.classList.toggle('scrolled', window.scrollY > 30);
@@ -2397,7 +2350,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 
 document.getElementById('revPrev').addEventListener('click', ()=> goToSlide(revIndex-1));
 document.getElementById('revNext').addEventListener('click', ()=> goToSlide(revIndex+1));
-document.querySelector('.reviews-band').addEventListener('mouseenter', ()=> clearInterval(revTimer));
+document.querySelector('.reviews-band').addEventListener('mouseenter', ()=> clearInterval(revToken)); // safe guard
 document.querySelector('.reviews-band').addEventListener('mouseleave', resetRevTimer);
 
 document.getElementById('contactForm').addEventListener('submit', function(e){
@@ -2421,6 +2374,14 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
   renderBrands();
   renderReviews();
   resetRevTimer();
+  
+  // Инициализация плашки языка по умолчанию
+  const activeLangBtn = document.querySelector('.lang-switch button.active');
+  const pill = document.getElementById('langPill');
+  if (activeLangBtn && pill) {
+    pill.style.width = activeLangBtn.offsetWidth + 'px';
+    pill.style.transform = `translateX(${activeLangBtn.offsetLeft - 3}px)`;
+  }
 })();
 </script> 
 </body>
