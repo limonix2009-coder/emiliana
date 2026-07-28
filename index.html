@@ -386,6 +386,7 @@ section{ position:relative; }
   background: var(--cream-card); border-radius: 8px; overflow: hidden;
   border: 1px solid var(--stone-line); display: flex; flex-direction: column;
   transition: transform .3s ease, box-shadow .3s ease;
+  position: relative;
 }
 .cat-item-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
 
@@ -1058,7 +1059,7 @@ const catalogData = {
           title: "Decorazza Barilievo",
           desc: "Həcmli və bədii relyeflər yaratmaq üçün peşəkar dekorativ suvaq.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/a2f/zzp7gnmsc8rkx6jdt55x9xpfol6wdoiz.png.webp?174239310187840",
-          details: "Məkanda fərdi bədii kompozisiyalar, dərin fakturalar və relyefli naxışlar yaratmaq üçün ideal material. Dizaynerlərə divarlarda unikal teksturalar və heykəltəraşlıq effektləri işləməyə şərait yaradır.",
+          details: "Məkanda fərdi bədii kompozisiyalar, dərin fakturalər və relyefli naxışlar yaratmaq üçün ideal material. Dizaynerlərə divarlarda unikal teksturalar və heykəltəraşlıq effektləri işləməyə şərait yaradır.",
           purpose: "Bədii interyer dizaynı və pannolar üçün",
           origin: "Rusiya"
         },
@@ -1663,7 +1664,7 @@ function renderCatalogContent(catId) {
       grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni qapı kolleksiyaları əlavə olunacaq.</p>';
       return;
     }
-    grid.innerHTML = items.map(item => `
+    grid.innerHTML = items.map((item, index) => `
       <div class="cat-item-card">
         ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
         <div class="cat-item-info">
@@ -1671,7 +1672,10 @@ function renderCatalogContent(catId) {
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
-          <button onclick="openDoorConfigurator('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+          <div style="display: flex; gap: 8px; margin-top: auto;">
+            <button onclick="openDoorConfigurator('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
+            <button onclick="deleteDoorCollection(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Kolleksiyanı sil">Sil</button>
+          </div>
         </div>
       </div>
     `).join('');
@@ -1763,6 +1767,13 @@ function addNewDoorItem() {
   renderCatalogContent('doors');
 }
 
+function deleteDoorCollection(index) {
+  if (!confirm('Bu qapı kolleksiyasını silmək istədiyinizə əminsinizmi?')) return;
+  catalogData.doors.splice(index, 1);
+  saveCustomItemsToStorage();
+  renderCatalogContent('doors');
+}
+
 function saveCustomItemsToStorage() {
   let customItems = {};
   for (let brandId in catalogData.paint.items) {
@@ -1802,6 +1813,11 @@ function openDoorConfigurator(title) {
     document.getElementById('doorModelName').textContent = m.name;
     document.getElementById('doorColorName').textContent = m.color;
     document.getElementById('doorFinishName').textContent = m.finish;
+    
+    const deleteBtn = document.getElementById('deleteModelBtn');
+    if (deleteBtn) {
+      deleteBtn.style.display = models.length > 1 ? 'block' : 'none';
+    }
   };
 
   window.addNewDoorModel = function() {
@@ -1822,6 +1838,20 @@ function openDoorConfigurator(title) {
       img: img || collection.img
     });
 
+    collection.models = models;
+    saveCustomItemsToStorage();
+    openDoorConfigurator(title);
+  };
+
+  window.deleteCurrentDoorModel = function() {
+    if (models.length <= 1) {
+      alert('Kolleksiyada ən azı bir model qalmalıdır.');
+      return;
+    }
+    if (!confirm(`"${models[currentModelIndex].name}" modelini silmək istədiyinizə əminsinizmi?`)) return;
+    
+    models.splice(currentModelIndex, 1);
+    collection.models = models;
     saveCustomItemsToStorage();
     openDoorConfigurator(title);
   };
@@ -1850,10 +1880,11 @@ function openDoorConfigurator(title) {
             </div>
           </div>
 
-          <div style="background: var(--paper); padding: 14px; border-radius: 6px; border: 1px solid var(--stone-line); margin-bottom: 20px;">
+          <div style="background: var(--paper); padding: 14px; border-radius: 6px; border: 1px solid var(--stone-line); margin-bottom: 20px; position: relative;">
             <div style="font-size: 13px; margin-bottom: 6px;"><b>Seçilmiş model:</b> <span id="doorModelName">${models[0].name}</span></div>
             <div style="font-size: 13px; margin-bottom: 6px;"><b>Rəng / Çalar:</b> <span id="doorColorName">${models[0].color}</span></div>
-            <div style="font-size: 13px;"><b>Örtük növü:</b> <span id="doorFinishName">${models[0].finish}</span></div>
+            <div style="font-size: 13px; margin-bottom: 10px;"><b>Örtük növü:</b> <span id="doorFinishName">${models[0].finish}</span></div>
+            <button id="deleteModelBtn" onclick="deleteCurrentDoorModel()" class="btn" style="background: #c0392b; color: #fff; padding: 6px 12px; font-size: 11px; border-radius: 4px; cursor:pointer; display: ${models.length > 1 ? 'block' : 'none'};">Bu modeli sil</button>
           </div>
 
           <!-- ADMIN PANEL ДЛЯ ДОБАВЛЕНИЯ МОДЕЛИ/ЦВЕТА -->
