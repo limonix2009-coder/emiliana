@@ -380,7 +380,7 @@ section{ position:relative; }
 .catalog-tab.active, .catalog-tab:hover { background: var(--ink); color: var(--paper); }
 
 .catalog-grid-inner {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;
 }
 .cat-item-card {
   background: var(--cream-card); border-radius: 8px; overflow: hidden;
@@ -397,7 +397,25 @@ section{ position:relative; }
 .brand-logo-img { max-height: 85%; max-width: 90%; width: auto; height: auto; object-fit: contain; transition: transform 0.3s ease; }
 .cat-item-card:hover .brand-logo-img { transform: scale(1.08); }
 
-.cat-item-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--plaster-2); }
+/* ИСПРАВЛЕННОЕ ОТОБРАЖЕНИЕ КАРТИНОК В КАТАЛОГЕ (без обрезки) */
+.cat-item-img-container {
+  width: 100%;
+  height: 280px;
+  background: var(--plaster);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--stone-line);
+}
+.cat-item-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 .cat-item-info { padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .cat-item-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
 .cat-item-desc { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.4; }
@@ -995,13 +1013,13 @@ const catalogData = {
           title: "Decorazza Seta da Vinci",
           desc: "Gümüşü bazaya və zərif ipək effektinə malik ekoloji Decorazza Seta da Vinci boyası klassik interyerlər üçün nəm təmizliyə davamlı lüks örtük yaradır.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/7a5/fcfl7oqigwx5nblfkuquor4c6xn3rm3e.png.webp?174239243985616",
-          details: "Gümüşü baza və təkmilləşdirilmiş örtücülük qabiliyyəti ilə seçilən, nəm təmizlərə davamlı ekoloji dekorativ boya. Tərkibindəki mirvari hissəcikləri sayəsində dərin və ifadəli "yaş ipək" effekti yaradır, qoruyucu örtük tələb etmir və kompüter üsulu ilə rənglənir.",
+          details: "Gümüşü baza və təkmilləşdirilmiş örtücülük qabiliyyəti ilə seçilən, nəm təmizlərə davamlı ekoloji dekorativ boya. Tərkibindəki mirvari hissəcikləri sayəsində dərin və ifadəli yaş ipək effekti yaradır, qoruyucu örtük tələb etmir və kompüter üsulu ilə rənglənir.",
           purpose: "Daxili məkanlarda divar, tavan, sütun və digər memarlıq elementlərində tikişsiz dekorativ örtük üçün.",
           origin: "Rusiya"
         },
         {
           title: "Decorazza Velluto",
-          desc: "Yumşaq mat ipək və zərif məxməri tekstura effekti yaradan Velluto dekorativ boyası geniş və işıqlı interyerlər üçün incə həlldir.",
+          desc: "Yumşaq mat ipək və zərif məxməri tekstura effekti yaradan Velluto dekorativ boyası geniş və işıqlı interyerlər üçün incə həlldrif.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/dcf/0mp3ejdzk8afk3obabf637kerfgoaamy.png.webp?174238920183698",
           details: "Zərif məxməri teksturaya və incə parıltıya malik, yumşaq mat ipək effekti yaradan dekorativ boya. Sakit rəng gaməsində sərbəst məkan və günəş işığı bolluğunu vurğulayan incə dizayn həllidir.",
           purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz dekorativ örtük yaratmaq üçün.",
@@ -1380,135 +1398,71 @@ const catalogData = {
     { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png", details: "Klassik üslubda zəngin ornamentlərə malik İtaliya divar kağızı.", purpose: "Divar örtüyü", origin: "İtaliya" }
   ],
   doors: [
-  {
-    "title": "SEGMENTI",
-    "desc": "Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "SEGMENTI Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png"
-      }
-    ]
-  },
-  {
-    "title": "DIAMANTE",
-    "desc": "Эксклюзивная фрезеровка, напоминающая огранку бриллианта в коллекции Diamante.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70c7aae275.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "DIAMANTE Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70c7aae275.png"
-      }
-    ]
-  },
-  {
-    "title": "STILISTA",
-    "desc": "Stilista - это воплощение статуса и утончённого вкуса. Идеальная геометрия, благородные  материалы и дизайнерская фрезеровка превращают дверь в объект современного искусства.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732943f1d2.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "STILISTA Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732943f1d2.png"
-      }
-    ]
-  },
-  {
-    "title": "KU-KU",
-    "desc": "Ku-ku - это воплощение художественной мысли итальянского архитектора, поражающая своим уникальным дизайном.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a730bcdd925.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "KU-KU Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a730bcdd925.png"
-      }
-    ]
-  },
-  {
-    "title": "PUNTO",
-    "desc": "Новая коллекция Punto отличается уникальным дизайном с фрезеровкой в виде идеального круга - это узнаваемый дизайн с индивидуальным характером.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbef68c815.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "PUNTO Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbef68c815.png"
-      }
-    ]
-  },
-  {
-    "title": "LINEA",
-    "desc": "Динамичная коллекция LINEA в обновленном формате с пантографированным рисунком. ",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b7443dc4b12.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "LINEA Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b7443dc4b12.png"
-      }
-    ]
-  },
-  {
-    "title": "MODULA",
-    "desc": "Ультрасовременная коллекция MODULA — новый подход к дизайну шпонированных дверей.",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "MODULA Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png"
-      }
-    ]
-  },
-  {
-    "title": "STRATO",
-    "desc": "Классика в современном прочтении. Оригинальная разноуровневая фрезеровка задает особый ритм, добавляя индивидуальность этой коллекции. ",
-    "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad553a5c8e8.png",
-    "details": "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-    "purpose": "Otaq qapısı",
-    "origin": "Türkiyə / Avropa",
-    "models": [
-      {
-        "name": "STRATO Standart",
-        "color": "Təbii Ağac",
-        "finish": "Mat",
-        "img": "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad553a5c8e8.png"
-      }
-    ]
-  }
-],
+    {
+      title: "SEGMENTI",
+      desc: "Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png",
+      details: "Segmenti kolleksiyası yüksək keyfiyyətli materiallardan hazırlanmış olub, müasir interyerlərdə minimalist və sərt xətləri sevənlər üçün ideal seçimdir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "DIAMANTE",
+      desc: "Эксклюзивная фрезеровка, напоминающая огранку бриллианта в коллекции Diamante.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70c7aae275.png",
+      details: "Diamante kolleksiyası brilyant kəsimini xatırladan eksklüziv freze dizaynı ilə fərqlənir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "STILISTA",
+      desc: "Stilista - это воплощение статуса и утончённого вкуса. Идеальная геометрия, благородные материалы и дизайнерская фрезеровка превращают дверь в объект современного искусства.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732943f1d2.png",
+      details: "Stilista qapıları statusu və incə zövqü vurğulayan həndəsi dizayn elementləri ilə təchiz olunub.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "KU-KU",
+      desc: "Ku-ku - это воплощение художественной мысли итальянского архитектора, поражающая своим уникальным дизайном.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a730bcdd925.png",
+      details: "Ku-ku seriyası qeyri-adi bədii dizaynı ilə seçilən orijinal qapı modelidir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "PUNTO",
+      desc: "Новая коллекция Punto отличается уникальным дизайном с фрезеровкой в виде идеального круга - это узнаваемый дизайн с индивидуальным характером.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbef68c815.png",
+      details: "Punto kolleksiyası dairəvi freze elementləri ilə tanınan unikal dizayn xəttinə malikdir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "LINEA",
+      desc: "Динамичная коллекция LINEA в обновленном формате с пантографированным рисунком.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b7443dc4b12.png",
+      details: "Linea seriyası dinamik xətləri və pantoqraf naxışları ilə müasir evlərə uyğunlaşır.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "MODULA",
+      desc: "Ультрасовременная коллекция MODULA — новый подход к дизайну шпонированных дверей.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png",
+      details: "Modula şponlanmış qapı dizaynına tamamilə yeni və modern yanaşma sərgiləyir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    },
+    {
+      title: "STRATO",
+      desc: "Классика в современном прочтении. Оригинальная разноуровневая фрезеровка задает особый ритм, добавляя индивидуальность этой коллекции.",
+      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad553a5c8e8.png",
+      details: "Strato müxtəlif səviyyəli freze xətləri ilə klassikanı müasir üslubda təqdim edir.",
+      purpose: "İnteryer otaq qapısı",
+      origin: "Türkiyə / Avropa"
+    }
+  ],
   parquet: [
     { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
   ]
@@ -1759,7 +1713,9 @@ function renderCatalogContent(catId) {
       } else {
         html += items.map(item => `
           <div class="cat-item-card">
-            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img" style="display:flex; align-items:center; justify-content:center; color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+            <div class="cat-item-img-container">
+              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<span style="color:var(--stone); font-size:12px;">Şəkil yoxdur</span>'}
+            </div>
             <div class="cat-item-info">
               <div>
                 <div class="cat-item-title">${item.title}</div>
@@ -1781,14 +1737,16 @@ function renderCatalogContent(catId) {
     }
     grid.innerHTML = items.map((item, index) => `
       <div class="cat-item-card">
-        ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+        <div class="cat-item-img-container">
+          ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+        </div>
         <div class="cat-item-info">
           <div>
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: auto;">
-            <button onclick="openDoorConfigurator('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
+            <button onclick="openMaterialDetails('${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
             <button onclick="deleteDoorCollection(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Kolleksiyanı sil">Sil</button>
           </div>
         </div>
@@ -1802,7 +1760,9 @@ function renderCatalogContent(catId) {
     }
     grid.innerHTML = items.map(item => `
       <div class="cat-item-card">
-        ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div class="cat-item-img"></div>'}
+        <div class="cat-item-img-container">
+          ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+        </div>
         <div class="cat-item-info">
           <div>
             <div class="cat-item-title">${item.title}</div>
@@ -1863,10 +1823,7 @@ function addNewDoorItem() {
     img: imgInput.value.trim(),
     details: 'Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.',
     purpose: 'Otaq qapısı',
-    origin: 'Türkiyə / Avropa',
-    models: [
-      { name: titleInput.value + " Standart", color: "Təbii Ağac", finish: "Mat", img: imgInput.value.trim() || "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png" }
-    ]
+    origin: 'Türkiyə / Avropa'
   };
 
   if (!Array.isArray(catalogData.doors)) {
@@ -1896,127 +1853,6 @@ function saveCustomItemsToStorage() {
   }
   localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
   localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(catalogData.doors));
-}
-
-function openDoorConfigurator(title) {
-  const grid = document.getElementById('catalogGridInner');
-  const adminPanel = document.getElementById('adminAddPanel');
-  const adminDoorPanel = document.getElementById('adminDoorAddPanel');
-  if(adminPanel) adminPanel.style.display = 'none';
-  if(adminDoorPanel) adminDoorPanel.style.display = 'none';
-  
-  if (!window.catalogPreviousContent) {
-    window.catalogPreviousContent = grid.innerHTML;
-    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
-  }
-
-  document.getElementById('catalogTitle').textContent = title + ' — Model və Rəng Konfiquratoru';
-
-  let collection = catalogData.doors.find(d => d.title === title);
-  if (!collection) return;
-
-  let models = collection.models || [
-    { name: "Modern Wood Door", color: "Təbii Palıd", finish: "Matlak", img: collection.img }
-  ];
-
-  let currentModelIndex = 0;
-
-  window.updateDoorPreview = function(idx) {
-    currentModelIndex = idx;
-    let m = models[idx];
-    document.getElementById('doorPreviewImg').src = fixPath(m.img);
-    document.getElementById('doorModelName').textContent = m.name;
-    document.getElementById('doorColorName').textContent = m.color;
-    document.getElementById('doorFinishName').textContent = m.finish;
-    
-    const deleteBtn = document.getElementById('deleteModelBtn');
-    if (deleteBtn) {
-      deleteBtn.style.display = models.length > 1 ? 'block' : 'none';
-    }
-  };
-
-  window.addNewDoorModel = function() {
-    let name = document.getElementById('newModelName').value;
-    let color = document.getElementById('newModelColor').value;
-    let finish = document.getElementById('newModelFinish').value;
-    let img = document.getElementById('newModelImg').value;
-
-    if (!name) {
-      alert('Model adını daxil edin.');
-      return;
-    }
-
-    models.push({
-      name: name,
-      color: color || 'Standart',
-      finish: finish || 'Mat',
-      img: img || collection.img
-    });
-
-    collection.models = models;
-    saveCustomItemsToStorage();
-    openDoorConfigurator(title);
-  };
-
-  window.deleteCurrentDoorModel = function() {
-    if (models.length <= 1) {
-      alert('Kolleksiyada ən azı bir model qalmalıdır.');
-      return;
-    }
-    if (!confirm(`"${models[currentModelIndex].name}" modelini silmək istədiyinizə əminsinizmi?`)) return;
-    
-    models.splice(currentModelIndex, 1);
-    collection.models = models;
-    saveCustomItemsToStorage();
-    openDoorConfigurator(title);
-  };
-
-  let modelsButtonsHtml = models.map((m, idx) => `
-    <button onclick="updateDoorPreview(${idx})" class="btn ${idx === 0 ? 'btn-primary' : 'btn-ghost'}" style="padding: 8px 14px; font-size: 12px; cursor:pointer;">${m.name}</button>
-  `).join('');
-
-  grid.innerHTML = `
-    <div style="grid-column: 1/-1;">
-      <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Kolleksiyalara qayıt</button>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
-        <div>
-          <img id="doorPreviewImg" src="${fixPath(models[0].img)}" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; border: 1px solid var(--stone-line); background: var(--plaster-2);" alt="Door">
-        </div>
-
-        <div style="background: var(--cream-card); padding: 24px; border-radius: 8px; border: 1px solid var(--stone-line);">
-          <h3 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 12px; color: var(--ink);">Konfiqurator</h3>
-          <p style="font-size: 13.5px; color: var(--ink-soft); margin-bottom: 20px;">İstədiyiniz modeli, rəngi və örtüyü seçərək qapınızı fərdiləşdirin.</p>
-
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--brass);">Modellər:</label>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              ${modelsButtonsHtml}
-            </div>
-          </div>
-
-          <div style="background: var(--paper); padding: 14px; border-radius: 6px; border: 1px solid var(--stone-line); margin-bottom: 20px; position: relative;">
-            <div style="font-size: 13px; margin-bottom: 6px;"><b>Seçilmiş model:</b> <span id="doorModelName">${models[0].name}</span></div>
-            <div style="font-size: 13px; margin-bottom: 6px;"><b>Rəng / Çalar:</b> <span id="doorColorName">${models[0].color}</span></div>
-            <div style="font-size: 13px; margin-bottom: 10px;"><b>Örtük növü:</b> <span id="doorFinishName">${models[0].finish}</span></div>
-            <button id="deleteModelBtn" onclick="deleteCurrentDoorModel()" class="btn" style="background: #c0392b; color: #fff; padding: 6px 12px; font-size: 11px; border-radius: 4px; cursor:pointer; display: ${models.length > 1 ? 'block' : 'none'};">Bu modeli sil</button>
-          </div>
-
-          <!-- ADMIN PANEL ДЛЯ ДОБАВЛЕНИЯ МОДЕЛИ/ЦВЕТА -->
-          <div style="border-top: 1px dashed var(--brass); padding-top: 16px;">
-            <h4 style="font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; color: var(--ink);">+ Yeni Model / Rəng əlavə et (Admin)</h4>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <input type="text" id="newModelName" placeholder="Model adı (məs: Premium Oak)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
-              <input type="text" id="newModelColor" placeholder="Rəng (məs: Qəhvəyi / Qrafit)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
-              <input type="text" id="newModelFinish" placeholder="Örtük (məs: Mat / Parıltılı)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
-              <input type="text" id="newModelImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 12px;">
-              <button onclick="addNewDoorModel()" class="btn btn-primary" style="padding: 8px; font-size: 12px; cursor:pointer; justify-content: center;">Model əlavə et</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
 }
 
 function openMaterialDetails(title) {
