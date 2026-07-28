@@ -12,26 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HomeGoodsStore",
-  "name": "Emiliana Parati",
-  "description": "Materials atelier for paint, wallpaper, interior doors and parquet in Baku, Azerbaijan.",
-  "foundingDate": "2006",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Xətai prospekti 142",
-    "addressLocality": "Baku",
-    "addressCountry": "AZ"
-  },
-  "telephone": "+994-55-674-44-04",
-  "email": "efendiyevnihad1@gmail.com",
-  "openingHours": "Mo-Sa 10:00-19:00",
-  "priceRange": "$$$"
-}
-</script>
-
 <style>
 /* ============================= RESET ============================= */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -213,12 +193,6 @@ section{ position:relative; }
   position:absolute; top:3px; bottom:3px; left:3px; width:34px; background: var(--ink);
   border-radius:16px; transition: transform .35s var(--ease), width .35s var(--ease); z-index:1;
 }
-
-/* Полное сокрытие верхней панели Google и фиксов подсветки */
-.goog-te-banner-frame.skiptranslate { display: none !important; }
-body { top: 0 !important; }
-.goog-tooltip { display: none !important; }
-.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
 
 .nav-cta{ display:inline-flex; }
 .menu-toggle{ display:none; width:36px; height:36px; align-items:center; justify-content:center; cursor:pointer; }
@@ -410,22 +384,11 @@ body { top: 0 !important; }
 .cat-item-card:hover .brand-logo-img { transform: scale(1.08); }
 
 .cat-item-img-container {
-  width: 100%;
-  height: 280px;
-  background: var(--plaster);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+  width: 100%; height: 280px; background: var(--plaster);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
   border-bottom: 1px solid var(--stone-line);
 }
-.cat-item-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
+.cat-item-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
 
 .cat-item-info { padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .cat-item-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
@@ -488,12 +451,8 @@ body { top: 0 !important; }
 .g-tile:nth-child(4n){ aspect-ratio: 4/5; }
 
 .g-tex { 
-  position: absolute; 
-  inset: 0; 
-  transition: transform .7s var(--ease); 
-  background-size: cover !important; 
-  background-position: center !important; 
-  background-repeat: no-repeat !important;
+  position: absolute; inset: 0; transition: transform .7s var(--ease); 
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important;
 }
 .g-tile:hover .g-tex{ transform: scale(1.07); }
 .g-tile::before{ content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(20,18,14,.82), rgba(20,18,14,0) 60%); z-index:1; }
@@ -606,7 +565,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 </style>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to content</a>
+<a href="#main" class="skip-link" data-t="skip">Skip to content</a>
 
 <!-- ============================= NAV ============================= -->
 <header class="nav" id="siteNav">
@@ -615,24 +574,24 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <img src="uploads/Gemini_Generated_Image_m65fh3m65fh3m65f-removebg-preview.png" alt="Emiliana Parati" class="logo-img" id="siteLogo">
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#about">Haqqımızda</a>
-      <a href="#products">Məhsullar</a>
-      <a href="#why">Niyə biz</a>
-      <a href="#brands">Brendlər</a>
-      <a href="#gallery">Qalereya</a>
-      <a href="#reviews">Rəylər</a>
-      <a href="#contact">Əlaqə</a>
+      <a href="#about" data-t="nav_about">Haqqımızda</a>
+      <a href="#products" data-t="nav_products">Məhsullar</a>
+      <a href="#why" data-t="nav_why">Niyə biz</a>
+      <a href="#brands" data-t="nav_brands">Brendlər</a>
+      <a href="#gallery" data-t="nav_gallery">Qalereya</a>
+      <a href="#reviews" data-t="nav_reviews">Rəylər</a>
+      <a href="#contact" data-t="nav_contact">Əlaqə</a>
     </nav>
     <div class="nav-right">
-      <!-- Старые кастомные кнопки выбора языка -->
+      <!-- Кастомные кнопки выбора языка -->
       <div class="lang-switch" role="group" aria-label="Language">
         <span class="pill" id="langPill"></span>
-        <button type="button" data-lang="az" onclick="triggerGoogleTranslate('az')" class="active">AZ</button>
-        <button type="button" data-lang="en" onclick="triggerGoogleTranslate('en')">EN</button>
-        <button type="button" data-lang="ru" onclick="triggerGoogleTranslate('ru')">RU</button>
+        <button type="button" data-lang="az" onclick="setLanguage('az')">AZ</button>
+        <button type="button" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button type="button" data-lang="ru" onclick="setLanguage('ru')">RU</button>
       </div>
 
-      <a href="#contact" class="btn btn-primary nav-cta">Məsləhət al</a>
+      <a href="#contact" class="btn btn-primary nav-cta" data-t="cta_consult">Məsləhət al</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -643,20 +602,20 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">MATERİAL ATELYESİ · BAKI</p>
-      <h1>Bir evi <em>fərqləndirən</em> səthlər.</h1>
-      <p class="lede">Emiliana Parati fərqi hiss edən insanlar üçün boya, divar kağızı, qapı və parket seçir. Bir ünvan, dörd sənət, tək standart.</p>
+      <p class="eyebrow" data-t="hero_eyebrow">MATERİAL ATELYESİ · BAKI</p>
+      <h1><span data-t="hero_h1_1">Bir evi</span> <em>fərqləndirən</em> <span data-t="hero_h1_2">səthlər.</span></h1>
+      <p class="lede" data-t="hero_lede">Emiliana Parati fərqi hiss edən insanlar üçün boya, divar kağızı, qapı və parket seçir. Bir ünvan, dörd sənət, tək standart.</p>
       <div class="hero-actions">
         <a href="#products" class="btn btn-primary">
-          <span>Materialları kəşf et</span>
+          <span data-t="hero_btn_explore">Materialları kəşf et</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#contact" class="btn btn-ghost">Məsləhət al</a>
+        <a href="#contact" class="btn btn-ghost" data-t="hero_btn_consult">Məsləhət al</a>
       </div>
       <div class="hero-since">
         <span class="num" id="foundingYearNum">2006</span>
         <div class="divider"></div>
-        <span class="txt">2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı</span>
+        <span class="txt" data-t="hero_since">2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı</span>
       </div>
     </div>
 
@@ -667,12 +626,12 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 
   <div class="hero-offer-row">
     <div class="container">
-      <span class="offer-tag">NƏ SATIRIQ</span>
+      <span class="offer-tag" data-t="offer_tag">NƏ SATIRIQ</span>
       <ul class="offer-list">
-        <li>Boya</li>
-        <li>Divar kağızı</li>
-        <li>Qapılar</li>
-        <li>Parket</li>
+        <li data-t="offer_paint">Boya</li>
+        <li data-t="offer_wall">Divar kağızı</li>
+        <li data-t="offer_door">Qapılar</li>
+        <li data-t="offer_parquet">Parket</li>
       </ul>
     </div>
   </div>
@@ -685,20 +644,20 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <div class="frame" id="aboutFrame">
         <div class="frame-caption">
           <div class="yr" id="foundingYearFrame">2006</div>
-          <div class="lbl">Bakıda ilk mağaza açılıb</div>
+          <div class="lbl" data-t="about_frame_lbl">Bakıda ilk mağaza açılıb</div>
         </div>
       </div>
     </div>
     <div class="about-copy">
-      <p class="eyebrow">HAQQIMIZDA</p>
-      <h2 class="reveal">Təxminən iyirmi illik düzgün seçim.</h2>
-      <p class="reveal">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
-      <p class="reveal">Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.</p>
-      <blockquote class="about-quote reveal">"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir."</blockquote>
+      <p class="eyebrow" data-t="about_eyebrow">HAQQIMIZDA</p>
+      <h2 class="reveal" data-t="about_h2">Təxminən iyirmi illik düzgün seçim.</h2>
+      <p class="reveal" data-t="about_p1">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
+      <p class="reveal" data-t="about_p2">Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.</p>
+      <blockquote class="about-quote reveal" data-t="about_quote">"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir."</blockquote>
       <div class="about-stats reveal-stagger">
-        <div class="stat"><div class="n" id="statYears">20</div><div class="l">İl təcrübə</div></div>
-        <div class="stat"><div class="n" id="statProjects">1,200+</div><div class="l">Tamamlanmış layihə</div></div>
-        <div class="stat"><div class="n" id="statBrands">20+</div><div class="l">Partnyor brend</div></div>
+        <div class="stat"><div class="n" id="statYears">20</div><div class="l" data-t="stat_years">İl təcrübə</div></div>
+        <div class="stat"><div class="n" id="statProjects">1,200+</div><div class="l" data-t="stat_projects">Tamamlanmış layihə</div></div>
+        <div class="stat"><div class="n" id="statBrands">20+</div><div class="l" data-t="stat_brands">Partnyor brend</div></div>
       </div>
     </div>
   </div>
@@ -709,10 +668,10 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow">NƏ SATIRIQ</p>
-        <h2>Dörd sənət, bir ünvan.</h2>
+        <p class="eyebrow" data-t="products_eyebrow">NƏ SATIRIQ</p>
+        <h2 data-t="products_h2">Dörd sənət, bir ünvan.</h2>
       </div>
-      <p class="lede">Hər materialın üzərinə keçərək necə işlədiyimizi görün.</p>
+      <p class="lede" data-t="products_lede">Hər materialın üzərinə keçərək necə işlədiyimizi görün.</p>
     </div>
 
     <div class="products-grid reveal-stagger" id="productsGrid"></div>
@@ -724,32 +683,32 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="why-wrap">
       <div class="reveal">
-        <p class="eyebrow">NİYƏ BİZ</p>
-        <h2>Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.</h2>
+        <p class="eyebrow" data-t="why_eyebrow">NİYƏ BİZ</p>
+        <h2 data-t="why_h2">Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.</h2>
       </div>
-      <p class="lede reveal">Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.</p>
+      <p class="lede reveal" data-t="why_lede">Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.</p>
     </div>
 
     <div class="why-deck reveal-stagger">
       <div class="why-chip">
         <span class="mk">01</span>
-        <div><h3>Hər şey yox, seçilmiş</h3><p>Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.</p></div>
+        <div><h3 data-t="why_1_title">Hər şey yox, seçilmiş</h3><p data-t="why_1_desc">Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">02</span>
-        <div><h3>Öz rəng studiyamız</h3><p>Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.</p></div>
+        <div><h3 data-t="why_2_title">Öz rəng studiyamız</h3><p data-t="why_2_desc">Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">03</span>
-        <div><h3>Bir komanda, dörd sənət</h3><p>Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.</p></div>
+        <div><h3 data-t="why_3_title">Bir komanda, dörd sənət</h3><p data-t="why_3_desc">Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">04</span>
-        <div><h3>Ölçü xidməti daxildir</h3><p>Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.</p></div>
+        <div><h3 data-t="why_4_title">Ölçü xidməti daxildir</h3><p data-t="why_4_desc">Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.</p></div>
       </div>
       <div class="why-chip">
         <span class="mk">05</span>
-        <div><h3>Etibarlı zəmanət</h3><p>Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.</p></div>
+        <div><h3 data-t="why_5_title">Etibarlı zəmanət</h3><p data-t="why_5_desc">Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.</p></div>
       </div>
     </div>
   </div>
@@ -759,9 +718,9 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <section id="brands" class="section-pad" style="background:var(--plaster-2)">
   <div class="container">
     <div class="brands-head reveal">
-      <p class="eyebrow">TƏMSİL ETDİYİMİZ BRENDLƏR</p>
-      <h2>Örtüyün arxasındakı adlar.</h2>
-      <p>Bu brendlərin bir çoxunu birbaşa idxal edir və Azərbaycanda rəsmi təmsilçiliyini həyata keçiririk.</p>
+      <p class="eyebrow" data-t="brands_eyebrow">TƏMSİL ETDİYİMİZ BRENDLƏR</p>
+      <h2 data-t="brands_h2">Örtüyün arxasındakı adlar.</h2>
+      <p data-t="brands_lede">Bu brendlərin bir çoxunu birbaşa idxal edir və Azərbaycanda rəsmi təmsilçiliyini həyata keçiririk.</p>
     </div>
     <div class="brands-grid reveal-stagger" id="brandsGrid"></div>
   </div>
@@ -772,18 +731,18 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow">İLHAM</p>
-        <h2>Real layihələrdən harmonik həllər.</h2>
+        <p class="eyebrow" data-t="gallery_eyebrow">İLHAM</p>
+        <h2 data-t="gallery_h2">Real layihələrdən harmonik həllər.</h2>
       </div>
-      <p class="lede">Material nadir hallarda tək işləyir. Bunlar komandamızın seçib təhvil verdiyi kombinasiyalardır.</p>
+      <p class="lede" data-t="gallery_lede">Material nadir hallarda tək işləyir. Bunlar komandamızın seçib təhvil verdiyi kombinasiyalardır.</p>
     </div>
 
     <div class="filters reveal">
-      <button class="filter-btn active" data-filter="all">Hamısı</button>
-      <button class="filter-btn" data-filter="living">Qonaq otağı</button>
-      <button class="filter-btn" data-filter="bedroom">Yataq otağı</button>
-      <button class="filter-btn" data-filter="entrance">Giriş</button>
-      <button class="filter-btn" data-filter="office">Ofis</button>
+      <button class="filter-btn active" data-filter="all" data-t="filter_all">Hamısı</button>
+      <button class="filter-btn" data-filter="living" data-t="filter_living">Qonaq otağı</button>
+      <button class="filter-btn" data-filter="bedroom" data-t="filter_bedroom">Yataq otağı</button>
+      <button class="filter-btn" data-filter="entrance" data-t="filter_entrance">Giriş</button>
+      <button class="filter-btn" data-filter="office" data-t="filter_office">Ofis</button>
     </div>
 
     <div class="gallery-grid reveal-stagger" id="galleryGrid"></div>
@@ -793,8 +752,8 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 <!-- ============================= REVIEWS ============================= -->
 <section id="reviews" class="section-pad reviews-band">
   <div class="container reviews-inner">
-    <p class="eyebrow reveal">MÜŞTƏRİ RƏYLƏRİ</p>
-    <h2 class="reveal" style="color:var(--paper); margin:14px 0 46px;">Materiallarımızla yaşayan insanların sözləri.</h2>
+    <p class="eyebrow reveal" data-t="reviews_eyebrow">MÜŞTƏRİ RƏYLƏRİ</p>
+    <h2 class="reveal" style="color:var(--paper); margin:14px 0 46px;" data-t="reviews_h2">Materiallarımızla yaşayan insanların sözləri.</h2>
 
     <div class="rev-track" id="revTrack"></div>
 
@@ -811,49 +770,49 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow">ƏLAQƏ VƏ MƏKAN</p>
-        <h2>Materialları canlı olaraq görün.</h2>
+        <p class="eyebrow" data-t="contact_eyebrow">ƏLAQƏ VƏ MƏKAN</p>
+        <h2 data-t="contact_h2">Materialları canlı olaraq görün.</h2>
       </div>
-      <p class="lede">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
+      <p class="lede" data-t="contact_lede">Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.</p>
     </div>
 
     <div class="contact-grid">
       <div class="reveal">
         <div class="form-success" id="formSuccess">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Təşəkkür edirik. Müraciətiniz qəbul olundu.</span>
+          <span data-t="form_success">Təşəkkür edirik. Müraciətiniz qəbul olundu.</span>
         </div>
         <form id="contactForm">
           <div class="field-row">
-            <div class="field"><label>Adınız</label><input type="text" required></div>
-            <div class="field"><label>Telefon</label><input type="tel" required></div>
+            <div class="field"><label data-t="form_name">Adınız</label><input type="text" required></div>
+            <div class="field"><label data-t="form_phone">Telefon</label><input type="tel" required></div>
           </div>
           <div class="field-row">
-            <div class="field"><label>E-poçt</label><input type="email" required></div>
+            <div class="field"><label data-t="form_email">E-poçt</label><input type="email" required></div>
             <div class="field">
-              <label>Maraqlandığınız sahə</label>
-              <select>
-                <option>Boya</option>
-                <option>Divar kağızı</option>
-                <option>Qapılar</option>
-                <option>Parket</option>
-                <option>Hələ dəqiqləşdirməmişəm</option>
+              <label data-t="form_interest">Maraqlandığınız sahə</label>
+              <select id="interestSelect">
+                <option value="paint" data-t="opt_paint">Boya</option>
+                <option value="wallpaper" data-t="opt_wallpaper">Divar kağızı</option>
+                <option value="doors" data-t="opt_doors">Qapılar</option>
+                <option value="parquet" data-t="opt_parquet">Parket</option>
+                <option value="other" data-t="opt_other">Hələ dəqiqləşdirməmişəm</option>
               </select>
             </div>
           </div>
-          <div class="field"><label>Mesajınız</label><textarea rows="4"></textarea></div>
+          <div class="field"><label data-t="form_msg">Mesajınız</label><textarea rows="4"></textarea></div>
           <button type="submit" class="btn btn-primary">
-            <span>Mesajı göndər</span>
+            <span data-t="form_btn">Mesajı göndər</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
       </div>
 
       <div class="contact-side reveal">
-        <div class="info-block"><div class="lbl">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
-        <div class="info-block"><div class="lbl">İş saatları</div><div class="val">B.e.–Şənbə, 10:00–19:00</div></div>
-        <div class="info-block"><div class="lbl">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
-        <div class="info-block"><div class="lbl">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
+        <div class="info-block"><div class="lbl" data-t="info_addr_lbl">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
+        <div class="info-block"><div class="lbl" data-t="info_hours_lbl">İş saatları</div><div class="val" data-t="info_hours_val">B.e.–Şənbə, 10:00–19:00</div></div>
+        <div class="info-block"><div class="lbl" data-t="info_phone_lbl">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
+        <div class="info-block"><div class="lbl" data-t="info_email_lbl">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
         <div class="map-frame">
           <iframe id="mapFrame" src="https://maps.google.com/maps?q=Xetai%20pr%2C%20142%20Khatai%20Ave%2C%20Baku%201008&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Emiliana Parati showroom location"></iframe>
         </div>
@@ -869,10 +828,10 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <div class="catalog-close" id="catalogClose">&times;</div>
     <h2 id="catalogTitle" style="font-size: 32px; font-weight: 500;">Kataloq</h2>
     <div class="catalog-nav">
-      <button class="catalog-tab active" data-cat="paint">Boya</button>
-      <button class="catalog-tab" data-cat="wallpaper">Divar kağızı</button>
-      <button class="catalog-tab" data-cat="doors">Qapılar</button>
-      <button class="catalog-tab" data-cat="parquet">Parket</button>
+      <button class="catalog-tab active" data-cat="paint" data-t="cat_tab_paint">Boya</button>
+      <button class="catalog-tab" data-cat="wallpaper" data-t="cat_tab_wall">Divar kağızı</button>
+      <button class="catalog-tab" data-cat="doors" data-t="cat_tab_doors">Qapılar</button>
+      <button class="catalog-tab" data-cat="parquet" data-t="cat_tab_parquet">Parket</button>
     </div>
 
     <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КРАСОК -->
@@ -907,7 +866,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#main" class="wordmark">Emiliana <span>Parati</span></a>
-        <p>Düşünülmüş interyerlər üçün materiallar atelyesi.</p>
+        <p data-t="footer_desc">Düşünülmüş interyerlər üçün materiallar atelyesi.</p>
         <div class="footer-swatches" aria-hidden="true">
           <div class="swatch swatch-paint" style="flex:1"></div>
           <div class="swatch swatch-wallpaper" style="flex:1"></div>
@@ -916,27 +875,27 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
         </div>
       </div>
       <div>
-        <h4>Kəşf edin</h4>
+        <h4 data-t="footer_col1_h">Kəşf edin</h4>
         <ul class="footer-links">
-          <li><a href="#about">Haqqımızda</a></li>
-          <li><a href="#products">Məhsullar</a></li>
-          <li><a href="#gallery">Qalereya</a></li>
-          <li><a href="#reviews">Rəylər</a></li>
+          <li><a href="#about" data-t="nav_about">Haqqımızda</a></li>
+          <li><a href="#products" data-t="nav_products">Məhsullar</a></li>
+          <li><a href="#gallery" data-t="nav_gallery">Qalereya</a></li>
+          <li><a href="#reviews" data-t="nav_reviews">Rəylər</a></li>
         </ul>
       </div>
       <div>
-        <h4>Materiallar</h4>
+        <h4 data-t="footer_col2_h">Materiallar</h4>
         <ul class="footer-links">
-          <li><a href="#products">Boya</a></li>
-          <li><a href="#products">Divar kağızı</a></li>
-          <li><a href="#products">Qapılar</a></li>
-          <li><a href="#products">Parket</a></li>
+          <li><a href="#products" data-t="offer_paint">Boya</a></li>
+          <li><a href="#products" data-t="offer_wall">Divar kağızı</a></li>
+          <li><a href="#products" data-t="offer_door">Qapılar</a></li>
+          <li><a href="#products" data-t="offer_parquet">Parket</a></li>
         </ul>
       </div>
       <div>
-        <h4>Yeniliklərdən xəbərdar olun.</h4>
+        <h4 data-t="footer_col3_h">Yeniliklərdən xəbərdar olun.</h4>
         <form class="newsletter-form" id="newsletterForm">
-          <input type="email" required placeholder="E-poçt ünvanınız">
+          <input type="email" required placeholder="E-poçt ünvanınız" data-t-placeholder="form_email_ph">
           <button type="submit" aria-label="Subscribe">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
@@ -944,56 +903,329 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Emiliana Parati. Bütün hüquqlar qorunur.</p>
+      <p data-t="footer_copy">© 2026 Emiliana Parati. Bütün hüquqlar qorunur.</p>
       <div class="footer-legal">
-        <a href="#">Məxfilik</a>
-        <a href="#">Qaydalar</a>
+        <a href="#" data-t="footer_privacy">Məxfilik</a>
+        <a href="#" data-t="footer_rules">Qaydalar</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Скрытый элемент виджета Google Translate -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<!-- Google Translate Widget Script & Controller -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'az',
-    includedLanguages: 'az,en,ru',
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-
-// Функция управления языком через куки виджета
-function triggerGoogleTranslate(lang) {
-  document.cookie = "googtrans=/az/" + lang;
-  window.location.reload();
-}
-
-// Автоматическое выставление активной кнопки языка на основе куки
-window.addEventListener('DOMContentLoaded', () => {
-  const match = document.cookie.match(new RegExp('(^| )googtrans=([^;]+)'));
-  let currentLang = 'az';
-  if (match) {
-    let parts = match[2].split('/');
-    if (parts.length > 0) currentLang = parts[parts.length - 1];
+<script>
+/* ==============================================================
+    СЛОВАРЬ РУЧНОГО ПЕРЕВОДА (AZ, EN, RU)
+   ============================================================== */
+const translations = {
+  az: {
+    skip: "Skip to content",
+    nav_about: "Haqqımızda",
+    nav_products: "Məhsullar",
+    nav_why: "Niyə biz",
+    nav_brands: "Brendlər",
+    nav_gallery: "Qalereya",
+    nav_reviews: "Rəylər",
+    nav_contact: "Əlaqə",
+    cta_consult: "Məsləhət al",
+    hero_eyebrow: "MATERİAL ATELYESİ · BAKI",
+    hero_h1_1: "Bir evi",
+    hero_h1_2: "səthlər.",
+    hero_lede: "Emiliana Parati fərqi hiss edən insanlar üçün boya, divar kağızı, qapı və parket seçir. Bir ünvan, dörd sənət, tək standart.",
+    hero_btn_explore: "Materialları kəşf et",
+    hero_btn_consult: "Məsləhət al",
+    hero_since: "2006-cı ildən fəaliyyətdə<br>Xətai prospekti, Bakı",
+    offer_tag: "NƏ SATIRIQ",
+    offer_paint: "Boya",
+    offer_wall: "Divar kağızı",
+    offer_door: "Qapılar",
+    offer_parquet: "Parket",
+    about_eyebrow: "HAQQIMIZDA",
+    about_h2: "Təxminən iyirmi illik düzgün seçim.",
+    about_p1: "Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.",
+    about_p2: "Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.",
+    about_quote: "\"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir.\"",
+    about_frame_lbl: "Bakıda ilk mağaza açılıb",
+    stat_years: "İl təcrübə",
+    stat_projects: "Tamamlanmış layihə",
+    stat_brands: "Partnyor brend",
+    products_eyebrow: "NƏ SATIRIQ",
+    products_h2: "Dörd sənət, bir ünvan.",
+    products_lede: "Hər materialın üzərinə keçərək necə işlədiyimizi görün.",
+    why_eyebrow: "NİYƏ BİZ",
+    why_h2: "Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.",
+    why_lede: "Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.",
+    why_1_title: "Hər şey yox, seçilmiş",
+    why_1_desc: "Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.",
+    why_2_title: "Öz rəng studiyamız",
+    why_2_desc: "Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.",
+    why_3_title: "Bir komanda, dörd sənət",
+    why_3_desc: "Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.",
+    why_4_title: "Ölçü xidməti daxildir",
+    why_4_desc: "Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.",
+    why_5_title: "Etibarlı zəmanət",
+    why_5_desc: "Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.",
+    brands_eyebrow: "TƏMSİL ETDİYİMİZ BRENDLƏR",
+    brands_h2: "Örtüyün arxasındakı adlar.",
+    brands_lede: "Bu brendlərin bir çoxunu birbaşa idxal edir və Azərbaycanda rəsmi təmsilçiliyini həyata keçiririk.",
+    gallery_eyebrow: "İLHAM",
+    gallery_h2: "Real layihələrdən harmonik həllər.",
+    gallery_lede: "Material nadir hallarda tək işləyir. Bunlar komandamızın seçib təhvil verdiyi kombinasiyalardır.",
+    filter_all: "Hamısı",
+    filter_living: "Qonaq otağı",
+    filter_bedroom: "Yataq otağı",
+    filter_entrance: "Giriş",
+    filter_office: "Ofis",
+    reviews_eyebrow: "MÜŞTƏRİ RƏYLƏRİ",
+    reviews_h2: "Materiallarımızla yaşayan insanların sözləri.",
+    contact_eyebrow: "ƏLAQƏ VƏ MƏKAN",
+    contact_h2: "Materialları canlı olaraq görün.",
+    contact_lede: "Şəkillər heç vaxt örtüyün həqiqi teksturasını tam ötürə bilmir.",
+    form_success: "Təşəkkür edirik. Müraciətiniz qəbul olundu.",
+    form_name: "Adınız",
+    form_phone: "Telefon",
+    form_email: "E-poçt",
+    form_interest: "Maraqlandığınız sahə",
+    opt_paint: "Boya",
+    opt_wallpaper: "Divar kağızı",
+    opt_doors: "Qapılar",
+    opt_parquet: "Parket",
+    opt_other: "Hələ dəqiqləşdirməmişəm",
+    form_msg: "Mesajınız",
+    form_btn: "Mesajı göndər",
+    info_addr_lbl: "Şourum ünvanı",
+    info_hours_lbl: "İş saatları",
+    info_hours_val: "B.e.–Şənbə, 10:00–19:00",
+    info_phone_lbl: "Telefon",
+    info_email_lbl: "E-poçt",
+    cat_tab_paint: "Boya",
+    cat_tab_wall: "Divar kağızı",
+    cat_tab_doors: "Qapılar",
+    cat_tab_parquet: "Parket",
+    footer_desc: "Düşünülmüş interyerlər üçün materiallar atelyesi.",
+    footer_col1_h: "Kəşf edin",
+    footer_col2_h: "Materiallar",
+    footer_col3_h: "Yeniliklərdən xəbərdar olun.",
+    form_email_ph: "E-poçt ünvanınız",
+    footer_copy: "© 2026 Emiliana Parati. Bütün hüquqlar qorunur.",
+    footer_privacy: "Məxfilik",
+    footer_rules: "Qaydalar"
+  },
+  en: {
+    skip: "Skip to content",
+    nav_about: "About Us",
+    nav_products: "Products",
+    nav_why: "Why Us",
+    nav_brands: "Brands",
+    nav_gallery: "Gallery",
+    nav_reviews: "Reviews",
+    nav_contact: "Contact",
+    cta_consult: "Get Consultation",
+    hero_eyebrow: "MATERIALS ATELIER · BAKU",
+    hero_h1_1: "Surfaces that",
+    hero_h1_2: "define a home.",
+    hero_lede: "Emiliana Parati curates paint, wallpaper, doors, and parquet for those who feel the difference. One address, four crafts, single standard.",
+    hero_btn_explore: "Explore Materials",
+    hero_btn_consult: "Get Consultation",
+    hero_since: "Operating since 2006<br>Khatai Avenue, Baku",
+    offer_tag: "WHAT WE OFFER",
+    offer_paint: "Paint",
+    offer_wall: "Wallpaper",
+    offer_door: "Doors",
+    offer_parquet: "Parquet",
+    about_eyebrow: "ABOUT US",
+    about_h2: "Nearly twenty years of the right choice.",
+    about_p1: "Emiliana Parati has been operating in the wallpaper sales sector since 2006. For many years, we have provided professional service in supplying new collections and high-quality interior products that guide the industry. Our showroom features wallpapers, paints, curtains, doors, parquet, laminate, moldings, and other interior accessories from Italian, Russian, Finnish, Swiss, Turkish, and German brands.",
+    about_p2: "Our products are selected according to modern design and durability principles, aiming to provide customers with the best quality and wide variety. Emiliana Parati stands out with innovative and aesthetic solutions in interior design, placing customer satisfaction at the forefront.",
+    about_quote: "\"Quality materials do not try to attract attention — they only grow more beautiful with time.\"",
+    about_frame_lbl: "First store opened in Baku",
+    stat_years: "Years of experience",
+    stat_projects: "Completed projects",
+    stat_brands: "Partner brands",
+    products_eyebrow: "WHAT WE OFFER",
+    products_h2: "Four crafts, one address.",
+    products_lede: "Hover over each material to see how we work.",
+    why_eyebrow: "WHY US",
+    why_h2: "5 reasons designers choose us first.",
+    why_lede: "We are not Baku's biggest hardware store — we are the address already saved in your architect's phone.",
+    why_1_title: "Curated, not endless",
+    why_1_desc: "Every product is tested — no excess variety or random selections.",
+    why_2_title: "In-house color studio",
+    why_2_desc: "Custom shade selection matching your space's lighting and on-site sample painting.",
+    why_3_title: "One team, four crafts",
+    why_3_desc: "Paint, wallpaper, doors, and parquet are chosen together — finishes harmonize perfectly.",
+    why_4_title: "Measurement included",
+    why_4_desc: "We measure before ordering — exact quantities and cuts secured on the first try.",
+    why_5_title: "Reliable warranty",
+    why_5_desc: "Direct contact — support throughout the entire service life of the finishes.",
+    brands_eyebrow: "BRANDS WE REPRESENT",
+    brands_h2: "The names behind the surface.",
+    brands_lede: "We directly import many of these brands and act as their official representative in Azerbaijan.",
+    gallery_eyebrow: "INSPIRATION",
+    gallery_h2: "Harmonious solutions from real projects.",
+    gallery_lede: "Materials rarely work alone. These are combinations selected and delivered by our team.",
+    filter_all: "All",
+    filter_living: "Living room",
+    filter_bedroom: "Bedroom",
+    filter_entrance: "Entrance",
+    filter_office: "Office",
+    reviews_eyebrow: "CUSTOMER REVIEWS",
+    reviews_h2: "Words from people living with our materials.",
+    contact_eyebrow: "CONTACT & LOCATION",
+    contact_h2: "See the materials in person.",
+    contact_lede: "Photos can never fully convey the true texture of a finish.",
+    form_success: "Thank you. Your request has been received.",
+    form_name: "Your Name",
+    form_phone: "Phone",
+    form_email: "Email",
+    form_interest: "Area of Interest",
+    opt_paint: "Paint",
+    opt_wallpaper: "Wallpaper",
+    opt_doors: "Doors",
+    opt_parquet: "Parquet",
+    opt_other: "Not decided yet",
+    form_msg: "Your Message",
+    form_btn: "Send Message",
+    info_addr_lbl: "Showroom Address",
+    info_hours_lbl: "Working Hours",
+    info_hours_val: "Mon.–Sat., 10:00–19:00",
+    info_phone_lbl: "Phone",
+    info_email_lbl: "Email",
+    cat_tab_paint: "Paint",
+    cat_tab_wall: "Wallpaper",
+    cat_tab_doors: "Doors",
+    cat_tab_parquet: "Parquet",
+    footer_desc: "An atelier of materials for thoughtful interiors.",
+    footer_col1_h: "Discover",
+    footer_col2_h: "Materials",
+    footer_col3_h: "Stay updated.",
+    form_email_ph: "Your email address",
+    footer_copy: "© 2026 Emiliana Parati. All rights reserved.",
+    footer_privacy: "Privacy",
+    footer_rules: "Terms"
+  },
+  ru: {
+    skip: "Перейти к содержимому",
+    nav_about: "О нас",
+    nav_products: "Продукция",
+    nav_why: "Почему мы",
+    nav_brands: "Бренды",
+    nav_gallery: "Галерея",
+    nav_reviews: "Отзывы",
+    nav_contact: "Контакты",
+    cta_consult: "Получить консультацию",
+    hero_eyebrow: "АТЕЛЬЕ МАТЕРИАЛОВ · БАКУ",
+    hero_h1_1: "Поверхности, которые",
+    hero_h1_2: "создают дом.",
+    hero_lede: "Emiliana Parati подбирает краску, обои, двери и паркет для тех, кто чувствует разницу. Один адрес, четыре ремесла, единый стандарт.",
+    hero_btn_explore: "Исследовать материалы",
+    hero_btn_consult: "Получить консультацию",
+    hero_since: "Работаем с 2006 года<br>Проспект Хатаи, Баку",
+    offer_tag: "ЧТО МЫ ПРЕДЛАГАЕМ",
+    offer_paint: "Краска",
+    offer_wall: "Обои",
+    offer_door: "Двери",
+    offer_parquet: "Паркет",
+    about_eyebrow: "О НАС",
+    about_h2: "Почти двадцать лет правильного выбора.",
+    about_p1: "Компания Emiliana Parati ведет свою деятельность в сфере продажи обоев с 2006 года. На протяжении многих лет мы предоставляем профессиональные услуги, задавая тенденции в индустрии благодаря новым коллекциям и высококачественной продукции для интерьера. В нашем шоуруме представлены обои, краски, шторы, двери, паркет, ламинат, молдинги и другие интерьерные аксессуары ведущих итальянских, российских, финских, швейцарских, турецких и немецких брендов.",
+    about_p2: "Наша продукция подбирается в соответствии с принципами современного дизайна и долговечности, с целью предоставить клиентам наилучшее качество и широкий ассортимент. Emiliana Parati выделяется инновационными и эстетическими решениями в дизайне интерьера, ставя на первое место удовлетворенность клиентов.",
+    about_quote: "\"Качественные материалы не пытаются привлечь внимание — со временем они становятся только прекраснее.\"",
+    about_frame_lbl: "Первый магазин открыт в Баку",
+    stat_years: "Лет опыта",
+    stat_projects: "Завершенных проектов",
+    stat_brands: "Партнерских брендов",
+    products_eyebrow: "ЧТО МЫ ПРЕДЛАГАЕМ",
+    products_h2: "Четыре ремесла, один адрес.",
+    products_lede: "Наведите курсор на каждый материал, чтобы увидеть, как мы работаем.",
+    why_eyebrow: "ПОЧЕМУ МЫ",
+    why_h2: "5 причин, почему дизайнеры выбирают нас первыми.",
+    why_lede: "Мы не самый большой строительный магазин Баку — мы тот адрес, который уже сохранен в телефоне вашего архитектора.",
+    why_1_title: "Избранное, а не бесконечное",
+    why_1_desc: "Каждый продукт протестирован — никакого лишнего ассортимента или случайного выбора.",
+    why_2_title: "Собственная цветовая студия",
+    why_2_desc: "Индивидуальный подбор оттенков под освещение вашего пространства и выкрас образцов на месте.",
+    why_3_title: "Одна команда, четыре ремесла",
+    why_3_desc: "Краска, обои, двери и паркет подбираются вместе — покрытия идеально гармонируют друг с другом.",
+    why_4_title: "Услуга замера включена",
+    why_4_desc: "Мы производим замеры до заказа — точное количество и раскрой обеспечиваются с первого раза.",
+    why_5_title: "Надежная гарантия",
+    why_5_desc: "Прямая связь — поддержка на протяжении всего срока службы покрытий.",
+    brands_eyebrow: "ПРЕДСТАВЛЯЕМЫЕ БРЕНДЫ",
+    brands_h2: "Имена за поверхностью.",
+    brands_lede: "Многие из этих брендов мы импортируем напрямую и являемся их официальными представителями в Азербайджане.",
+    gallery_eyebrow: "ВДОХНОВЕНИЕ",
+    gallery_h2: "Гармоничные решения из реальных проектов.",
+    gallery_lede: "Материалы редко работают поодиночке. Это комбинации, которые наша команда подобрала и реализовала.",
+    filter_all: "Все",
+    filter_living: "Гостиная",
+    filter_bedroom: "Спальня",
+    filter_entrance: "Прихожая",
+    filter_office: "Офис",
+    reviews_eyebrow: "ОТЗЫВЫ КЛИЕНТОВ",
+    reviews_h2: "Слова людей, которые живут с нашими материалами.",
+    contact_eyebrow: "КОНТАКТЫ И МЕСТОПОЛОЖЕНИЕ",
+    contact_h2: "Увидьте материалы вживую.",
+    contact_lede: "Фотографии никогда не смогут полностью передать истинную текстуру покрытия.",
+    form_success: "Спасибо. Ваша заявка принята.",
+    form_name: "Ваше имя",
+    form_phone: "Телефон",
+    form_email: "Эл. почта",
+    form_interest: "Интересующее направление",
+    opt_paint: "Краска",
+    opt_wallpaper: "Обои",
+    opt_doors: "Двери",
+    opt_parquet: "Паркет",
+    opt_other: "Еще не определился(-ась)",
+    form_msg: "Ваше сообщение",
+    form_btn: "Отправить сообщение",
+    info_addr_lbl: "Адрес шоурума",
+    info_hours_lbl: "Часы работы",
+    info_hours_val: "Пн.–Сб., 10:00–19:00",
+    info_phone_lbl: "Телефон",
+    info_email_lbl: "Эл. почта",
+    cat_tab_paint: "Краска",
+    cat_tab_wall: "Обои",
+    cat_tab_doors: "Двери",
+    cat_tab_parquet: "Паркет",
+    footer_desc: "Ателье материалов для продуманных интерьеров.",
+    footer_col1_h: "Откройте для себя",
+    footer_col2_h: "Материалы",
+    footer_col3_h: "Будьте в курсе новинок.",
+    form_email_ph: "Ваш адрес эл. почты",
+    footer_copy: "© 2026 Emiliana Parati. Все права защищены.",
+    footer_privacy: "Конфиденциальность",
+    footer_rules: "Условия"
   }
-  updateLangPill(currentLang);
-});
+};
 
-function updateLangPill(lang) {
-  const buttons = document.querySelectorAll('.lang-switch button');
-  buttons.forEach(btn => {
-    if (btn.dataset.lang === lang) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+let currentLang = localStorage.getItem('site_lang') || 'az';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('site_lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+
+  // Перевод элементов с data-t
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
     }
   });
-  
-  // Передвигаем плашку внутри переключателя
+
+  // Перевод плейсхолдеров
+  document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-t-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.setAttribute('placeholder', translations[lang][key]);
+    }
+  });
+
+  // Обновление активных кнопок и плашки
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
   const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
   const pill = document.getElementById('langPill');
   if (activeBtn && pill) {
@@ -1001,8 +1233,12 @@ function updateLangPill(lang) {
     pill.style.transform = `translateX(${activeBtn.offsetLeft - 3}px)`;
   }
 }
+
+// Инициализация языка при загрузке
+window.addEventListener('DOMContentLoaded', () => {
+  setLanguage(currentLang);
+});
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
 /* ==============================================================
@@ -1039,414 +1275,8 @@ const catalogData = {
           title: "Decorazza Alcantara",
           desc: "Daxili məkanlardakı divar, tavan və digər memarlıq detallarında tikişsiz zamş və ya nubuk effekti yaratmaq üçün dekorativ örtük.",
           img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/5d9/02p4yabp6mmwd03p66v9ie86pk5o9s84.png.webp?174237141687890",
-          details: "Süni zamş effektli ekoloji Decorazza ALCANTARA örtüyü istənilən interyer üçün uyğundur. Az sərfiyyatla toxunmaq istənilən məxməri səth yaradır, sərt dizayna belə istilik qatır. Xüsusilə qum və tünd çalarlarda zəngin görünür; latun və qara detallarla mükəmməl uyğunlaşır.",
+          details: "Süni zamş effektli ekoloji Decorazza ALCANTARA örtüyü istənilən interyer üçün uyğundur.",
           purpose: "Daxili məkanlar üçün dekorativ örtük",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Stucco Veneziano",
-          desc: "Təbii və cilalanmış mərmər effekti yaradan klassik venesiya suvağı.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/0b9/rzdkjh2amus5glwp2eayxtjc2et5o9zm.png.webp?174238947283958",
-          details: "Söndürülmüş əhəng və mərmər ununun əsasında hazırlanmış yüksək keyfiyyətli klassik venesiya suvağı. Məkanda təbii və nəcib mərmər kəsiyini mükəmməl təqlid edən hamar, parıldayan səthlər yaratmağa imkan verir.",
-          purpose: "Klassik interyerlər və sütunlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Calce Veneziana",
-          desc: "Antik daş və dünya xəritəsi üslubunda ekoloji fakturalı suvaq.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2022/11/decorazza-calce-veneziana.png?fit=2000%2C2000&ssl=1",
-          details: "Təbii əhəng əsasında yaradılmış peşəkar mineral örtük. Dünya xəritəsi, travertin və ya qədim divar effektlərini əldə etmək üçün istifadə olunur. Tamamilə ekoloji təmizdir və divarların sağlam mikroiqlimini qoruyur.",
-          purpose: "Fasad və interyer üçün dekorativ suvaq",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Velours",
-          desc: "Məxməri teksturalı, yaşayış və ictimai məkanlar üçün lüks dekorativ boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/d88/dpq4cegk2hucstmmgdb9kpzm2a7y28dn.png.webp?174237141784132",
-          details: "Məxməri teksturaya malik unikal Decorazza Velours dekorativ boyası yaşayış və ictimai məkanlarda lüks interyerlər yaradır. Bir qat tətbiqi ilə hamar və ya drapirovka olunmuş məxmər effekti əldə edilir, asan bərpa olunur və qoruyucu örtük tələb etmir.",
-          purpose: "Daxili məkanlarda tikişsiz səthlər üçün dekorativ örtük.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Seta da Vinci",
-          desc: "Gümüşü bazaya və zərif ipək effektinə malik ekoloji Decorazza Seta da Vinci boyası klassik interyerlər üçün nəm təmizliyə davamlı lüks örtük yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/7a5/fcfl7oqigwx5nblfkuquor4c6xn3rm3e.png.webp?174239243985616",
-          details: "Gümüşü baza və təkmilləşdirilmiş örtücülük qabiliyyəti ilə seçilən, nəm təmizlərə davamlı ekoloji dekorativ boya. Tərkibindəki mirvari hissəcikləri sayəsində dərin və ifadəli yaş ipək effekti yaradır, qoruyucu örtük tələb etmir və kompüter üsulu ilə rənglənir.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun və digər memarlıq elementlərində tikişsiz dekorativ örtük üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Velluto",
-          desc: "Yumşaq mat ipək və zərif məxməri tekstura effekti yaradan Velluto dekorativ boyası geniş və işıqlı interyerlər üçün incə həlldir.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/dcf/0mp3ejdzk8afk3obabf637kerfgoaamy.png.webp?174238920183698",
-          details: "Zərif məxməri teksturaya və incə parıltıya malik, yumşaq mat ipək effekti yaradan dekorativ boya. Sakit rəng gaməsində sərbəst məkan və günəş işığı bolluğunu vurğulayan incə dizayn həllidir.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz dekorativ örtük yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Aretino",
-          desc: "Rəngli metalların zərif fakturasına və yumşaq parıltıya malik Aretino dekorativ boyası orijinal və parlaq səthlər yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/af2/yvnpa30t9irl7cgxv2vf6sj8mxl0shch.png.webp?174239243786562",
-          details: "Tərkibindəki mirvari əsası və xırda fraksiyalı doldurucu sayəsində günəş şüaları altında parıldayan, xaoslu və ya dəqiq istiqamətləndirilmiş yumşaq keçidlərə malik orijinal dekorativ örtük yaradır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari keçidləri effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Lucetezza",
-          desc: "Qiymətli metalların və incə qum naxışının parıltısını yaradan Lucetezza dekorativ boyası interyerə zəriflik qatır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/200/oq191fvttf0yz56utx5zg8br69hc2m1z.png.webp?174239181984704",
-          details: "Tərkibindəki mirvari əsası və incə qum naxışı sayəsində günəş şüaları altında yumşaq şəkildə parıldayan, antik interyerlərə sərinlik, art-deko və modern üslublarına isə islik gətirən dekorativ örtük.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz mirvari qum burulğanları effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Brezza",
-          desc: "Parıldayan mirvari əsas və mat qum dənəciklərinin ikili fakturası sayəsində həcmli və təbii qum burulğanı effekti yaradan Breeza dekorativ boyası.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/ff4/8nmkx7xcf12xhazx8mknbkd4f23v25i0.png.webp?174239182182232",
-          details: "Parıldayan mirvari səth üzərində səpələnmiş mat qum dənəcikləri vasitəsilə unikal həcm, dərinlik və daxili parıltı effekti yaradan dekorativ boya. Nəm təmizliyə davamlıdır, lokal bərpa oluna bilir və normal istismar yükü olan yaşayış, eləcə də ictimai məkanlar üçün idealdır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq detallarında tikişsiz qum burulğanları effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Wall Arte",
-          desc: "Loft, high-tech və art-deko üslubları üçün ifadəli hamar bədii beton effekti yaradan dekorativ mat boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/c20/55iju4flv2phj0q3hg651c7e5lxyfw1w.png.webp?174245694992942",
-          details: "Müxtəlif üsullarla tətbiq edilərək unikal müəllif işləri, panno və faktiki imitasiyalar yaratmağa imkan verən, hamar bədii beton effektli dekorativ mat boya.",
-          purpose: "Daxili məkanlarda müxtəlif mineral səthlər üzərində — divarlar, tavanlar, sütunlar, frizlər və digər memarlıq detallarında tikişsiz bədii beton effekti yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Effetto metallico",
-          desc: "Soyuq mirvari parıltısına malik Effetto Metallico metallik boyası müasir və klassik interyerlərdə qızıl və ya gümüş kimi unikal metal effektləri yaradır.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/85f/o84zofzq605vas8y8knv4h89hrenlot5.png.webp?174239243888830",
-          details: "Oro, bianco və argento olmaqla üç bazada təqdim olunan, soyuq mirvari parıltısı ilə seçilən dekorativ metalllaşdırılmış boya. Müasir və klassik interyerlərdə orijinal dizayn həllərini vurğulayır.",
-          purpose: "Daxili məkanlarda divar, tavan, sütun, friz və digər memarlıq elementlərində müxtəlif növ metalları imitasiya edən tikişsiz dekorativ örtük yaratmaq üçün.",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Microcemento",
-          desc: "Müasir interyerlər üçün dözümlü və tikişsiz mikrosement örtüyü.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/06f/z0hstj35z9os34qdry4ln4ybxr1xd77a.png.webp?174240173784082",
-          details: "Minimalist, loft və müasir üslublu məkanlar üçün xüsusi hazırlanmış yüksək möhkəmliyə malik mikrosement örtüyü. Divarlar, döşəmələr və mürəkkəb memarlıq elementləri üzərində monolit beton effekti yaratmağa imkan verir.",
-          purpose: "Müasir interyerlər və döşəmələr üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Barilievo",
-          desc: "Həcmli və bədii relyeflər yaratmaq üçün peşəkar dekorativ suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/a2f/zzp7gnmsc8rkx6jdt55x9xpfol6wdoiz.png.webp?174239310187840",
-          details: "Məkanda fərdi bədii kompozisiyalar, dərin fakturalər və relyefli naxışlar yaratmaq üçün ideal material. Dizaynerlərə divarlarda unikal teksturalar və heykəltəraşlıq effektləri işləməyə şərait yaradır.",
-          purpose: "Bədii interyer dizaynı və pannolar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Art Beton",
-          desc: "Təbii beton səthini imitasiya edən şık və müasir dekorativ örtük.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2018/03/decorazza-art-beton.png?fit=2000%2C2000&ssl=1",
-          details: "Urbanistik və loft üslubunun tələblərinə mükəmməl cavab verən, sənaye dizaynı elementlərini xatırladan dekorativ material. Səthə xarakterik sərtlik və müasir estetik görünüş bəxş edir.",
-          purpose: "Loft və müasir interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Travertino Naturale",
-          desc: "Təbii travertin daşının nəcib fakturasını yaradan klassik suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/9aa/qmqlmxtni1sdpfd64y1i9n2ekk3ispcq.png.webp?174238947085534",
-          details: "Təbii daşın antik gözəlliyini və möhkəmliyini interyerə daşıyan mişar daşı effekti. Həm klassik, həm də müasir memarlıq layihələrində fasad və divar bəzəyi kimi geniş istifadə olunur.",
-          purpose: "Fasad və interyer divarları üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Traverta",
-          desc: "Travertin daşının zərif və səliqəli fakturasını təqlid edən örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/c10/4z0gq8nxnaug22hoz3ls3b2wf1lomr8q.png.webp?174238946984042",
-          details: "Təbii travertinin yüngülləşdirilmiş və incə naxışlı versiyası. Divarlara xüsusi ritm, dərinlik və klassik İtaliya memarlığının ab-havasını gətirir.",
-          purpose: "İnteryer divarları və sütunlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Romano",
-          desc: "Qədim Roma üslubunda monumental və tarixi divar effektləri.",
-          img: "https://i0.wp.com/holicolors.ru/wp-content/uploads/2018/03/decorazza-romano.png?fit=2000%2C2000&ssl=1",
-          details: "Qədim dövrlərin möhtəşəm memarlıq üslubunu əks etdirən, tarixi daş və qədim suvaq elementlərini birləşdirən eksklüziv dekorativ material.",
-          purpose: "Klassik və monumental interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Sollievo",
-          desc: "Zərif relyefli və hamar keçidli dekorativ fakturalı suvaq.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/514/5t4lb43vhuz2c0ybrxkucqp7lveng32z.png.webp?174237142099910",
-          details: "Divarlarda yüngül relyef və yumşaq kölgə oyunları yaradan peşəkar örtük. Məkana vizual həcm və toxunulmaz zəriflik qatır.",
-          purpose: "İnteryer dizaynı və xüsusi zonalar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Rustic",
-          desc: "Kobud və təbii kənd üslubunda (rustik) səth effekti.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/609/68ghqoh8tnnypcbgkhhpz4nr058ssgqn.png.webp?174240173694708",
-          details: "Təbiətə yaxınlığı və qədimliyi sevənlər üçün işlənmiş rustik üslublu dekorativ suvaq. Qeyri-adi kobud toxunması ilə məkana xüsusi istilik və rahatlıq hissi verir.",
-          purpose: "Rustik və ecotech üslublu interyerlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Fiora",
-          desc: "İnteryerlər üçün zərif çiçək və ya naxış effektli dekorativ örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/7e0/2ivnpsq21c3u8z2wvulnti3k2jllexsf.png.webp?174237142184748",
-          details: "Məkanlara incəlik və estetik toxunuş qatan xüsusi dekorativ material. Divarlarda unikal vizual effektlər və işıq oyunları yaratmaq üçün istifadə olunur.",
-          purpose: "Dekorativ interyer bəzəyi üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Cera Decor",
-          desc: "Dekorativ suvaqlar üçün qoruyucu və bəzək mumu.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/18c/8tkmwk0p9ec2mhq1br2ezizipastzcbi.png.webp?174240174390770",
-          details: "Dekorativ örtüklərin üzərinə çəkilən, onları nəmə və çirklənməyə qarşı qoruyan, eyni zamanda əlavə parıltı və dərinlik verən şəffaf mum tərkibli qoruyucu vasitə.",
-          purpose: "Suvaq və boyaların qorunması və dekorativ işlənməsi",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Pastello Vernici",
-          desc: "Səthlərə pastel çalarlar və zərif qoruma qatığı verən lak.",
-          img: "https://decorazza.ru/upload/iblock/de0/crqg212l37s2oh3y6meb344tn2248hnl.png",
-          details: "Dekorativ örtüklərin üzərindən tətbiq edilərək rəng tonlarını yumşaldan, pastel və sakit keçidlər yaradan xüsusi peşəkar vernik.",
-          purpose: "Dekorativ qoruma və tonlama üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Fleur Deco",
-          desc: "İnteryerə bədii və zərif dizayn elementləri qatan dekorativ boya.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/76e/3bix7lwnxq88l7d8dji2g8cfngc786vt.png.webp?174240174185594",
-          details: "Fərdi dizayn ideyalarını həyata keçirmək üçün nəzərdə tutulmuş, zərif teksturaya malik dekorativ boya materialı.",
-          purpose: "İnteryer divarları üçün dekorativ örtük",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Finitura",
-          desc: "Dekorativ səthlər üçün son tamamlayıcı və qoruyucu lak-örtük.",
-          img: "https://decorazza.ru/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
-          details: "Divar örtüklərinin ömrünü uzadan, mexaniki təsirlərə və nəmə qarşı davamlılığı təmin edən yüksək keyfiyyətli son qat qoruyucu material.",
-          purpose: "Son tamamlayıcı qoruyucu qat",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Cera di Veneziano",
-          desc: "Venesiya suvaqları üçün xüsusi parıldadıcı və qoruyucu mum.",
-          img: "https://kraski-trade.ru/upload/resize_cache/iblock/105/1500_1500_1/vsdki3spcjvj32rmym8r3eicfov3hvfs.png",
-          details: "Venesiya suvağının təbii mərmər parıltısını maksimum dərəcədə üzə çıxaran, cilalanmanı gücləndirən və nəmə qarşı etibarlı qoruma təmin edən peşəkar mum.",
-          purpose: "Venesiya suvaqları üçün qoruyucu mum",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Perla Vernici",
-          desc: "Mirvari parıltılı dekorativ lak və örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/17f/51gb77d9zsz4bz4s42c6e2d7vfusdhvf.png.webp?174237142189966",
-          details: "Səthlərə incə mirvari effekti və işıqda parıldayan zərif çalarlar bəxş edən dekorativ lak növü.",
-          purpose: "Dekorativ parıltı və effekt vermək üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Mica",
-          desc: "Tərkibində təbii mika hissəcikləri olan parlaq dekorativ örtük.",
-          img: "https://decorazza.ru/upload/iblock/83a/xbj832ea3fmbm18to29qt2jxmll4ytw9.png",
-          details: "Mika minerallarının xüsusi parıltısı sayəsində divarlarda unikal işıq effekti yaradan, interyerə dəbdəbə qatan dekorativ material.",
-          purpose: "İnteryerlərdə xüsusi effektlər üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Lucente",
-          desc: "Zərif parıltı və qum naxışlı dekorativ örtük.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/ccb/idbdmbuegb20huyc22hhf26339tu518v.png.webp?1757407938481474",
-          details: "İncə qum naxışları və mirvari əsası ilə işıqda yumşaq parıldayan, interyerə istilik və zəriflik qatan dekorativ boya.",
-          purpose: "Daxili məkanlar üçün dekorativ qum effekti",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Primer",
-          desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cfa/i37zwual8uf5onk58fqsfyi2f1krrtl2.png",
-          details: "Dekorativ materialların tətbiqindən əvvəl səth hazırlığı üçün istifadə olunan, boya və suvaqların divara möhkəm yapışmasını təmin edən universal astar.",
-          purpose: "Səth hazırlığı və yapışmanın yaxşılaşdırılması",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Base",
-          desc: "Dekorativ örtüklər üçün əsas yaradıcı rəngləndirilə bilən baza.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/972/5roovurzg38q1zvsea0rcdiuido1emjf.png.webp?174237141883254",
-          details: "Müxtəlif dekorativ boya və suvaqların tətbiqindən əvvəl səthin rəng balansını tənzimləyən və əsas yaradan texniki məhsul.",
-          purpose: "Dekorativ sistemlər üçün əsas qat",
-          origin: "Rusiya"
-        },
-        {
-          title: "Decorazza Primer di Quarzo",
-          desc: "Kvars qumlu, güclü yapışdırıcı xüsusiyyətli qrunt-astar.",
-          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/f5d/8zzzzgq5i3vgbbg3ddzk8dh20pkqkg5m.png.webp?174237141984058",
-          details: "Tərkibindəki incə kvars qumu sayəsində dekorativ suvaqların səthə mükəmməl yapışmasını təmin edən, qabarıq fakturalı peşəkar astar.",
-          purpose: "Dekorativ suvaqlar üçün kvarslı astar",
-          origin: "Rusiya"
-        }
-      ],
-      olsta: [
-        {
-          title: "Olsta Фасадная силиконизированная",
-          desc: "Fasadlar üçün silikonla gücləndirilmiş, hava şəraitinə və yağıntılara qarşı ultra davamlı akril boya.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1bd/gd4vk8j4nvpg28n5tr1vhclzmwpel01w.png.webp?1748003462165510",
-          details: "Binaların xarici fasadları üçün nəzərdə tutulmuş, nəmi dəf edən və rəngini uzun illər qoruyan silikonlaşdırılmış akril fasad boyası.",
-          purpose: "Xarici fasad işləri üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Краска для влажных помещений",
-          desc: "Rütubətli otaqlar üçün nəmə və suya qarşı dayanıqlı mat interyer boyası.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/20c/fmsrkutubov40y2gnwk7cjb6p3vincgb.png.webp?1748002268156736",
-          details: "Buxara və nəmə qarşı dözümlü, divarların nəfəs almasına imkan verən xüsusi tərkibli nəm otaq boyası.",
-          purpose: "Hamam, duş və nəm zonalar",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Краска для стен, обоев и потолков",
-          desc: "Bütün növ divar kağızları, divar və tavanlar üçün qoxusuz universal praktiki boya.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSn3INWHbDQPWENxyG97WGcHeuEgv0lTT-RdeZyGbDxQ&s=10",
-          details: "İstənilən növ divar kağızının üzərindən boyamaq, həmçinin adi divar və tavanları rəngləmək üçün ideal universallıq.",
-          purpose: "Divar kağızı və tavanlar üçün",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Фасадная акриловая",
-          desc: "Mineral əsaslar üçün yüksək dayanıqlılığa malik atmosferə davamlı fasad akril boyası.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/8d1/fu2pz9u2p531ln03n4svlq0qh6jbuzoi.png.webp?1748003461134418",
-          details: "Xarici fasad səthləri üçün xüsusi işlənmiş, yağıntılara və ultrabənövşəyi şüalara qarşı davamlı akril boya növü.",
-          purpose: "Xarici fasad səthləri",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Interior & Exterior Primer",
-          desc: "Daxili və xarici işlər üçün universal dərin hopdurucu astar.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/1fd/cmqq1517vza5v81gwa6bfilxnylsz9vo.png.webp?1781766838162976",
-          details: "Səthlərin möhkəmliyini artıran və sonrakı boya qatının yapışmasını gücləndirən universal astar.",
-          purpose: "Daxili və xarici səth hazırlığı",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Multi Primer",
-          desc: "Şüşə, plastik, metal və çətin əsaslar üçün adgeziya yaradan astar.",
-          img: "https://olsta.ru/upload/iblock/3a8/wjfxu25jeq64u77k6pb0r9gnjmih1zux.png",
-          details: "Adətən boyanın yapışmadığı çətin və hamar səthlərdə belə mükəmməl tutuş təmin edən xüsusi astar.",
-          purpose: "Çətin və hamar səthlər",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Pigmented Primer",
-          desc: "Rəngləndirilə bilən, yüksək örtücülü və gizlədici xüsusiyyətli astar.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBnf2aCrAemh0IZzvDNeeRWxXAKlfuMMsJ6vGX1z-Weg&s=10",
-          details: "Əsasın rəngini bərabərləşdirən və sonrakı rəngin tonunu daha canlı göstərən rəngli astar qatı.",
-          purpose: "Boya altı rəng bərabərləşdirmə",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Silicone Primer",
-          desc: "Silikon əsaslı boyalar üçün yüksək dərinlikli silikon hopdurucu astar.",
-          img: "https://olsta.ru/upload/delight.webpconverter/upload/iblock/d42/sbqllracio6ubvlkkqk3r952tt6uq4ml.png.webp?1781766226173488",
-          details: "Silikon fasad sistemləri ilə tam uyğunluq təşkil edən, hidrofob xüsusiyyətli peşəkar astar.",
-          purpose: "Silikon sistemlər üçün astar",
-          origin: "Rusiya"
-        },
-        {
-          title: "Olsta Waterblock",
-          desc: "Daxili işlər üçün xüsusi su-hidroizolyasiya tərkibli qoruyucu məhlul.",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR2bdWMHEMEk99mzNj4Dq0tS54T84qc-_QVFYzCCUBWg&s=10",
-          details: "Su ilə birbaşa təmasda olan daxili zonalarda nəm keçirməz maneə yaradan etibarlı hidroizolyasiya.",
-          purpose: "Daxili hidroizolyasiya",
-          origin: "Rusiya"
-        }
-      ],
-      swisslake: [
-        {
-          title: "Swiss Lake Matt Pro",
-          desc: "Divarlar üçün zərif mat effektli, hamar və qüsursuz örtük yaradan premium boya.",
-          img: "https://loymina.ru/upload/iblock/64f/vhjz9mzesvi52mzd4pa9e0mqi7z6yr3s.png",
-          details: "Mükəmməl örtücülüyə malik, divarlarda ipək kimi zərif mat (5%) səth formalaşdıran yüksək keyfiyyətli boya.",
-          purpose: "Yataq və qonaq otaqları üçün divar boyası",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Wall Comfort 7",
-          desc: "Gündəlik istifadə üçün əlverişli, yuyulan və nəfəs alan mat interyer boyası.",
-          img: "https://iz-nn.ru/upload/iblock/d42/05rttpv0nbyriwpp11jbo4nc2pax18uw.webp",
-          details: "Ev şəraitində təmizlənməyə tam uyğun, səthdə rahatlıq və estetik mat (7%) görünüş təmin edən praktiki boya.",
-          purpose: "Məişət və yaşayış sahələri",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Semi-matt 20",
-          desc: "Yüksək rütubətli və tez-tez yuyulan otaqlar üçün yarımmat interyer boyası.",
-          img: "https://www.oboykin.ru/assets/images/products/65850/semi-matt.png",
-          details: "Tərkibindəki xüsusi komponentlər sayəsində nəmə və intensiv yuyulmaya qarşı dözümlü yarımmat (20%) örtük.",
-          purpose: "Dəhliz, mətbəx və nəm zonalar",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Tactile 3",
-          desc: "Zərif toxunuş hissi verən dərin mat (3%) interyer boyası.",
-          img: "https://masterdom.ru/upload/iblock/f57/1xmo3ucem3t3zob8tr88kfr2hbb9aclm.jpg",
-          details: "Divarlara incə və xoş toxunuş effekti bəxş edən, dərin mat görünüşlü yüksək keyfiyyətli boya.",
-          purpose: "Yataq və qonaq otaqları",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Wall Control",
-          desc: "İnteryer işləri üçün peşəkar tənzimləyici astar-qrunt.",
-          img: "https://swisslake.store/upload/iblock/a61/syxua8weipxvoz93ueznnf1761ddgmv2/Wall-Control-2.7-litra-_gruntovka-Swiss-Lake_.jpg",
-          details: "Divar səthlərinin qüsurlarını gizlədən, əsasın hopduruculuğunu bərabərləşdirən və sonrakı boya örtüyü üçün ideal baza yaradan məhlul.",
-          purpose: "Divar səthlərinin qorunması və bərabərləşdirilməsi",
-          origin: "İsveçrə"
-        },
-        {
-          title: "Swiss Lake Covering Primer",
-          desc: "Səthlərin bərabər hopmasını və yapışmasını təmin edən dərin təsirli astar.",
-          img: "https://swisslake.store/upload/iblock/a24/prw074ps3dztm9qk6cayc7rekxp2eu8u/Covering-Primer-9-litrov-_praymer-Swiss-Lake_.jpg",
-          details: "Səthlərin möhkəmliyini artıran, boya sərfiyyatını azaldan və sonrakı qatın yapışmasını gücləndirən dərin hopdurucu astar.",
-          purpose: "Səth hazırlığı və qruntlama",
-          origin: "İsveçrə"
-        }
-      ],
-      bayramix: [
-        {
-          title: "Bayramix Mineral",
-          desc: "Mərmər qırıntılı, fasad və interyerlər üçün dözümlü dekorativ suvaq.",
-          img: "https://bayramix.ru/upload/iblock/02e/j0jtyjrathz9ubyhotiyr6q1vidhi0ak.png",
-          details: "Təbii mərmər qırıntılarından ibarət, mexaniki təsirlərə və hava şəraitinə qarşı yüksək dayanıqlılıq nümayiş etdirən klassik dekorativ suvaq.",
-          purpose: "Fasad və daxili məkan divarları",
-          origin: "Rusiya"
-        },
-        {
-          title: "Bayramix Macro Mineral",
-          desc: "İri fraksiyalı mərmər qırıntılı, sərt və ifadəli fakturalı fasad suvağı.",
-          img: "https://bayramix.ru/upload/delight.webpconverter/upload/iblock/a24/9szaim9a6zt5pd9u6pc0keof1v15eann.png.webp?177485752754818",
-          details: "Daha iri dənəcik quruluşuna malik, binaların xarici səthlərində möhtəşəm və həcmli görünüş yaradan peşəkar dekorativ örtük.",
-          purpose: "Xarici fasadlar və memarlıq elementləri",
-          origin: "Rusiya"
-        },
-        {
-          title: "Bayramix Teratex",
-          desc: "Müxtəlif dənəvər strukturlu, fasadlar üçün dözümlü teksturalı boya-suvaq.",
-          img: "https://bayramix.ru/upload/delight.webpconverter/upload/iblock/eff/zt6bffoebip8fp2cogyaayy1um84sawb.png.webp?177487448057972",
-          details: "Səthlərdəki qüsurları mükəmməl örtən, atmosfer təsirlərinə və rütubətə qarşı dözümlü elastik fasad örtüyü.",
-          purpose: "Fasad işləri və divar qorunması",
-          origin: "Rusiya"
-        },
-        {
-          title: "Bayramix Gravol 1.5mm",
-          desc: "Qabıq böcəyi (koroed) effektli, klassik teksturalı fasad suvağı.",
-          img: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/otdelochnye-materialy/1365302/560x504/51541530.jpg",
-          details: "Tətbiq zamanı xarakterik cizgili və zərif naxışlar yaradan, fasadlara xüsusi estetik görünüş bəxş edən akril əsaslı suvaq.",
-          purpose: "Xarici fasadlar və divar bəzəyi",
-          origin: "Rusiya"
-        },
-        {
-          title: "Bayramix Gravol 2.5mm",
-          desc: "Qabıq böcəyi (koroed) effektli, klassik teksturalı fasad suvağı.",
-          img: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/otdelochnye-materialy/1365289/560x504/51199904.jpg",
-          details: "Tətbiq zamanı xarakterik cizgili və zərif naxışlar yaradan, fasadlara xüsusi estetik görünüş bəxş edən akril əsaslı suvaq.",
-          purpose: "Xarici fasadlar və divar bəzəyi",
           origin: "Rusiya"
         }
       ]
@@ -1461,23 +1291,8 @@ const catalogData = {
     ],
     items: {
       perfectoporte: [
-        { title: "SEGMENTI", desc: "Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "DIAMANTE", desc: "Эксклюзивная фрезеровка, напоминающая огранку бриллианта в коллекции Diamante.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70d369c1c1.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "STILISTA", desc: "Stilista - это воплощение статуса и утончённого вкуса. Идеальная геометрия, благородные  материалы и дизайнерская фрезеровка превращают дверь в объект современного искусства.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732c822415.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "KU-KU", desc: "Ku-ku - это воплощение художественной мысли итальянского архитектора, поражающая swoim уникальным дизайном.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a7195dc213f.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "PUNTO", desc: "Новая коллекция Punto отличается уникальным дизайном с фрезеровкой в виде идеального круга - это узнаваемый дизайн с индивидуальным характером.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbf0c9f4ba.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "LINEA", desc: "Динамичная коллекция LINEA в обновленном формате с пантографированным рисунком.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68adff9d884a8.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "MODULA", desc: "Ультрасовременная коллекция MODULA — новый подход к дизайну шпонированных дверей.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "STRATO", desc: "Классика в современном прочтении. Оригинальная разноуровневая фрезеровка задает особый ритм, добавляя индивидуальность этой коллекции.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad55ac3bc28.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "PLANA", desc: "Сдержанность и утонченность коллекции PLANA заключается в следовании традициям итальянского дизайна, где добавлена нотка современности.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b058793b3e1.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "SOLO", desc: "Традиционные классические решения в коллекции SOLO навеяны современными тенденциями.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/solo/doors/Doors_sl01/sl01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "LIBERTY", desc: "Оптическая легкость и простые акценты в коллекции LIBERTY добавят изысканной атмосферы вашему интерьеру, подчеркнув лаконичность и строгость пространства.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b753f512cdd.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "DINASTIA", desc: "Статусная, роскошная, но в то же время не лишенная изящества. Коллекция DINASTIA создана с любовью, где продумана каждая деталь.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ac91eb51f88.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "VERONA", desc: "Сдержанная роскошь, идеально подходящая для обстановки интерьера в классическом стиле. VERONA — коллекция, построенная на сочетании классических форм и декоративных элементов.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b73ccb76de6.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "SIENA", desc: "Теплая цветовая гамма светлых, кремовых, графитовых и кофейных оттенков коллекции SIENA, станет существенным вкладом в формирование действительно комфортного пространства.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a5e1afec67b.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "TOSCANA", desc: "Вдохновленная теплом Тосканы и итальянским стилем жизни, одноименная коллекция TOSCANA задаст настроение жилому пространству, став идеальным убежищем от городской суеты.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/toscana/doors/Doors_ts01/ts01_Laccato_Bianco.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
-        { title: "STATUS", desc: "Коллекция STATUS для тех, кто ценит престиж и комфорт. Каждая деталь намекает на богатую историю создания и эстетическую уникальность этой коллекции.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/status/doors/Doors_st01/st01_Laccato_Lino.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
-      ],
+        { title: "SEGMENTI", desc: "Segmenti — это баланс минимализма и тактильной сложности...", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
+      ]
     }
   },
   parquet: {
@@ -1486,38 +1301,7 @@ const catalogData = {
     ],
     items: {
       everbright: [
-        { 
-          title: "Oak Natural", 
-          desc: "Təbii palıdın unikal toxunmasını və isti rəng tonlarını əks etdirən klassik döşəmə örtüyü.", 
-          img: "", 
-          details: "Təbii palıd premium döşəmə örtüyü.", 
-          purpose: "Döşəmə örtüyü", 
-          origin: "Avropa" 
-        },
-        { 
-          title: "Milky", 
-          desc: "Məkanlara işıqlılıq, səliqəli və zərif ab-hava qatan açıq çalarlı parket modelidir.", 
-          img: "", 
-          details: "Açıq və zərif çalarlı parket.", 
-          purpose: "Döşəmə örtüyü", 
-          origin: "Avropa" 
-        },
-        { 
-          title: "Silver River", 
-          desc: "Gümüşü-boz tonların modern interyerlərlə uyğunlaşdığı sərin və şık dizayn həlli.", 
-          img: "", 
-          details: "Gümüşü-boz tonlarda müasir parket.", 
-          purpose: "Döşəmə örtüyü", 
-          origin: "Avropa" 
-        },
-        { 
-          title: "Millville", 
-          desc: "Dərin teksturası və xarakterik naxışları ilə istənilən otağa lüks görünüş bəxş edir.", 
-          img: "", 
-          details: "Dərin və zəngin teksturalı parket.", 
-          purpose: "Döşəmə örtüyü", 
-          origin: "Avropa" 
-        }
+        { title: "Oak Natural", desc: "Təbii palıdın unikal toxunmasını və isti rəng tonlarını əks etdirən klassik döşəmə örtüyü.", img: "", details: "Təbii palıd premium döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
       ]
     }
   }
@@ -1531,18 +1315,6 @@ function loadCustomItems() {
       for (let brandId in parsed) {
         if (catalogData.paint.items[brandId]) {
           catalogData.paint.items[brandId] = parsed[brandId];
-        }
-      }
-    } catch(e) {}
-  }
-
-  let customDoors = localStorage.getItem('emiliana_custom_doors_items');
-  if (customDoors) {
-    try {
-      let parsedDoors = JSON.parse(customDoors);
-      for (let brandId in parsedDoors) {
-        if (catalogData.doors.items[brandId]) {
-          catalogData.doors.items[brandId] = parsedDoors[brandId];
         }
       }
     } catch(e) {}
@@ -1561,7 +1333,6 @@ async function fetchJSON(path){
     if(!res.ok) throw new Error('Failed to load ' + path);
     return await res.json();
   }catch(err){
-    console.error(err);
     return null;
   }
 }
@@ -1609,10 +1380,6 @@ function applySettings(){
     const el = document.getElementById('valEmail');
     if(el) el.textContent = s.email;
   }
-  if(s.map_query){
-    const iframe = document.getElementById('mapFrame');
-    if(iframe) iframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(s.map_query)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-  }
 }
 
 const arrowSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -1622,38 +1389,10 @@ function renderProducts(){
   if(!grid) return;
 
   const items = [
-    {
-      id: "paint",
-      image: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png",
-      index: "01 — BOYA",
-      title: "Boya",
-      desc: "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi.",
-      cta: "Boya çeşidinə bax"
-    },
-    {
-      id: "wallpaper",
-      image: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png",
-      index: "02 — DİVAR KAĞIZI",
-      title: "Divar kağızı",
-      desc: "İtaliya və Avropa istehsalı premium divar kağızları.",
-      cta: "Divar kağızı çeşidinə bax"
-    },
-    {
-      id: "doors",
-      image: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png",
-      index: "03 — QAPILAR",
-      title: "Qapılar",
-      desc: "İtalyan üslublu interyer qapıları, gizli çərçivələr.",
-      cta: "Qapı çeşidinə bax"
-    },
-    {
-      id: "parquet",
-      image: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png",
-      index: "04 — PARKET",
-      title: "Parket",
-      desc: "Təbii palıd, fransız və klassik yolka parketlər.",
-      cta: "Parket çeşidinə bax"
-    }
+    { id: "paint", image: "uploads/gemini_generated_image_2gnhce2gnhce2gnh-clean-1-.png", index: "01 — BOYA", title: "Boya", desc: "Nəfəs alan əhəngli və mineral boyalar, fərdi çalar seçimi.", cta: "Boya çeşidinə bax" },
+    { id: "wallpaper", image: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png", index: "02 — DİVAR KAĞIZI", title: "Divar kağızı", desc: "İtaliya və Avropa istehsalı premium divar kağızları.", cta: "Divar kağızı çeşidinə bax" },
+    { id: "doors", image: "uploads/Gemini_Generated_Image_h00hnqh00hnqh00h-clean.png", index: "03 — QAPILAR", title: "Qapılar", desc: "İtalyan üslublu interyer qapıları, gizli çərçivələr.", cta: "Qapı çeşidinə bax" },
+    { id: "parquet", image: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", index: "04 — PARKET", title: "Parket", desc: "Təbii palıd, fransız və klassik yolka parketlər.", cta: "Parket çeşidinə bax" }
   ];
 
   grid.innerHTML = items.map((p) => {
@@ -1690,13 +1429,11 @@ function openCatalogModal(catId) {
 
 function closeCatalogModal() {
   document.getElementById('catalogModal').classList.remove('open');
-  backToCatalogGrid();
 }
 
 function switchCatalogCategory(catId) {
   currentCatTab = catId;
   selectedBrand = null;
-  window.catalogPreviousContent = null;
   document.querySelectorAll('.catalog-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.cat === catId);
   });
@@ -1706,14 +1443,10 @@ function switchCatalogCategory(catId) {
 function renderCatalogContent(catId) {
   const grid = document.getElementById('catalogGridInner');
   const adminPanel = document.getElementById('adminAddPanel');
-  const adminDoorPanel = document.getElementById('adminDoorAddPanel');
-  
   if(adminPanel) adminPanel.style.display = 'none';
-  if(adminDoorPanel) adminDoorPanel.style.display = 'none';
 
   if (catId === 'paint') {
     if (!selectedBrand) {
-      if(adminPanel) adminPanel.style.display = 'none';
       const brands = catalogData.paint.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openPaintBrand('${b.id}')" style="cursor:pointer;">
@@ -1737,549 +1470,52 @@ function renderCatalogContent(catId) {
           <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} boyaları</h3>
         </div>
       `;
-      
-      if (items.length === 0) {
-        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ məhsul yoxdur. Yuxarıdakı panel vasitəsilə əlavə edin.</p>';
-      } else {
-        html += items.map(item => `
-          <div class="cat-item-card">
-            <div class="cat-item-img-container">
-              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<span style="color:var(--stone); font-size:12px;">Şəkil yoxdur</span>'}
-            </div>
-            <div class="cat-item-info">
-              <div>
-                <div class="cat-item-title">${item.title}</div>
-                <div class="cat-item-desc">${item.desc}</div>
-              </div>
-              <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
-            </div>
-          </div>
-        `).join('');
-      }
-      grid.innerHTML = html;
-    }
-  } else if (catId === 'doors') {
-    if (!selectedBrand) {
-      if(adminDoorPanel) adminDoorPanel.style.display = 'none';
-      const brands = catalogData.doors.brands;
-      grid.innerHTML = brands.map(b => `
-        <div class="cat-item-card" onclick="openDoorBrand('${b.id}')" style="cursor:pointer;">
-          <div class="brand-logo-container">
-            <span style="font-family: var(--font-display); font-size:22px; color:var(--brass); text-align:center;">${b.name}</span>
+      html += items.map(item => `
+        <div class="cat-item-card">
+          <div class="cat-item-img-container">
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<span style="color:var(--stone);">Şəkil yoxdur</span>'}
           </div>
           <div class="cat-item-info">
-            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
-            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+            <div>
+              <div class="cat-item-title">${item.title}</div>
+              <div class="cat-item-desc">${item.desc}</div>
+            </div>
+            <button class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
           </div>
         </div>
       `).join('');
-    } else {
-      if(adminDoorPanel) adminDoorPanel.style.display = 'block';
-      const brandObj = catalogData.doors.brands.find(b => b.id === selectedBrand);
-      const items = catalogData.doors.items[selectedBrand] || [];
-      
-      let html = `
-        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-          <button onclick="backToDoorBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
-          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} qapıları</h3>
-        </div>
-      `;
-      
-      if (items.length === 0) {
-        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ qapı yoxdur. Yuxarıdakı panel vasitəsilə əlavə edin.</p>';
-      } else {
-        html += items.map((item, index) => `
-          <div class="cat-item-card">
-            <div class="cat-item-img-container">
-              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
-            </div>
-            <div class="cat-item-info">
-              <div>
-                <div class="cat-item-title">${item.title}</div>
-                <div class="cat-item-desc">${item.desc}</div>
-              </div>
-              <div style="display: flex; gap: 8px; margin-top: auto;">
-                <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
-                <button onclick="deleteDoorItem(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Modeli sil">Sil</button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-      }
-      grid.innerHTML = html;
-    }
-  } else if (catId === 'parquet') {
-    if (!selectedBrand) {
-      const brands = catalogData.parquet.brands;
-      grid.innerHTML = brands.map(b => `
-        <div class="cat-item-card" onclick="openParquetBrand('${b.id}')" style="cursor:pointer;">
-          <div class="brand-logo-container">
-            <span style="font-family: var(--font-display); font-size:22px; color:var(--brass); text-align:center;">${b.name}</span>
-          </div>
-          <div class="cat-item-info">
-            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
-            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
-          </div>
-        </div>
-      `).join('');
-    } else {
-      const brandObj = catalogData.parquet.brands.find(b => b.id === selectedBrand);
-      const items = catalogData.parquet.items[selectedBrand] || [];
-      
-      let html = `
-        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-          <button onclick="backToParquetBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
-          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} parketləri</h3>
-        </div>
-      `;
-      
-      if (items.length === 0) {
-        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ parket yoxdur.</p>';
-      } else {
-        html += items.map(item => `
-          <div class="cat-item-card">
-            <div class="cat-item-img-container">
-              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
-            </div>
-            <div class="cat-item-info">
-              <div>
-                <div class="cat-item-title">${item.title}</div>
-                <div class="cat-item-desc">${item.desc}</div>
-              </div>
-              <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
-            </div>
-          </div>
-        `).join('');
-      }
       grid.innerHTML = html;
     }
   } else {
     const items = catalogData[catId] || [];
-    if (items.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni məhsullar əlavə olunacaq.</p>';
-      return;
-    }
     grid.innerHTML = items.map(item => `
       <div class="cat-item-card">
         <div class="cat-item-img-container">
-          ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+          ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone);">Şəkil yoxdur</div>'}
         </div>
         <div class="cat-item-info">
           <div>
             <div class="cat-item-title">${item.title}</div>
             <div class="cat-item-desc">${item.desc}</div>
           </div>
-          <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
+          <button class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Ətraflı öyrən</button>
         </div>
       </div>
     `).join('');
   }
 }
 
-function openParquetBrand(brandId) {
-  selectedBrand = brandId;
-  window.catalogPreviousContent = null;
-  renderCatalogContent('parquet');
-}
-
-function backToParquetBrands() {
-  selectedBrand = null;
-  window.catalogPreviousContent = null;
-  renderCatalogContent('parquet');
-}
-
-function addNewPaintItem() {
-  const titleInput = document.getElementById('newPaintTitle');
-  const descInput = document.getElementById('newPaintDesc');
-  const imgInput = document.getElementById('newPaintImg');
-  
-  if (!titleInput.value) {
-    alert('Zəhmət olmasa məhsulun adını daxil edin.');
-    return;
-  }
-
-  const newItem = {
-    title: titleInput.value,
-    desc: descInput.value || 'Dekorativ interyer örtüyü',
-    img: imgInput.value.trim(),
-    details: 'Bu material interyerdə yüksək estetik görünüş təmin edir.',
-    purpose: 'Divar və səth örtüyü',
-    origin: 'İtaliya / Avropa'
-  };
-
-  if (!catalogData.paint.items[selectedBrand]) {
-    catalogData.paint.items[selectedBrand] = [];
-  }
-  catalogData.paint.items[selectedBrand].push(newItem);
-
-  saveCustomItemsToStorage();
-
-  titleInput.value = '';
-  descInput.value = '';
-  imgInput.value = '';
-  renderCatalogContent('paint');
-}
-
-function addNewDoorItem() {
-  const titleInput = document.getElementById('newDoorTitle');
-  const descInput = document.getElementById('newDoorDesc');
-  const imgInput = document.getElementById('newDoorImg');
-  
-  if (!titleInput.value) {
-    alert('Zəhmət olmasa qapı modelinin adını daxil edin.');
-    return;
-  }
-
-  const newItem = {
-    title: titleInput.value,
-    desc: descInput.value || 'İnteryer qapı kolleksiyası',
-    img: imgInput.value.trim(),
-    details: 'Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.',
-    purpose: 'Otaq qapısı',
-    origin: 'Türkiyə / Avropa'
-  };
-
-  if (!catalogData.doors.items[selectedBrand]) {
-    catalogData.doors.items[selectedBrand] = [];
-  }
-  catalogData.doors.items[selectedBrand].push(newItem);
-
-  saveCustomItemsToStorage();
-
-  titleInput.value = '';
-  descInput.value = '';
-  imgInput.value = '';
-  renderCatalogContent('doors');
-}
-
-function deleteDoorItem(index) {
-  if (!confirm('Bu qapı modelini silmək istədiyinizə əminsinizmi?')) return;
-  catalogData.doors.items[selectedBrand].splice(index, 1);
-  saveCustomItemsToStorage();
-  renderCatalogContent('doors');
-}
-
-function saveCustomItemsToStorage() {
-  let customPaint = {};
-  for (let brandId in catalogData.paint.items) {
-    customPaint[brandId] = catalogData.paint.items[brandId];
-  }
-  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customPaint));
-
-  let customDoors = {};
-  for (let brandId in catalogData.doors.items) {
-    customDoors[brandId] = catalogData.doors.items[brandId];
-  }
-  localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(customDoors));
-}
-
-function openMaterialDetails(title, directImg = '') {
-  const grid = document.getElementById('catalogGridInner');
-  const adminPanel = document.getElementById('adminAddPanel');
-  const adminDoorPanel = document.getElementById('adminDoorAddPanel');
-  if(adminPanel) adminPanel.style.display = 'none';
-  if(adminDoorPanel) adminDoorPanel.style.display = 'none';
-  
-  if (!window.catalogPreviousContent) {
-    window.catalogPreviousContent = grid.innerHTML;
-    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
-  }
-
-  document.getElementById('catalogTitle').textContent = title;
-
-  let foundItem = null;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    foundItem = catalogData.paint.items[selectedBrand].find(i => i.title === title);
-  }
-  if (!foundItem && currentCatTab === 'doors' && selectedBrand && catalogData.doors.items[selectedBrand]) {
-    foundItem = catalogData.doors.items[selectedBrand].find(i => i.title === title);
-  }
-  if (!foundItem && currentCatTab === 'parquet' && selectedBrand && catalogData.parquet.items[selectedBrand]) {
-    foundItem = catalogData.parquet.items[selectedBrand].find(i => i.title === title);
-  }
-  if (!foundItem) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        foundItem = catalogData[cat].find(i => i.title === title);
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let m = catalogData.paint.items[b].find(i => i.title === title);
-          if (m) foundItem = m;
-        }
-      } else if (cat === 'doors') {
-        for (let b in catalogData.doors.items) {
-          let m = catalogData.doors.items[b].find(i => i.title === title);
-          if (m) foundItem = m;
-        }
-      } else if (cat === 'parquet') {
-        for (let b in catalogData.parquet.items) {
-          let m = catalogData.parquet.items[b].find(i => i.title === title);
-          if (m) foundItem = m;
-        }
-      }
-    }
-  }
-
-  const detailsText = foundItem && foundItem.details ? foundItem.details : 'Bu material interyerdə yüksək estetik görünüş və uzunömürlülük təmin edən premium sinifə aiddir.';
-  const purposeText = foundItem && foundItem.purpose ? foundItem.purpose : 'Divar və səth örtüyü';
-  const originText = foundItem && foundItem.origin ? foundItem.origin : 'İtaliya / Avropa';
-  
-  const imgUrl = directImg || (foundItem ? (foundItem.img || foundItem.image || '') : '');
-
-  grid.innerHTML = `
-    <div style="grid-column: 1/-1;">
-      <button onclick="backToCatalogGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer;">&larr; Geri qayıt</button>
-      
-      <div style="background: var(--cream-card); padding: 30px; border-radius: 8px; border: 1px solid var(--stone-line); display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
-        
-        <!-- КАРТИНКА ТОВАРА СЛЕВА -->
-        <div style="background: var(--plaster); border-radius: 6px; overflow: hidden; border: 1px solid var(--stone-line); display: flex; align-items: center; justify-content: center; min-height: 340px; padding: 20px;">
-          ${imgUrl ? `<img id="displayImg" src="${fixPath(imgUrl)}" style="max-width: 100%; max-height: 380px; object-fit: contain;" alt="${title}">` : '<span style="color:var(--stone);">Şəkil yoxdur</span>'}
-        </div>
-
-        <!-- ОПИСАНИЕ И АДМИН-ПАНЕЛЬ СПРАВА -->
-        <div>
-          <h3 style="font-family: var(--font-display); font-size: 26px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
-          
-          <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
-            <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Məhsulu idarə et (Admin)</h4>
-            
-            <div style="margin-bottom: 12px;">
-              <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Ətraflı mətn təsviri:</label>
-              <textarea id="editDetails" rows="3" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 10px; border-radius: 4px; font-size: 14px;">${detailsText}</textarea>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-              <div>
-                <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">Təyinat:</label>
-                <input type="text" id="editPurpose" value="${purposeText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-              </div>
-              <div>
-                <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-soft);">İstehsal / Ölkə:</label>
-                <input type="text" id="editOrigin" value="${originText}" style="width: 100%; background: var(--plaster); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-              </div>
-            </div>
-
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button onclick="saveItemDetails('${title}')" class="btn btn-primary" style="padding: 10px 20px; font-size: 12px; cursor:pointer;">Yadda saxla</button>
-              <button onclick="deleteItem('${title}')" class="btn" style="padding: 10px 20px; font-size: 12px; cursor:pointer; background: #c0392b; color: #ffffff;">Məhsulu sil</button>
-            </div>
-          </div>
-
-          <p id="displayDetails" style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
-            ${detailsText}
-          </p>
-          <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <div style="background: var(--paper); padding: 12px 18px; border-radius: 6px; border: 1px solid var(--stone-line);">
-              <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">Təyinat</span>
-              <span id="displayPurpose" style="font-size: 14px; font-weight: 600;">${purposeText}</span>
-            </div>
-            <div style="background: var(--paper); padding: 12px 18px; border-radius: 6px; border: 1px solid var(--stone-line);">
-              <span style="display: block; font-size: 11px; text-transform: uppercase; color: var(--brass); font-weight: 700; letter-spacing: .08em;">İstehsal</span>
-              <span id="displayOrigin" style="font-size: 14px; font-weight: 600;">${originText}</span>
-            </div>
-          </div>
-          <p style="font-size: 13px; color: var(--stone);">* Qiymət və sərfiyyat haqqında ətraflı məlumat üçün şourumumuza yaxınlaşa bilərsiniz.</p>
-        </div>
-
-      </div>
-    </div>
-  `;
-}
-
-function deleteItem(title) {
-  if (!confirm(`"${title}" məhsulunu silmək istədiyinizə əminsinizmi?`)) return;
-
-  let deleted = false;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    let index = catalogData.paint.items[selectedBrand].findIndex(i => i.title === title);
-    if (index !== -1) {
-      catalogData.paint.items[selectedBrand].splice(index, 1);
-      deleted = true;
-    }
-  }
-  if (!deleted && selectedBrand && catalogData.doors.items[selectedBrand]) {
-    let index = catalogData.doors.items[selectedBrand].findIndex(i => i.title === title);
-    if (index !== -1) {
-      catalogData.doors.items[selectedBrand].splice(index, 1);
-      deleted = true;
-    }
-  }
-  if (!deleted && selectedBrand && catalogData.parquet.items[selectedBrand]) {
-    let index = catalogData.parquet.items[selectedBrand].findIndex(i => i.title === title);
-    if (index !== -1) {
-      catalogData.parquet.items[selectedBrand].splice(index, 1);
-      deleted = true;
-    }
-  }
-
-  if (!deleted) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        let index = catalogData[cat].findIndex(i => i.title === title);
-        if (index !== -1) {
-          catalogData[cat].splice(index, 1);
-          deleted = true;
-        }
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let index = catalogData.paint.items[b].findIndex(i => i.title === title);
-          if (index !== -1) {
-            catalogData.paint.items[b].splice(index, 1);
-            deleted = true;
-          }
-        }
-      } else if (cat === 'doors') {
-        for (let b in catalogData.doors.items) {
-          let index = catalogData.doors.items[b].findIndex(i => i.title === title);
-          if (index !== -1) {
-            catalogData.doors.items[b].splice(index, 1);
-            deleted = true;
-          }
-        }
-      } else if (cat === 'parquet') {
-        for (let b in catalogData.parquet.items) {
-          let index = catalogData.parquet.items[b].findIndex(i => i.title === title);
-          if (index !== -1) {
-            catalogData.parquet.items[b].splice(index, 1);
-            deleted = true;
-          }
-        }
-      }
-    }
-  }
-
-  saveCustomItemsToStorage();
-  window.catalogPreviousContent = null;
-  backToCatalogGrid();
-  renderCatalogContent(currentCatTab);
-  alert('Məhsul uğurla silindi!');
-}
-
-function saveItemDetails(title) {
-  const newDetails = document.getElementById('editDetails').value;
-  const newPurpose = document.getElementById('editPurpose').value;
-  const newOrigin = document.getElementById('editOrigin').value;
-
-  let found = false;
-  if (selectedBrand && catalogData.paint.items[selectedBrand]) {
-    let item = catalogData.paint.items[selectedBrand].find(i => i.title === title);
-    if (item) {
-      item.details = newDetails;
-      item.purpose = newPurpose;
-      item.origin = newOrigin;
-      found = true;
-    }
-  }
-  if (!found && selectedBrand && catalogData.doors.items[selectedBrand]) {
-    let item = catalogData.doors.items[selectedBrand].find(i => i.title === title);
-    if (item) {
-      item.details = newDetails;
-      item.purpose = newPurpose;
-      item.origin = newOrigin;
-      found = true;
-    }
-  }
-  if (!found && selectedBrand && catalogData.parquet.items[selectedBrand]) {
-    let item = catalogData.parquet.items[selectedBrand].find(i => i.title === title);
-    if (item) {
-      item.details = newDetails;
-      item.purpose = newPurpose;
-      item.origin = newOrigin;
-      found = true;
-    }
-  }
-  if (!found) {
-    for (let cat in catalogData) {
-      if (Array.isArray(catalogData[cat])) {
-        let item = catalogData[cat].find(i => i.title === title);
-        if (item) {
-          item.details = newDetails;
-          item.purpose = newPurpose;
-          item.origin = newOrigin;
-        }
-      } else if (cat === 'paint') {
-        for (let b in catalogData.paint.items) {
-          let item = catalogData.paint.items[b].find(i => i.title === title);
-          if (item) {
-            item.details = newDetails;
-            item.purpose = newPurpose;
-            item.origin = newOrigin;
-          }
-        }
-      } else if (cat === 'doors') {
-        for (let b in catalogData.doors.items) {
-          let item = catalogData.doors.items[b].find(i => i.title === title);
-          if (item) {
-            item.details = newDetails;
-            item.purpose = newPurpose;
-            item.origin = newOrigin;
-          }
-        }
-      } else if (cat === 'parquet') {
-        for (let b in catalogData.parquet.items) {
-          let item = catalogData.parquet.items[b].find(i => i.title === title);
-          if (item) {
-            item.details = newDetails;
-            item.purpose = newPurpose;
-            item.origin = newOrigin;
-          }
-        }
-      }
-    }
-  }
-
-  saveCustomItemsToStorage();
-
-  document.getElementById('displayDetails').textContent = newDetails;
-  document.getElementById('displayPurpose').textContent = newPurpose;
-  document.getElementById('displayOrigin').textContent = newOrigin;
-
-  alert('Məlumatlar uğurla yadda saxlanıldı!');
-}
-
-function backToCatalogGrid() {
-  if (window.catalogPreviousContent) {
-    document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
-    document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
-    window.catalogPreviousContent = null;
-    const adminPanel = document.getElementById('adminAddPanel');
-    const adminDoorPanel = document.getElementById('adminDoorAddPanel');
-    if(adminPanel && selectedBrand && currentCatTab === 'paint') adminPanel.style.display = 'block';
-    if(adminDoorPanel && selectedBrand && currentCatTab === 'doors') adminDoorPanel.style.display = 'block';
-  } else {
-    renderCatalogContent(currentCatTab);
-  }
-}
-
 function openPaintBrand(brandId) {
   selectedBrand = brandId;
-  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
 function backToBrands() {
   selectedBrand = null;
-  window.catalogPreviousContent = null;
   renderCatalogContent('paint');
 }
 
-function openDoorBrand(brandId) {
-  selectedBrand = brandId;
-  window.catalogPreviousContent = null;
-  renderCatalogContent('doors');
-}
-
-function backToDoorBrands() {
-  selectedBrand = null;
-  window.catalogPreviousContent = null;
-  renderCatalogContent('doors');
-}
-
 document.getElementById('catalogClose').addEventListener('click', closeCatalogModal);
-document.getElementById('catalogModal').addEventListener('click', (e) => {
-  if (e.target.id === 'catalogModal') closeCatalogModal();
-});
 document.querySelectorAll('.catalog-tab').forEach(tab => {
   tab.addEventListener('click', () => switchCatalogCategory(tab.dataset.cat));
 });
@@ -2312,12 +1548,13 @@ function renderReviews(){
   const track = document.getElementById('revTrack');
   const dotsWrap = document.getElementById('revDots');
   if(!track) return;
-  const items = data.reviews.items;
+  const items = data.reviews.items || [];
+  if(items.length === 0) return;
   if(revIndex >= items.length) revIndex = 0;
   track.innerHTML = items.map((r, i) => `
     <div class="rev-slide ${i === revIndex ? 'active' : ''}">
-      <blockquote>&ldquo;${(r.text && r.text['az']) || r.text['az']}&rdquo;</blockquote>
-      <p class="author">${(r.author && r.author['az']) || r.author['az']}</p>
+      <blockquote>&ldquo;${(r.text && r.text['az']) || ''}&rdquo;</blockquote>
+      <p class="author">${(r.author && r.author['az']) || ''}</p>
     </div>
   `).join('');
   if(dotsWrap && dotsWrap.children.length !== items.length){
@@ -2334,7 +1571,7 @@ function renderReviews(){
 }
 
 function goToSlide(i){
-  const items = data.reviews.items;
+  const items = data.reviews.items || [];
   if(!items.length) return;
   revIndex = (i + items.length) % items.length;
   renderReviews();
@@ -2370,19 +1607,6 @@ menuToggle.addEventListener('click', ()=>{
   const open = navEl.classList.toggle('menu-open');
   menuToggle.setAttribute('aria-expanded', open ? 'true':'false');
 });
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click', ()=> navEl.classList.remove('menu-open'));
-});
-
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('is-visible');
-      io.unobserve(entry.target);
-    }
-  });
-}, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
-document.querySelectorAll('.reveal, .reveal-stagger').forEach(el=> io.observe(el));
 
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -2395,20 +1619,9 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
   });
 });
 
-document.getElementById('revPrev').addEventListener('click', ()=> goToSlide(revIndex-1));
-document.getElementById('revNext').addEventListener('click', ()=> goToSlide(revIndex+1));
-document.querySelector('.reviews-band').addEventListener('mouseenter', ()=> clearInterval(revTimer));
-document.querySelector('.reviews-band').addEventListener('mouseleave', resetRevTimer);
-
 document.getElementById('contactForm').addEventListener('submit', function(e){
   e.preventDefault();
   document.getElementById('formSuccess').classList.add('show');
-  this.reset();
-});
-document.getElementById('newsletterForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const btn = this.querySelector('button');
-  btn.style.color = 'var(--brass-light)';
   this.reset();
 });
 
