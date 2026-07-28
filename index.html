@@ -861,7 +861,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <button class="catalog-tab" data-cat="parquet" data-i18n="parquet_name">Parket</button>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ -->
+    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КРАСОК -->
     <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
       <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
@@ -872,11 +872,11 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       </div>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КОЛЛЕКЦИЙ ДВЕРЕЙ -->
+    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ ДВЕРЕЙ -->
     <div id="adminDoorAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni qapı kolleksiyası əlavə et (Admin)</h4>
+      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni qapı modeli əlavə et (Admin)</h4>
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newDoorTitle" placeholder="Kolleksiya adı" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
+        <input type="text" id="newDoorTitle" placeholder="Model adı" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newDoorDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <input type="text" id="newDoorImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
         <button onclick="addNewDoorItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
@@ -1396,136 +1396,35 @@ const catalogData = {
   wallpaper: [
     { title: "Emiliana Classic Wallpaper", desc: "İtaliya istehsalı premium divar kağızı", img: "uploads/Gemini_Generated_Image_qz9g8bqz9g8bqz9g-clean.png", details: "Klassik üslubda zəngin ornamentlərə malik İtaliya divar kağızı.", purpose: "Divar örtüyü", origin: "İtaliya" }
   ],
-  doors: [
-    {
-      title: "SEGMENTI",
-      desc: "Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "DIAMANTE",
-      desc: "Эксклюзивная фрезеровка, напоминающая огранку бриллианта в коллекции Diamante.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70c7aae275.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "STILISTA",
-      desc: "Stilista - это воплощение статуса и утончённого вкуса. Идеальная геометрия, благородные  материалы и дизайнерская фрезеровка превращают дверь в объект современного искусства.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732943f1d2.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "KU-KU",
-      desc: "Ku-ku - это воплощение художественной мысли итальянского архитектора, поражающая swoim уникальным дизайном.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a730bcdd925.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "PUNTO",
-      desc: "Новая коллекция Punto отличается уникальным дизайном с фрезеровкой в виде идеального круга - это узнаваемый дизайн с индивидуальным характером.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbef68c815.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "LINEA",
-      desc: "Динамичная коллекция LINEA в обновленном формате с пантографированным рисунком.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b7443dc4b12.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "MODULA",
-      desc: "Ультрасовременная коллекция MODULA — новый подход к дизайну шпонированных дверей.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "STRATO",
-      desc: "Классика в современном прочтении. Оригинальная разноуровневая фрезеровка задает особый ритм, добавляя индивидуальность этой коллекции.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad553a5c8e8.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "PLANA",
-      desc: "Сдержанность и утонченность коллекции PLANA заключается в следовании традициям итальянского дизайна, где добавлена нотка современности.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/plana/doors/Doors_pl1m/pl1m_Rovere_Naturale.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "SOLO",
-      desc: "Традиционные классические решения в коллекции SOLO навеяны современными тенденциями.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/solo/doors/Doors_sl01/sl01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "LIBERTY",
-      desc: "Оптическая легкость и простые акценты в коллекции LIBERTY добавят изысканной атмосферы вашему интерьеру, подчеркнув лаконичность и строгость пространства.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/liberty/doors/Doors_lb01/lb01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "DINASTIA",
-      desc: "Статусная, роскошная, но в то же время не лишенная изящества. Коллекция DINASTIA создана с любовью, где продумана каждая деталь.",
-      img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ac9227d2050.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "VERONA",
-      desc: "Сдержанная роскошь, идеально подходящая для обстановки интерьера в классическом стиле. VERONA — коллекция, построенная на сочетании классических форм и декоративных элементов.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/verona/doors/Doors_vr01/vr01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "SIENA",
-      desc: "Теплая цветовая гамма светлых, кремовых, графитовых и кофейных оттенков коллекции SIENA, станет существенным вкладом в формирование действительно комфортного пространства.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/siena/doors/Doors_sn01/sn01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "TOSCANA",
-      desc: "Вдохновленная теплом Тосканы и итальянским стилем жизни, одноименная коллекция TOSCANA задаст настроение жилому пространству, став идеальным убежищем от городской суеты.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/toscana/doors/Doors_ts01/ts01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
-    },
-    {
-      title: "STATUS",
-      desc: "Коллекция STATUS для тех, кто ценит престиж и комфорт. Каждая деталь намекает на богатую историю создания и эстетическую уникальность этой коллекции.",
-      img: "https://dp.okeandveri.ru/upload/product/perfecto/models/status/doors/Doors_st01/st01_Laccato_Argilla.png",
-      details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.",
-      purpose: "Otaq qapısı",
-      origin: "Türkiyə / Avropa"
+  doors: {
+    brands: [
+      { id: 'perfectoporte', name: 'Perfecto Porte', logo: '', scale: 1.0, desc: 'İtalyan dizaynlı premium interyer qapıları' },
+      { id: 'profildoors', name: 'ProfilDoors', logo: '', scale: 1.0, desc: 'Müasir üslublu karkas-lövhə qapılar və gizli sistemlər' }
+    ],
+    items: {
+      perfectoporte: [
+        { title: "SEGMENTI", desc: "Segmenti — это баланс минимализма и тактильной сложности, решение для современных интерьеров, где ценят структуру, ритм и ощущение продуманной премиальности.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/69bd5275a3b9f.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "DIAMANTE", desc: "Эксклюзивная фрезеровка, напоминающая огранку бриллианта в коллекции Diamante.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a70c7aae275.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "STILISTA", desc: "Stilista - это воплощение статуса и утончённого вкуса. Идеальная геометрия, благородные  материалы и дизайнерская фрезеровка превращают дверь в объект современного искусства.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a732943f1d2.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "KU-KU", desc: "Ku-ku - это воплощение художественной мысли итальянского архитектора, поражающая swoim уникальным дизайном.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a730bcdd925.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "PUNTO", desc: "Новая коллекция Punto отличается уникальным дизайном с фрезеровкой в виде идеального круга - это узнаваемый дизайн с индивидуальным характером.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68acbef68c815.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "LINEA", desc: "Динамичная коллекция LINEA в обновленном формате с пантографированным рисунком.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b7443dc4b12.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "MODULA", desc: "Ультрасовременная коллекция MODULA — новый подход к дизайну шпонированных дверей.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68b8a0355c5ea.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "STRATO", desc: "Классика в современном прочтении. Оригинальная разноуровневая фрезеровка задает особый ритм, добавляя индивидуальность этой коллекции.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ad553a5c8e8.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "PLANA", desc: "Сдержанность и утонченность коллекции PLANA заключается в следовании традициям итальянского дизайна, где добавлена нотка современности.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/plana/doors/Doors_pl1m/pl1m_Rovere_Naturale.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "SOLO", desc: "Традиционные классические решения в коллекции SOLO навеяны современными тенденциями.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/solo/doors/Doors_sl01/sl01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "LIBERTY", desc: "Оптическая легкость и простые акценты в коллекции LIBERTY добавят изысканной атмосферы вашему интерьеру, подчеркнув лаконичность и строгость пространства.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/liberty/doors/Doors_lb01/lb01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "DINASTIA", desc: "Статусная, роскошная, но в то же время не лишенная изящества. Коллекция DINASTIA создана с любовью, где продумана каждая деталь.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68ac9227d2050.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "VERONA", desc: "Сдержанная роскошь, идеально подходящая для обстановки интерьера в классическом стиле. VERONA — коллекция, построенная на сочетании классических форм и декоративных элементов.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/verona/doors/Doors_vr01/vr01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "SIENA", desc: "Теплая цветовая гамма светлых, кремовых, графитовых и кофейных оттенков коллекции SIENA, станет существенным вкладом в формирование действительно комфортного пространства.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/siena/doors/Doors_sn01/sn01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "TOSCANA", desc: "Вдохновленная теплом Тосканы и итальянским стилем жизни, одноименная коллекция TOSCANA задаст настроение жилому пространству, став идеальным убежищем от городской суеты.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/toscana/doors/Doors_ts01/ts01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
+        { title: "STATUS", desc: "Коллекция STATUS для тех, кто ценит престиж и комфорт. Каждая деталь намекает на богатую историю создания и эстетическую уникальность этой коллекции.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/status/doors/Doors_st01/st01_Laccato_Argilla.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
+      ],
+      profildoors: [
+        { title: "ProfilDoors Series E", desc: "Элегантные каркасные двери с современным покрытием.", img: "https://profildoors.ru/upload/iblock/d42/profildoors.png", details: "Yüksək dayanıqlılığa malik ProfilDoors qapı sistemi.", purpose: "İnteryer qapısı", origin: "Rusiya / Avropa" }
+      ]
     }
-  ],
+  },
   parquet: [
     { title: "Oak Herringbone Parquet", desc: "Klassik Fransız yolkası parket", img: "uploads/gemini_generated_image_vignrgvignrgvign-clean-1-.png", details: "Təbii palıddan hazırlanmış klassik fransız yolkası döşəmə örtüyü.", purpose: "Döşəmə örtüyü", origin: "Avropa" }
   ]
@@ -1548,7 +1447,11 @@ function loadCustomItems() {
   if (customDoors) {
     try {
       let parsedDoors = JSON.parse(customDoors);
-      catalogData.doors = parsedDoors;
+      for (let brandId in parsedDoors) {
+        if (catalogData.doors.items[brandId]) {
+          catalogData.doors.items[brandId] = parsedDoors[brandId];
+        }
+      }
     } catch(e) {}
   }
 }
@@ -1792,29 +1695,55 @@ function renderCatalogContent(catId) {
       grid.innerHTML = html;
     }
   } else if (catId === 'doors') {
-    if(adminDoorPanel) adminDoorPanel.style.display = 'block';
-    const items = catalogData.doors || [];
-    if (items.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1/-1; color: var(--ink-soft);">Tezliklə yeni qapı kolleksiyaları əlavə olunacaq.</p>';
-      return;
+    if (!selectedBrand) {
+      if(adminDoorPanel) adminDoorPanel.style.display = 'none';
+      const brands = catalogData.doors.brands;
+      grid.innerHTML = brands.map(b => `
+        <div class="cat-item-card" onclick="openDoorBrand('${b.id}')" style="cursor:pointer;">
+          <div class="brand-logo-container">
+            <span style="font-family: var(--font-display); font-size:22px; color:var(--brass); text-align:center;">${b.name}</span>
+          </div>
+          <div class="cat-item-info">
+            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
+            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      if(adminDoorPanel) adminDoorPanel.style.display = 'block';
+      const brandObj = catalogData.doors.brands.find(b => b.id === selectedBrand);
+      const items = catalogData.doors.items[selectedBrand] || [];
+      
+      let html = `
+        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+          <button onclick="backToDoorBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
+          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} qapıları</h3>
+        </div>
+      `;
+      
+      if (items.length === 0) {
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ qapı yoxdur. Yuxarıdakı panel vasitəsilə əlavə edin.</p>';
+      } else {
+        html += items.map((item, index) => `
+          <div class="cat-item-card">
+            <div class="cat-item-img-container">
+              ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+            </div>
+            <div class="cat-item-info">
+              <div>
+                <div class="cat-item-title">${item.title}</div>
+                <div class="cat-item-desc">${item.desc}</div>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: auto;">
+                <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
+                <button onclick="deleteDoorItem(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Modeli sil">Sil</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+      grid.innerHTML = html;
     }
-    grid.innerHTML = items.map((item, index) => `
-      <div class="cat-item-card">
-        <div class="cat-item-img-container">
-          ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
-        </div>
-        <div class="cat-item-info">
-          <div>
-            <div class="cat-item-title">${item.title}</div>
-            <div class="cat-item-desc">${item.desc}</div>
-          </div>
-          <div style="display: flex; gap: 8px; margin-top: auto;">
-            <button onclick="openMaterialDetails('${item.title}', '${item.img || ''}')" class="cat-item-btn" style="cursor:pointer; border:none; flex: 1; margin-top:0;">Ətraflı öyrən</button>
-            <button onclick="deleteDoorCollection(${index})" class="btn" style="background: #c0392b; color: #fff; padding: 10px 12px; font-size: 11px; border-radius: 4px; cursor:pointer;" title="Kolleksiyanı sil">Sil</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
   } else {
     const items = catalogData[catId] || [];
     if (items.length === 0) {
@@ -1876,7 +1805,7 @@ function addNewDoorItem() {
   const imgInput = document.getElementById('newDoorImg');
   
   if (!titleInput.value) {
-    alert('Zəhmət olmasa kolleksiyanın adını daxil edin.');
+    alert('Zəhmət olmasa qapı modelinin adını daxil edin.');
     return;
   }
 
@@ -1889,10 +1818,10 @@ function addNewDoorItem() {
     origin: 'Türkiyə / Avropa'
   };
 
-  if (!Array.isArray(catalogData.doors)) {
-    catalogData.doors = [];
+  if (!catalogData.doors.items[selectedBrand]) {
+    catalogData.doors.items[selectedBrand] = [];
   }
-  catalogData.doors.push(newItem);
+  catalogData.doors.items[selectedBrand].push(newItem);
 
   saveCustomItemsToStorage();
 
@@ -1902,20 +1831,25 @@ function addNewDoorItem() {
   renderCatalogContent('doors');
 }
 
-function deleteDoorCollection(index) {
-  if (!confirm('Bu qapı kolleksiyasını silmək istədiyinizə əminsinizmi?')) return;
-  catalogData.doors.splice(index, 1);
+function deleteDoorItem(index) {
+  if (!confirm('Bu qapı modelini silmək istədiyinizə əminsinizmi?')) return;
+  catalogData.doors.items[selectedBrand].splice(index, 1);
   saveCustomItemsToStorage();
   renderCatalogContent('doors');
 }
 
 function saveCustomItemsToStorage() {
-  let customItems = {};
+  let customPaint = {};
   for (let brandId in catalogData.paint.items) {
-    customItems[brandId] = catalogData.paint.items[brandId];
+    customPaint[brandId] = catalogData.paint.items[brandId];
   }
-  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customItems));
-  localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(catalogData.doors));
+  localStorage.setItem('emiliana_custom_paint_items', JSON.stringify(customPaint));
+
+  let customDoors = {};
+  for (let brandId in catalogData.doors.items) {
+    customDoors[brandId] = catalogData.doors.items[brandId];
+  }
+  localStorage.setItem('emiliana_custom_doors_items', JSON.stringify(customDoors));
 }
 
 function openMaterialDetails(title, directImg = '') {
@@ -1936,6 +1870,9 @@ function openMaterialDetails(title, directImg = '') {
   if (selectedBrand && catalogData.paint.items[selectedBrand]) {
     foundItem = catalogData.paint.items[selectedBrand].find(i => i.title === title);
   }
+  if (!foundItem && currentCatTab === 'doors' && selectedBrand && catalogData.doors.items[selectedBrand]) {
+    foundItem = catalogData.doors.items[selectedBrand].find(i => i.title === title);
+  }
   if (!foundItem) {
     for (let cat in catalogData) {
       if (Array.isArray(catalogData[cat])) {
@@ -1943,6 +1880,11 @@ function openMaterialDetails(title, directImg = '') {
       } else if (cat === 'paint') {
         for (let b in catalogData.paint.items) {
           let m = catalogData.paint.items[b].find(i => i.title === title);
+          if (m) foundItem = m;
+        }
+      } else if (cat === 'doors') {
+        for (let b in catalogData.doors.items) {
+          let m = catalogData.doors.items[b].find(i => i.title === title);
           if (m) foundItem = m;
         }
       }
@@ -2027,6 +1969,13 @@ function deleteItem(title) {
       deleted = true;
     }
   }
+  if (!deleted && selectedBrand && catalogData.doors.items[selectedBrand]) {
+    let index = catalogData.doors.items[selectedBrand].findIndex(i => i.title === title);
+    if (index !== -1) {
+      catalogData.doors.items[selectedBrand].splice(index, 1);
+      deleted = true;
+    }
+  }
 
   if (!deleted) {
     for (let cat in catalogData) {
@@ -2041,6 +1990,14 @@ function deleteItem(title) {
           let index = catalogData.paint.items[b].findIndex(i => i.title === title);
           if (index !== -1) {
             catalogData.paint.items[b].splice(index, 1);
+            deleted = true;
+          }
+        }
+      } else if (cat === 'doors') {
+        for (let b in catalogData.doors.items) {
+          let index = catalogData.doors.items[b].findIndex(i => i.title === title);
+          if (index !== -1) {
+            catalogData.doors.items[b].splice(index, 1);
             deleted = true;
           }
         }
@@ -2070,6 +2027,15 @@ function saveItemDetails(title) {
       found = true;
     }
   }
+  if (!found && selectedBrand && catalogData.doors.items[selectedBrand]) {
+    let item = catalogData.doors.items[selectedBrand].find(i => i.title === title);
+    if (item) {
+      item.details = newDetails;
+      item.purpose = newPurpose;
+      item.origin = newOrigin;
+      found = true;
+    }
+  }
   if (!found) {
     for (let cat in catalogData) {
       if (Array.isArray(catalogData[cat])) {
@@ -2082,6 +2048,15 @@ function saveItemDetails(title) {
       } else if (cat === 'paint') {
         for (let b in catalogData.paint.items) {
           let item = catalogData.paint.items[b].find(i => i.title === title);
+          if (item) {
+            item.details = newDetails;
+            item.purpose = newPurpose;
+            item.origin = newOrigin;
+          }
+        }
+      } else if (cat === 'doors') {
+        for (let b in catalogData.doors.items) {
+          let item = catalogData.doors.items[b].find(i => i.title === title);
           if (item) {
             item.details = newDetails;
             item.purpose = newPurpose;
@@ -2108,8 +2083,8 @@ function backToCatalogGrid() {
     window.catalogPreviousContent = null;
     const adminPanel = document.getElementById('adminAddPanel');
     const adminDoorPanel = document.getElementById('adminDoorAddPanel');
-    if(adminPanel && selectedBrand) adminPanel.style.display = 'block';
-    if(adminDoorPanel && currentCatTab === 'doors') adminDoorPanel.style.display = 'block';
+    if(adminPanel && selectedBrand && currentCatTab === 'paint') adminPanel.style.display = 'block';
+    if(adminDoorPanel && selectedBrand && currentCatTab === 'doors') adminDoorPanel.style.display = 'block';
   } else {
     renderCatalogContent(currentCatTab);
   }
@@ -2125,6 +2100,18 @@ function backToBrands() {
   selectedBrand = null;
   window.catalogPreviousContent = null;
   renderCatalogContent('paint');
+}
+
+function openDoorBrand(brandId) {
+  selectedBrand = brandId;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('doors');
+}
+
+function backToDoorBrands() {
+  selectedBrand = null;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('doors');
 }
 
 document.getElementById('catalogClose').addEventListener('click', closeCatalogModal);
