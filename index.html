@@ -2047,13 +2047,13 @@ function renderCatalogContent(catId) {
       }
       grid.innerHTML = html;
     }
-  } else if (catId === 'parquet') {
+ } else if (catId === 'parquet') {
     if (!selectedBrand) {
       const brands = catalogData.parquet.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openParquetBrand('${b.id}')" style="cursor:pointer;">
           <div class="brand-logo-container">
-            <span style="font-family: var(--font-display); font-size:18px; color:var(--brass); text-align:center;">${b.name}</span>
+            ${b.logo ? `<img src="${fixPath(b.logo)}" class="brand-logo-img" style="transform: scale(${b.scale || 1});" alt="${b.name}">` : `<span style="font-family: var(--font-display); font-size:18px; color:var(--brass); text-align:center;">${b.name}</span>`}
           </div>
           <div class="cat-item-info">
             <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
