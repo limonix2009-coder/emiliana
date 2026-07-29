@@ -842,7 +842,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
 
       <div class="contact-side reveal">
         <div class="info-block"><div class="lbl" data-i18n="contact_address_label">Şourum ünvanı</div><div class="val" id="valAddress">Xətai pr, 142 Khatai Ave, Baku 1008</div></div>
-        <div class="info-block"><div class="lbl" data-i18n="contact_hours_label">İş saatları</div><div class="val" data-i18n="contact_hours_value">B.e.–Bazar, 09:00–19:00</div></div>
+        <div class="info-block"><div class="lbl" data-i18n="contact_hours_label">İş saatları</div><div class="val" data-i18n="contact_hours_value">B.e.–Şənbə, 10:00–19:00</div></div>
         <div class="info-block"><div class="lbl" data-i18n="contact_phone_label">Telefon</div><div class="val" id="valPhone">0556744404</div></div>
         <div class="info-block"><div class="lbl" data-i18n="contact_email_label">E-poçt</div><div class="val" id="valEmail">efendiyevnihad1@gmail.com</div></div>
         <div class="map-frame">
@@ -1295,7 +1295,8 @@ const catalogData = {
   parquet: {
     brands: [
       { id: 'everbright_herringbone', name: 'EVERBRIGHT Herringbone', logo: '', scale: 1.0, desc: 'Klassik İngilis yolka (Herringbone) parket sistemləri' },
-      { id: 'everbright_chevron', name: 'EVERBRIGHT Chevron', logo: '', scale: 1.0, desc: 'Zərif Fransız yolka (Chevron) parket sistemləri' }
+      { id: 'everbright_chevron', name: 'EVERBRIGHT Chevron', logo: '', scale: 1.0, desc: 'Zərif Fransız yolka (Chevron) parket sistemləri' },
+      { id: 'everbright_razbejka', name: 'EVERBRIGHT Razbejka', logo: '', scale: 1.0, desc: 'Düz düzülüşlü (Razbejka) premium parket sistemləri (15x150x1900mm)' }
     ],
     items: {
       everbright_herringbone: [
@@ -1303,7 +1304,9 @@ const catalogData = {
         { title: "Walnut Natural (RX001)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Kod: RX001 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
         { title: "Camel (EBE 090)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Kod: EBE 090 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
         { title: "Windsor (EBE 008)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Kod: EBE 008 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
-        { title: "North Carolina (RYB 010)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Kod: RYB 010 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" }
+        { title: "North Carolina (RYB 010)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Kod: RYB 010 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
+        { title: "Vaasa", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Vaasa rəng kodu | Selection: CD | Ölçü: 125x600x15 (4)", purpose: "İngilis yolka parket", origin: "Everbright" },
+        { title: "Manta", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "", details: "Manta rəng kodu | Selection: CD | Ölçü: 125x600x15 (4)", purpose: "İngilis yolka parket", origin: "Everbright" }
       ],
       everbright_chevron: [
         { title: "Gao (BXAS007)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "", details: "Kod: BXAS007 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 180 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" },
@@ -1311,6 +1314,13 @@ const catalogData = {
         { title: "Camel (EBE 090)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "", details: "Kod: EBE 090 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 140 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" },
         { title: "Windsor (EBE 008)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "", details: "Kod: EBE 008 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 140 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" },
         { title: "North Carolina (RYB 010)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "", details: "Kod: RYB 010 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 140 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" }
+      ],
+      everbright_razbejka: [
+        { title: "Gao", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "", details: "Model: Razbejka | Rəng: Gao | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Manta", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "", details: "Model: Razbejka | Rəng: Manta | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Tirana", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "", details: "Model: Razbejka | Rəng: Tirana | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Washington", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "", details: "Model: Razbejka | Rəng: Washington | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Irland", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "", details: "Model: Razbejka | Rəng: Irland | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" }
       ]
     }
   }
@@ -2202,7 +2212,6 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
     pill.style.transform = `translateX(${activeLangBtn.offsetLeft - 3}px)`;
   }
   
-  // Установка начального языка и перевод карточек при старте
   changeLanguage('az');
 })();
 </script> 
