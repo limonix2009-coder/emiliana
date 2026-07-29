@@ -1468,7 +1468,7 @@ function renderProducts(){
         <div class="p-peel"></div>
         <div class="p-body">
           <span class="p-index">${p.index}</span>
-          <h3 data-i18n="${p.titleKey}">${p.title}</h3>
+          <h3 data-i18n="${p.titleKey}"></h3>
           <p>${p.desc}</p>
           <div class="p-link"><span>${p.cta}</span>${arrowSVG}</div>
         </div>
@@ -2201,6 +2201,9 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
     pill.style.width = activeLangBtn.offsetWidth + 'px';
     pill.style.transform = `translateX(${activeLangBtn.offsetLeft - 3}px)`;
   }
+  
+  // Установка начального языка и перевод карточек при старте
+  changeLanguage('az');
 })();
 </script> 
 </body>
