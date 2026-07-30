@@ -2092,18 +2092,13 @@ function renderCatalogContent(catId) {
         </div>
       `;
       
+      // Карточка теперь содержит только картинку и кнопку увеличения на весь блок
       html += items.map((item) => `
-        <div class="cat-item-card">
-          <div class="cat-item-img-container" onclick="openWallpaperZoom('${item.img}', '${item.title}')" style="cursor: zoom-in;" title="Şəkilə baxmaq üçün klikləyin">
-            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+        <div class="cat-item-card" style="background: transparent; border: none; box-shadow: none;">
+          <div class="cat-item-img-container" onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" style="cursor: zoom-in; height: 320px; border-radius: 8px; border: 1px solid var(--stone-line);" title="Şəkilə baxmaq üçün klikləyin">
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="Divar kağızı">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
           </div>
-          <div class="cat-item-info">
-            <div>
-              <div class="cat-item-title">${item.title}</div>
-              <div class="cat-item-desc">${item.desc}</div>
-            </div>
-            <button onclick="openWallpaperZoom('${item.img}', '${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Şəkili yaxınlaşdır</button>
-          </div>
+          <button onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%; margin-top: 10px;">Şəkili yaxınlaşdır</button>
         </div>
       `).join('');
       grid.innerHTML = html;
