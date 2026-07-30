@@ -682,7 +682,7 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
     <div class="about-copy">
       <p class="eyebrow" data-i18n="about_eyebrow">HAQQIMIZDA</p>
       <h2 class="reveal" data-i18n="about_headline">Təxminən iyirmi illik düzgün seçim.</h2>
-      <p class="reveal" data-i18n="about_p1">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divar kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
+      <p class="reveal" data-i18n="about_p1">Emiliana Parati 2006-cı ildən divar kağızlarının satışı üzrə fəaliyyət göstərir. Uzun illərdir sektora yön verən yeni kolleksiyalar və keyfiyyətli interyer məhsullarının satışı sahəsində peşəkar xidmət göstəririk. Mağazada İtaliya, Rusiya, Finlandiya, İsveçrə,Türkiyə və Almaniya brendlərinə aid divار kağızları, boyalar, pərdələr, qapılar, parket, laminat, molding və digər interyer aksesuarları təqdim olunur.</p>
       <p class="reveal" data-i18n="about_p2">Məhsullarımız müasir dizayn və uzunömürlülük prinsiplərinə uyğun seçilir və müştərilərə ən yaxşı keyfiyyət və geniş çeşid təqdim etmək məqsədi daşıyır. Emiliana Parati, müştəri məmnuniyyətini ön planda tutaraq, interyer dizaynında yenilikçi və estetik həllərlə fərqlənir.</p>
       <blockquote class="about-quote reveal" data-i18n="about_quote">"Keyfiyyətli materiallar diqqəti cəlb etməyə çalışmır — onlar zamanla daha da gözəlləşir."</blockquote>
       <div class="about-stats reveal-stagger">
@@ -1454,7 +1454,7 @@ const catalogData = {
         {
           title: "Decorazza Finitura",
           desc: "Dekorativ səthlər üçün son tamamlayıcı və qoruyucu lak-örtük.",
-          img: "https://decorazza.ru/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
+          img: "https://decorazza.ru/upload/delight.webpconverter/upload/iblock/cbe/t3zrjkv0kpu52h3rk43capms4omicb9b.png",
           details: "Divar örtüklərinin ömrünü uzadan, mexaniki təsirlərə və nəmə qarşı davamlılığı təmin edən yüksək keyfiyyətli son qat qoruyucu material.",
           purpose: "Son tamamlayıcı qoruyucu qat",
           origin: "Rusiya"
@@ -1678,7 +1678,7 @@ const catalogData = {
           desc: "Qabıq böcəyi (koroed) effektli, klassik teksturalı fasad suvağı.",
           img: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/otdelochnye-materialy/1365289/560x504/51199904.jpg",
           details: "Tətbiq zamanı xarakterik cizgili və zərif naxışlar yaradan, fasadlara xüsusi estetik görünüş bəxş edən akril əsaslı suvaq.",
-          purpose: "Xarici fasadlar və divar bəzəyi",
+          purpose: "Xarici fasadlar və divار bəzəyi",
           origin: "Rusiya"
         }
       ]
@@ -1688,23 +1688,32 @@ const catalogData = {
     brands: [
       { id: 'erismann', name: 'Erismann', logo: 'https://lider-vrn.ru/upload/iblock/f43/y4z4k9avmk72ceb5xdv26nffswgek927.png', scale: 1.0, desc: 'Almaniya istehsalı premium divar kağızları' }
     ],
-    items: {
+    // Структура брендов -> Коллекции -> Обои внутри коллекции
+    collections: {
       erismann: [
         {
-          title: "Benefit Линда | 60905-02",
-          desc: "Almaniya istehsalı divar kağızı",
-          img: "uploads/erismann1.png",
-          details: "Kolleksiya: Benefit Линда | Art: 60905-02",
-          purpose: "Divar kağızı",
-          origin: "Almaniya"
-        },
-        {
-          title: "Benefit Линда | 60905-03",
-          desc: "Almaniya istehsalı divar kağızı",
-          img: "uploads/erismann2.png",
-          details: "Kolleksiya: Benefit Линда | Art: 60905-03",
-          purpose: "Divar kağızı",
-          origin: "Almaniya"
+          id: 'benefit_linda',
+          title: 'Benefit Линда',
+          desc: 'Almaniya istehsalı zərif divar kağızı kolleksiyası',
+          img: 'uploads/erismann1.png',
+          items: [
+            {
+              title: "Benefit Линда | 60905-02",
+              desc: "Almaniya istehsalı divar kağızı",
+              img: "uploads/erismann1.png",
+              details: "Kolleksiya: Benefit Линда | Art: 60905-02",
+              purpose: "Divar kağızı",
+              origin: "Almaniya"
+            },
+            {
+              title: "Benefit Линда | 60905-03",
+              desc: "Almaniya istehsalı divar kağızı",
+              img: "uploads/erismann2.png",
+              details: "Kolleksiya: Benefit Линда | Art: 60905-03",
+              purpose: "Divar kağızı",
+              origin: "Almaniya"
+            }
+          ]
         }
       ]
     }
@@ -1811,6 +1820,7 @@ let currentFilter = 'all';
 let revIndex = 0;
 let revTimer;
 let selectedBrand = null; 
+let selectedCollection = null; 
 
 async function fetchJSON(path){
   try{
@@ -1953,6 +1963,7 @@ function closeCatalogModal() {
 function switchCatalogCategory(catId) {
   currentCatTab = catId;
   selectedBrand = null;
+  selectedCollection = null;
   window.catalogPreviousContent = null;
   document.querySelectorAll('.catalog-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.cat === catId);
@@ -2018,6 +2029,7 @@ function renderCatalogContent(catId) {
     }
   } else if (catId === 'wallpaper') {
     if (!selectedBrand) {
+      // Шаг 1: Вывод брендов обоев
       const brands = catalogData.wallpaper.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openWallpaperBrand('${b.id}')" style="cursor:pointer;">
@@ -2026,18 +2038,51 @@ function renderCatalogContent(catId) {
           </div>
           <div class="cat-item-info">
             <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
-            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyalara bax &rarr;</div>
           </div>
         </div>
       `).join('');
-    } else {
+    } else if (!selectedCollection) {
+      // Шаг 2: Вывод коллекций выбранного бренда
       const brandObj = catalogData.wallpaper.brands.find(b => b.id === selectedBrand);
-      const items = catalogData.wallpaper.items[selectedBrand] || [];
+      const collections = catalogData.wallpaper.collections[selectedBrand] || [];
       
       let html = `
         <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
           <button onclick="backToWallpaperBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
-          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} kataloqu</h3>
+          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} kolleksiyaları</h3>
+        </div>
+      `;
+      
+      if (collections.length === 0) {
+        html += '<p style="grid-column: 1/-1; color: var(--ink-soft);">Bu brend üzrə hələ kolleksiya yoxdur.</p>';
+      } else {
+        html += collections.map(col => `
+          <div class="cat-item-card" onclick="openWallpaperCollection('${col.id}')" style="cursor:pointer;">
+            <div class="cat-item-img-container">
+              ${col.img ? `<img src="${fixPath(col.img)}" class="cat-item-img" alt="${col.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+            </div>
+            <div class="cat-item-info">
+              <div>
+                <div class="cat-item-title">${col.title}</div>
+                <div class="cat-item-desc">${col.desc}</div>
+              </div>
+              <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+            </div>
+          </div>
+        `).join('');
+      }
+      grid.innerHTML = html;
+    } else {
+      // Шаг 3: Вывод обоев внутри выбранной коллекции
+      const collections = catalogData.wallpaper.collections[selectedBrand] || [];
+      const colObj = collections.find(c => c.id === selectedCollection);
+      const items = colObj ? colObj.items : [];
+      
+      let html = `
+        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+          <button onclick="backToWallpaperCollections()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Kolleksiyalara qayıt</button>
+          <h3 style="font-size: 20px;">${colObj ? colObj.title : ''}</h3>
         </div>
       `;
       
@@ -2172,13 +2217,25 @@ function renderCatalogContent(catId) {
 
 function openWallpaperBrand(brandId) {
   selectedBrand = brandId;
+  selectedCollection = null;
   window.catalogPreviousContent = null;
   renderCatalogContent('wallpaper');
 }
 
 function backToWallpaperBrands() {
   selectedBrand = null;
+  selectedCollection = null;
   window.catalogPreviousContent = null;
+  renderCatalogContent('wallpaper');
+}
+
+function openWallpaperCollection(colId) {
+  selectedCollection = colId;
+  renderCatalogContent('wallpaper');
+}
+
+function backToWallpaperCollections() {
+  selectedCollection = null;
   renderCatalogContent('wallpaper');
 }
 
@@ -2195,7 +2252,7 @@ function openWallpaperZoom(imgSrc, title) {
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1; text-align: center;">
-      <button onclick="backToWallpaperGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer; float: left;">&larr; Kataloqa qayıt</button>
+      <button onclick="backToWallpaperGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer; float: left;">&larr; Kolleksiyaya qayıt</button>
       <div style="clear: both;"></div>
       
       <div style="background: var(--cream-card); padding: 20px; border-radius: 8px; border: 1px solid var(--stone-line); display: inline-block; max-width: 100%;">
