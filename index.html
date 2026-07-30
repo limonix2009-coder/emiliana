@@ -2067,7 +2067,7 @@ function renderCatalogContent(catId) {
       }
       grid.innerHTML = html;
     }
-  } else if (catId === 'wallpaper') {
+ } else if (catId === 'wallpaper') {
     if (!selectedBrand) {
       const brands = catalogData.wallpaper.brands;
       grid.innerHTML = brands.map(b => `
@@ -2092,13 +2092,17 @@ function renderCatalogContent(catId) {
         </div>
       `;
       
-      // Карточка теперь содержит только картинку и кнопку увеличения на весь блок
+      // Карточка с картинкой, ценой 50 AZN и кнопкой увеличения
       html += items.map((item) => `
-        <div class="cat-item-card" style="background: transparent; border: none; box-shadow: none;">
-          <div class="cat-item-img-container" onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" style="cursor: zoom-in; height: 320px; border-radius: 8px; border: 1px solid var(--stone-line);" title="Şəkilə baxmaq üçün klikləyin">
-            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="Divar kağızı">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+        <div class="cat-item-card" style="background: var(--cream-card); border: 1px solid var(--stone-line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="cat-item-img-container" onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" style="cursor: zoom-in; height: 280px; border-radius: 6px; border: 1px solid var(--stone-line); background: var(--plaster);" title="Şəkilə baxmaq üçün klikləyin">
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="Divar kağızı" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
           </div>
-          <button onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%; margin-top: 10px;">Şəkili yaxınlaşdır</button>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin: 12px 0 4px;">
+            <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--brass);">Qiymət:</span>
+            <span style="font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink);">50 AZN</span>
+          </div>
+          <button onclick="openWallpaperZoom('${item.img}', 'Divar kağızı')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%; padding: 10px; background: var(--ink); color: var(--paper); border-radius: 4px; font-size: 12px; font-weight: 700; text-transform: uppercase;">Şəkili yaxınlaşdır</button>
         </div>
       `).join('');
       grid.innerHTML = html;
