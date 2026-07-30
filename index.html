@@ -401,21 +401,20 @@ section{ position:relative; }
 .cat-item-card:hover .brand-logo-img { transform: scale(1.08); }
 
 .cat-item-img-container {
- width: 100%;
-  height: 240px; /* Фиксированная высота для всех карточек */
+  width: 100%;
+  height: 240px;
   background: var(--plaster);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   border-bottom: 1px solid var(--stone-line);
-  overflow: hidden; /* Скрываем всё, что вылазит за рамки */
+  overflow: hidden;
 }
 .cat-item-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Картинка заполнит блок, сохраняя пропорции (обрежет лишнее) */
-  /* Или используйте object-fit: contain; если хотите, чтобы картинка целиком помещалась без обрезки */
+  object-fit: cover;
   border-radius: 4px;
 }
 
@@ -616,7 +615,6 @@ footer{ background: var(--ink); color: var(--paper); padding: 84px 0 0; }
       <a href="#contact" data-i18n="nav_contact">Əlaqə</a>
     </nav>
     <div class="nav-right">
-      <!-- Переключатель языков (чистый интерфейс без Google Translate) -->
       <div class="lang-switch" role="group" aria-label="Language">
         <span class="pill" id="langPill"></span>
         <button type="button" data-lang="az" class="active">AZ</button>
@@ -1684,10 +1682,9 @@ const catalogData = {
           origin: "Rusiya"
         }
       ]
-
     }
   },
- wallpaper: {
+  wallpaper: {
     brands: [
       { id: 'erismann', name: 'Erismann', logo: 'https://lider-vrn.ru/upload/iblock/f43/y4z4k9avmk72ceb5xdv26nffswgek927.png', scale: 1.0, desc: 'Almaniya istehsalı premium divar kağızları' }
     ],
@@ -1709,12 +1706,12 @@ const catalogData = {
           purpose: "Divar kağızı",
           origin: "Almaniya"
         }
-      ],
+      ]
     }
   },
   doors: {
     brands: [
-      { id: 'perfectoporte', name: 'Perfecto Porte', logo: 'uploads/perfecto.jpg', scale: 1.0, desc: 'İtalyan dizaynlı premium interyer qapıları' },
+      { id: 'perfectoporte', name: 'Perfecto Porte', logo: 'uploads/perfecto.jpg', scale: 1.0, desc: 'İtalyan dizaynlı premium interyer qapıları' }
     ],
     items: {
       perfectoporte: [
@@ -1734,8 +1731,7 @@ const catalogData = {
         { title: "SIENA", desc: "Теплая цветовая гамма светлых, кремовых, графитовых и кофейных оттенков коллекции SIENA, станет существенным вкладом в формирование действительно комфортного пространства.", img: "https://dp.okeandveri.ru/upload/img/product/parametr/perfectoporte/68a5e1afec67b.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
         { title: "TOSCANA", desc: "Вдохновленная теплом Тосканы и итальянским стилем жизни, одноименная коллекция TOSCANA задаст настроение жилому пространству, став идеальным убежищем от городской суеты.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/toscana/doors/Doors_ts01/ts01_Laccato_Bianco.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" },
         { title: "STATUS", desc: "Коллекция STATUS для тех, кто ценит престиж и комфорт. Каждая деталь намекает на богатую историю создания и эстетическую уникальность этой коллекции.", img: "https://dp.okeandveri.ru/upload/product/perfecto/models/status/doors/Doors_st01/st01_Laccato_Lino.png", details: "Yüksək keyfiyyətli materialdan hazırlanmış interyer qapı seriyası.", purpose: "Otaq qapısı", origin: "Türkiyə / Avropa" }
-      ],
-
+      ]
     }
   },
   parquet: {
@@ -2020,7 +2016,48 @@ function renderCatalogContent(catId) {
       }
       grid.innerHTML = html;
     }
- } else if (catId === 'doors') {
+  } else if (catId === 'wallpaper') {
+    if (!selectedBrand) {
+      const brands = catalogData.wallpaper.brands;
+      grid.innerHTML = brands.map(b => `
+        <div class="cat-item-card" onclick="openWallpaperBrand('${b.id}')" style="cursor:pointer;">
+          <div class="brand-logo-container">
+            ${b.logo ? `<img src="${fixPath(b.logo)}" class="brand-logo-img" style="transform: scale(${b.scale || 1});" alt="${b.name}">` : `<span style="font-family: var(--font-display); font-size:22px; color:var(--brass); text-align:center;">${b.name}</span>`}
+          </div>
+          <div class="cat-item-info">
+            <div class="cat-item-desc" style="text-align:center; margin-top: 6px;">${b.desc}</div>
+            <div class="cat-item-btn" style="margin-top:14px;">Kolleksiyaya bax &rarr;</div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      const brandObj = catalogData.wallpaper.brands.find(b => b.id === selectedBrand);
+      const items = catalogData.wallpaper.items[selectedBrand] || [];
+      
+      let html = `
+        <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+          <button onclick="backToWallpaperBrands()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; cursor:pointer;">&larr; Bütün brendlər</button>
+          <h3 style="font-size: 20px;">${brandObj ? brandObj.name : ''} kataloqu</h3>
+        </div>
+      `;
+      
+      html += items.map((item) => `
+        <div class="cat-item-card">
+          <div class="cat-item-img-container" onclick="openWallpaperZoom('${item.img}', '${item.title}')" style="cursor: zoom-in;" title="Şəkilə baxmaq üçün klikləyin">
+            ${item.img ? `<img src="${fixPath(item.img)}" class="cat-item-img" alt="${item.title}">` : '<div style="color:var(--stone); font-size:12px;">Şəkil yoxdur</div>'}
+          </div>
+          <div class="cat-item-info">
+            <div>
+              <div class="cat-item-title">${item.title}</div>
+              <div class="cat-item-desc">${item.desc}</div>
+            </div>
+            <button onclick="openWallpaperZoom('${item.img}', '${item.title}')" class="cat-item-btn" style="cursor:pointer; border:none; width:100%;">Şəkili yaxınlaşdır</button>
+          </div>
+        </div>
+      `).join('');
+      grid.innerHTML = html;
+    }
+  } else if (catId === 'doors') {
     if (!selectedBrand) {
       const brands = catalogData.doors.brands;
       grid.innerHTML = brands.map(b => `
@@ -2069,7 +2106,7 @@ function renderCatalogContent(catId) {
       }
       grid.innerHTML = html;
     }
- } else if (catId === 'parquet') {
+  } else if (catId === 'parquet') {
     if (!selectedBrand) {
       const brands = catalogData.parquet.brands;
       grid.innerHTML = brands.map(b => `
@@ -2130,6 +2167,50 @@ function renderCatalogContent(catId) {
         </div>
       </div>
     `).join('');
+  }
+}
+
+function openWallpaperBrand(brandId) {
+  selectedBrand = brandId;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('wallpaper');
+}
+
+function backToWallpaperBrands() {
+  selectedBrand = null;
+  window.catalogPreviousContent = null;
+  renderCatalogContent('wallpaper');
+}
+
+function openWallpaperZoom(imgSrc, title) {
+  if (!imgSrc) return;
+  const grid = document.getElementById('catalogGridInner');
+  
+  if (!window.catalogPreviousContent) {
+    window.catalogPreviousContent = grid.innerHTML;
+    window.catalogPreviousTitle = document.getElementById('catalogTitle').textContent;
+  }
+
+  document.getElementById('catalogTitle').textContent = title;
+
+  grid.innerHTML = `
+    <div style="grid-column: 1/-1; text-align: center;">
+      <button onclick="backToWallpaperGrid()" class="btn btn-ghost" style="padding: 6px 14px; font-size: 12px; margin-bottom: 20px; cursor:pointer; float: left;">&larr; Kataloqa qayıt</button>
+      <div style="clear: both;"></div>
+      
+      <div style="background: var(--cream-card); padding: 20px; border-radius: 8px; border: 1px solid var(--stone-line); display: inline-block; max-width: 100%;">
+        <img src="${fixPath(imgSrc)}" style="max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" alt="${title}">
+        <h3 style="margin-top: 16px; font-size: 20px; font-family: var(--font-display);">${title}</h3>
+      </div>
+    </div>
+  `;
+}
+
+function backToWallpaperGrid() {
+  if (window.catalogPreviousContent) {
+    document.getElementById('catalogGridInner').innerHTML = window.catalogPreviousContent;
+    document.getElementById('catalogTitle').textContent = window.catalogPreviousTitle;
+    window.catalogPreviousContent = null;
   }
 }
 
