@@ -2069,7 +2069,7 @@ function renderCatalogContent(catId) {
     }
 } else if (catId === 'wallpaper') {
     if (!selectedBrand) {
-      // Шаг 1: Показываем бренды обоев (Erismann и др.)
+      // Шаг 1: Показываем бренды обоев
       const brands = catalogData.wallpaper.brands;
       grid.innerHTML = brands.map(b => `
         <div class="cat-item-card" onclick="openWallpaperBrand('${b.id}')" style="cursor:pointer;">
@@ -2083,7 +2083,7 @@ function renderCatalogContent(catId) {
         </div>
       `).join('');
     } else if (!window.selectedWallpaperCollection) {
-      // Шаг 2: Выбран бренд (Erismann), теперь показываем список коллекций
+      // Шаг 2: Выбран бренд, показываем список коллекций
       let brandObj = catalogData.wallpaper.brands.find(b => b.id === selectedBrand);
       
       let html = `
@@ -2093,7 +2093,6 @@ function renderCatalogContent(catId) {
         </div>
       `;
 
-      // Список доступных коллекций для Erismann
       const collections = [
         { id: 'linda', name: 'Benefit Линда', desc: 'Zərif bitki motivləri və teksturalı fonlar', img: 'uploads/erismann1.png' }
       ];
@@ -2113,7 +2112,7 @@ function renderCatalogContent(catId) {
 
       grid.innerHTML = html;
     } else {
-      // Шаг 3: Выбрана конкретная коллекция, показываем обои с ценами и характеристиками
+      // Шаг 3: Выбрана коллекция, показываем обои
       const items = catalogData.wallpaper.items[selectedBrand] || [];
       
       let html = `
@@ -2145,7 +2144,7 @@ function renderCatalogContent(catId) {
         </div>
       `).join('');
       grid.innerHTML = html;
-    }}
+    }
   } else if (catId === 'doors') {
     if (!selectedBrand) {
       const brands = catalogData.doors.brands;
