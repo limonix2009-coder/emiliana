@@ -653,8 +653,8 @@ footer .container{ position:relative; }
 <main id="main">
 <!-- ============================= HERO ============================= -->
 <section class="hero">
-  <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true" style="background-image:url('uploads/showroom-doors.png'); background-size:cover; background-position:center;">
-    <div class="slide" style="background-image:url('uploads/showroom-doors.png'); opacity:1;"></div>
+  <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true" style="background-image:url(''); background-size:cover; background-position:center;">
+    <div class="slide" style="background-image:url(''); opacity:1;"></div>
   </div>
   <div class="container hero-grid">
     <div class="hero-copy">
@@ -6641,7 +6641,7 @@ function renderHero(){
   const wrap = document.getElementById('heroSlideshow');
   if(!wrap) return;
   const slides = (data.hero.slides && data.hero.slides.length) ? data.hero.slides : [
-    'uploads/showroom-doors.jpg',
+    'uploads/showroom-doors.png',
     'uploads/showroom-wallpaper.jpg',
     'uploads/showroom-parquet.jpg',
     'uploads/showroom-paint.jpg'
