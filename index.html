@@ -441,25 +441,23 @@ section{ position:relative; }
 }
 .cat-item-btn:hover { background: var(--verde); }
 
-/* ============================= WHY US ============================= */
-.why-wrap{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap:40px; align-items:flex-end; margin-bottom:48px; }
-.why-deck{ display:grid; grid-template-columns: repeat(5, 1fr); gap:16px; }
-.why-chip{
+/* ============================= NEWS ============================= */
+.news-wrap{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap:40px; align-items:flex-end; margin-bottom:48px; }
+.news-deck{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+.news-card{
   background: var(--cream-card); border-radius: 4px; padding: 30px 22px; min-height: 250px;
   display:flex; flex-direction:column; justify-content:space-between;
   border-top: 3px solid var(--stone);
   transition: transform .45s var(--ease), border-color .45s ease, background .45s ease;
 }
-.why-chip:hover{ transform: translateY(-8px); background: var(--ink); color: var(--paper); }
-.why-chip:hover h3, .why-chip:hover p{ color: var(--paper); }
-.why-chip:nth-child(1){ border-color: var(--verde); }
-.why-chip:nth-child(2){ border-color: var(--brass); }
-.why-chip:nth-child(3){ border-color: var(--terra); }
-.why-chip:nth-child(4){ border-color: var(--verde); }
-.why-chip:nth-child(5){ border-color: var(--brass); }
-.why-chip .mk{ font-family: var(--font-display); font-style:italic; font-size:15px; color: var(--brass); }
-.why-chip h3{ font-family: var(--font-display); font-size:21px; font-weight:500; margin:18px 0 10px; line-height:1.2; }
-.why-chip p{ font-size:13.5px; color: var(--ink-soft); line-height:1.55; }
+.news-card:hover{ transform: translateY(-8px); background: var(--ink); color: var(--paper); }
+.news-card:hover h3, .news-card:hover p{ color: var(--paper); }
+.news-card:nth-child(1){ border-color: var(--verde); }
+.news-card:nth-child(2){ border-color: var(--brass); }
+.news-card:nth-child(3){ border-color: var(--terra); }
+.news-card .mk{ font-family: var(--font-display); font-style:italic; font-size:15px; color: var(--brass); }
+.news-card h3{ font-family: var(--font-display); font-size:21px; font-weight:500; margin:18px 0 10px; line-height:1.2; }
+.news-card p{ font-size:13.5px; color: var(--ink-soft); line-height:1.55; }
 
 /* ============================= BRANDS ============================= */
 .brands-head{ text-align:center; max-width:640px; margin:0 auto clamp(44px,6vw,70px); }
@@ -584,6 +582,10 @@ footer .container{ position:relative; }
 .footer-legal{ display:flex; gap:22px; }
 .footer-legal a{ font-size:12.5px; color: rgba(250,248,243,.5); transition: color .3s ease; }
 .footer-legal a:hover{ color: var(--paper); }
+.social-links{ display:flex; align-items:center; gap:10px; }
+.social-links a{ width:38px; height:38px; display:grid; place-items:center; border:1px solid rgba(250,248,243,.3); border-radius:50%; color:var(--paper); transition:background .25s ease, border-color .25s ease, transform .25s ease; }
+.social-links a:hover{ background:var(--brass); border-color:var(--brass); transform:translateY(-2px); }
+.social-links svg{ width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 
 /* ============================= RESPONSIVE ============================= */
 @media (max-width: 1024px){
@@ -591,8 +593,8 @@ footer .container{ position:relative; }
   .about-grid{ grid-template-columns:1fr; }
   .about-visual{ position:static; max-width:360px; }
   .products-grid{ grid-template-columns: repeat(2,1fr); }
-  .why-wrap{ grid-template-columns:1fr; }
-  .why-deck{ grid-template-columns: repeat(2, 1fr); }
+  .news-wrap{ grid-template-columns:1fr; }
+  .news-deck{ grid-template-columns: repeat(2, 1fr); }
   .brands-grid{ grid-template-columns: repeat(2,1fr); }
   .gallery-grid{ grid-template-columns: repeat(2,1fr); }
   .g-tile{ grid-column: span 1 !important; aspect-ratio:4/3 !important; }
@@ -610,7 +612,7 @@ footer .container{ position:relative; }
   .nav.menu-open .nav-cta{ display:inline-flex; position:fixed; left:32px; right:32px; bottom:36px; justify-content:center; z-index:60; }
   .hero{ min-height:520px; }
   .products-grid{ grid-template-columns:1fr; }
-  .why-deck{ grid-template-columns:1fr; }
+  .news-deck{ grid-template-columns:1fr; }
   .brands-grid{ grid-template-columns: 1fr 1fr; }
   .field-row{ grid-template-columns:1fr; }
   .footer-top{ grid-template-columns:1fr; }
@@ -630,7 +632,7 @@ footer .container{ position:relative; }
     <nav class="nav-links" aria-label="Primary">
       <a href="#about" data-i18n="nav_about">Haqqımızda</a>
       <a href="#products" data-i18n="nav_products">Məhsullar</a>
-      <a href="#why" data-i18n="nav_why">Niyə biz</a>
+      <a href="#news" data-i18n="nav_news">Yeniliklər</a>
       <a href="#brands" data-i18n="nav_brands">Brendlər</a>
       <a href="#gallery" data-i18n="nav_gallery">Qalereya</a>
       <a href="#reviews" data-i18n="nav_reviews">Rəylər</a>
@@ -732,38 +734,30 @@ footer .container{ position:relative; }
   </div>
 </section>
 
-<!-- ============================= WHY US ============================= -->
-<section id="why" class="section-pad">
+<!-- ============================= NEWS ============================= -->
+<section id="news" class="section-pad">
   <div class="container">
-    <div class="why-wrap">
+    <div class="news-wrap">
       <div class="reveal">
-        <p class="eyebrow" data-i18n="why_eyebrow">NİYƏ BİZ</p>
-        <h2 data-i18n="why_headline">Dizaynerlərin bizi ilk seçməsinin 5 səbəbi.</h2>
+        <p class="eyebrow" data-i18n="news_eyebrow">YENİLİKLƏR</p>
+        <h2 data-i18n="news_headline">Yeni kolleksiyalar və xüsusi təkliflər.</h2>
       </div>
-      <p class="lede reveal" data-i18n="why_sub">Bakının ən böyük tikinti mağazası deyilik — memarınızın telefonunda artıq saxladığı ünvanıq.</p>
+      <p class="lede reveal" data-i18n="news_sub">Yeni məhsullar, mövsümi endirimlər və showroomdan son xəbərləri burada paylaşırıq.</p>
     </div>
 
-    <div class="why-deck reveal-stagger">
-      <div class="why-chip">
+    <div class="news-deck reveal-stagger">
+      <article class="news-card">
         <span class="mk">01</span>
-        <div><h3 data-i18n="why1_title">Hər şey yox, seçilmiş</h3><p data-i18n="why1_desc">Hər məhsul sınaqdan keçirilir — artıq çeşid və təsadüfi seçim yoxdur.</p></div>
-      </div>
-      <div class="why-chip">
+        <div><h3 data-i18n="news1_title">Yeni kolleksiyalar</h3><p data-i18n="news1_desc">Divar kağızı, boya, qapı və parket üzrə yeni məhsulları ilk siz görün.</p></div>
+      </article>
+      <article class="news-card">
         <span class="mk">02</span>
-        <div><h3 data-i18n="why2_title">Öz rəng studiyamız</h3><p data-i18n="why2_desc">Məkanınızın işığına uyğun fərdi çalar seçimi və yerində nümunə rənglənməsi.</p></div>
-      </div>
-      <div class="why-chip">
+        <div><h3 data-i18n="news2_title">Xüsusi təkliflər</h3><p data-i18n="news2_desc">Mövsümi endirimlər, seçilmiş məhsullar və sərfəli təkliflər haqqında məlumat alın.</p></div>
+      </article>
+      <article class="news-card">
         <span class="mk">03</span>
-        <div><h3 data-i18n="why3_title">Bir komanda, dörd sənət</h3><p data-i18n="why3_desc">Boya, divar kağızı, qapı və parket birgə seçilir — örtüklər bir-biri ilə mükəmməl uzlaşır.</p></div>
-      </div>
-      <div class="why-chip">
-        <span class="mk">04</span>
-        <div><h3 data-i18n="why4_title">Ölçü xidməti daxildir</h3><p data-i18n="why4_desc">Sifarişdən əvvəl ölçürük — dəqiq miqdar və kəsim ilk dəfədən təmin olunur.</p></div>
-      </div>
-      <div class="why-chip">
-        <span class="mk">05</span>
-        <div><h3 data-i18n="why5_title">Etibarlı zəmanət</h3><p data-i18n="why5_desc">Birbaşa əlaqə — örtüklərin bütün istismar müddəti boyu dəstək.</p></div>
-      </div>
+        <div><h3 data-i18n="news3_title">Showroom xəbərləri</h3><p data-i18n="news3_desc">Təqdimatlar, tədbirlər və interyer dünyasından seçilən yeniliklər.</p></div>
+      </article>
     </div>
   </div>
 </section>
@@ -976,9 +970,17 @@ footer .container{ position:relative; }
     </div>
     <div class="footer-bottom">
       <p data-i18n="footer_copyright">© 2026 Interior Atelier Baku · Məkanlar üçün düşünülmüş seçimlər.</p>
-      <div class="footer-legal">
-        <a href="#" data-i18n="footer_privacy">Məxfilik</a>
-        <a href="#" data-i18n="footer_terms">Qaydalar</a>
+      <!-- Replace each # below with your social-media link. -->
+      <div class="social-links" aria-label="Social media">
+        <a href="#" data-social="instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" data-social="facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5c-.5-.1-1.8-.3-3.4-.3C10.3 4.2 8 6.2 8 10v3H5v4h3v7h4v-7h3.3l.7-4H12v-2.6c0-1.2.3-2.4 2-2.4Z"/></svg>
+        </a>
+        <a href="#" data-social="whatsapp" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3.5 20l1.2-4.1a8.5 8.5 0 1 1 15.8-4.4Z"/><path d="M9 7.8c.2-.5.4-.5.7-.5h.6c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4 0 .6l-.5.6c-.1.1-.2.2-.1.4.5.9 1.2 1.6 2.1 2.1.2.1.3.1.4 0l.7-.8c.2-.2.3-.2.6-.1l1.6.7c.2.1.4.2.4.4 0 .3-.1.8-.4 1.2-.3.4-1 .7-1.7.7-1 0-2.3-.5-3.9-1.9-1.2-1-2-2.3-2.3-3.1-.3-.8-.3-1.4-.1-1.9Z"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1251,6 +1253,43 @@ const translations = {
     "footer_terms": "Условия"
   }
 };
+
+Object.assign(translations.az, {
+  nav_news: 'Yeniliklər',
+  news_eyebrow: 'YENİLİKLƏR',
+  news_headline: 'Yeni kolleksiyalar və xüsusi təkliflər.',
+  news_sub: 'Yeni məhsullar, mövsümi endirimlər və showroomdan son xəbərləri burada paylaşırıq.',
+  news1_title: 'Yeni kolleksiyalar',
+  news1_desc: 'Divar kağızı, boya, qapı və parket üzrə yeni məhsulları ilk siz görün.',
+  news2_title: 'Xüsusi təkliflər',
+  news2_desc: 'Mövsümi endirimlər, seçilmiş məhsullar və sərfəli təkliflər haqqında məlumat alın.',
+  news3_title: 'Showroom xəbərləri',
+  news3_desc: 'Təqdimatlar, tədbirlər və interyer dünyasından seçilən yeniliklər.'
+});
+Object.assign(translations.en, {
+  nav_news: 'News',
+  news_eyebrow: 'NEWS',
+  news_headline: 'New collections and special offers.',
+  news_sub: 'Find new products, seasonal promotions and the latest news from our showroom here.',
+  news1_title: 'New collections',
+  news1_desc: 'Be the first to see new wallpaper, paint, door and parquet collections.',
+  news2_title: 'Special offers',
+  news2_desc: 'Learn about seasonal promotions, selected products and attractive offers.',
+  news3_title: 'Showroom news',
+  news3_desc: 'Presentations, events and selected updates from the world of interiors.'
+});
+Object.assign(translations.ru, {
+  nav_news: 'Новости',
+  news_eyebrow: 'НОВОСТИ',
+  news_headline: 'Новые коллекции и специальные предложения.',
+  news_sub: 'Здесь мы публикуем новинки, сезонные акции и последние новости шоурума.',
+  news1_title: 'Новые коллекции',
+  news1_desc: 'Первыми узнавайте о новых коллекциях обоев, красок, дверей и паркета.',
+  news2_title: 'Специальные предложения',
+  news2_desc: 'Получайте информацию о сезонных скидках, выбранных товарах и выгодных предложениях.',
+  news3_title: 'Новости шоурума',
+  news3_desc: 'Презентации, события и важные новости из мира интерьера.'
+});
 
 function changeLanguage(lang) {
   const dict = translations[lang];
@@ -5462,9 +5501,7 @@ let catalogData = {
   },
   parquet: {
     brands: [
-      { id: 'everbright_herringbone', name: 'EVERBRIGHT Herringbone', logo: 'https://images.squarespace-cdn.com/content/v1/6226c492850c176572d0b8af/077c0e86-c6c1-4acb-b7bc-aa3c1a19585f/LOGO%E9%87%91%E8%89%B2.png', scale: 1.0, desc: 'Klassik İngilis yolka (Herringbone) parket sistemləri' },
-      { id: 'everbright_chevron', name: 'EVERBRIGHT Chevron', logo: 'https://images.squarespace-cdn.com/content/v1/6226c492850c176572d0b8af/077c0e86-c6c1-4acb-b7bc-aa3c1a19585f/LOGO%E9%87%91%E8%89%B2.png', scale: 1.0, desc: 'Zərif Fransız yolka (Chevron) parket sistemləri' },
-      { id: 'everbright_razbejka', name: 'EVERBRIGHT Razbejka', logo: 'https://images.squarespace-cdn.com/content/v1/6226c492850c176572d0b8af/077c0e86-c6c1-4acb-b7bc-aa3c1a19585f/LOGO%E9%87%91%E8%89%B2.png', scale: 1.0, desc: 'Düz düzülüşlü (Razbejka) premium parket sistemləri (15x150x1900mm)' }
+      { id: 'everbright_herringbone', name: 'EVERBRIGHT', logo: 'https://images.squarespace-cdn.com/content/v1/6226c492850c176572d0b8af/077c0e86-c6c1-4acb-b7bc-aa3c1a19585f/LOGO%E9%87%91%E8%89%B2.png', scale: 1.0, desc: 'Premium parket kolleksiyaları' }
     ],
     items: {
       everbright_herringbone: [
