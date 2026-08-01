@@ -376,7 +376,6 @@ section{ position:relative; }
 .catalog-detail-fact-label { display:block; margin-bottom:7px; color:var(--brass); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
 .catalog-detail-fact-value { font-size:14px; font-weight:600; line-height:1.45; }
 .catalog-detail-back { margin-bottom:18px; }
-#adminAddPanel, #adminDoorAddPanel, #adminParquetAddPanel { display:none !important; }
 @media (max-width: 720px) { .catalog-detail { grid-template-columns:1fr; gap:20px; padding:16px; } .catalog-detail-media { min-height:300px; } .catalog-detail-facts { grid-template-columns:1fr; } }
 .catalog-close {
   position: absolute; top: 20px; right: 24px;
@@ -458,6 +457,22 @@ section{ position:relative; }
 .news-card .mk{ font-family: var(--font-display); font-style:italic; font-size:15px; color: var(--brass); }
 .news-card h3{ font-family: var(--font-display); font-size:21px; font-weight:500; margin:18px 0 10px; line-height:1.2; }
 .news-card p{ font-size:13.5px; color: var(--ink-soft); line-height:1.55; }
+.news-card{ cursor:pointer; }
+.updates-modal .catalog-content{ max-width:1180px; }
+.updates-modal.full-page .catalog-content{ max-width:1360px; height:90vh; }
+.updates-toolbar{ margin:18px 0 24px; }
+.updates-grid{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px; }
+.update-card{ background:var(--cream-card); border:1px solid var(--stone-line); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; min-height:300px; }
+.update-card img{ width:100%; height:170px; object-fit:cover; background:var(--plaster); }
+.update-card-body{ padding:18px; display:flex; flex:1; flex-direction:column; gap:10px; }
+.update-card h3{ font-family:var(--font-display); font-size:22px; line-height:1.15; }
+.update-card p{ font-size:14px; line-height:1.5; color:var(--ink-soft); }
+.update-card-actions{ margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; }
+.update-card-actions button{ border:1px solid var(--stone-line); background:var(--paper); color:var(--ink); padding:7px 10px; border-radius:3px; font:600 12px var(--font-body); cursor:pointer; }
+.update-card-actions button:hover{ border-color:var(--brass); }
+.admin-item-editor{ display:none; }
+.updates-empty{ grid-column:1/-1; padding:36px; text-align:center; color:var(--ink-soft); border:1px dashed var(--stone-line); }
+@media (max-width:720px){ .updates-grid{ grid-template-columns:1fr; } }
 
 /* ============================= BRANDS ============================= */
 .brands-head{ text-align:center; max-width:640px; margin:0 auto clamp(44px,6vw,70px); }
@@ -746,15 +761,15 @@ footer .container{ position:relative; }
     </div>
 
     <div class="news-deck reveal-stagger">
-      <article class="news-card">
+      <article class="news-card" role="button" tabindex="0" onclick="openUpdates('collections')" onkeydown="if(event.key==='Enter') openUpdates('collections')">
         <span class="mk">01</span>
         <div><h3 data-i18n="news1_title">Yeni kolleksiyalar</h3><p data-i18n="news1_desc">Divar kağızı, boya, qapı və parket üzrə yeni məhsulları ilk siz görün.</p></div>
       </article>
-      <article class="news-card">
+      <article class="news-card" role="button" tabindex="0" onclick="openUpdates('offers')" onkeydown="if(event.key==='Enter') openUpdates('offers')">
         <span class="mk">02</span>
         <div><h3 data-i18n="news2_title">Xüsusi təkliflər</h3><p data-i18n="news2_desc">Mövsümi endirimlər, seçilmiş məhsullar və sərfəli təkliflər haqqında məlumat alın.</p></div>
       </article>
-      <article class="news-card">
+      <article class="news-card" role="button" tabindex="0" onclick="openUpdates('news')" onkeydown="if(event.key==='Enter') openUpdates('news')">
         <span class="mk">03</span>
         <div><h3 data-i18n="news3_title">Showroom xəbərləri</h3><p data-i18n="news3_desc">Təqdimatlar, tədbirlər və interyer dünyasından seçilən yeniliklər.</p></div>
       </article>
@@ -889,40 +904,19 @@ footer .container{ position:relative; }
       <button class="catalog-tab" data-cat="parquet" data-catalog-i18n="category_parquet">Parket</button>
     </div>
 
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ КРАСОК -->
-    <div id="adminAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni məhsul / set əlavə et (Admin)</h4>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newPaintTitle" placeholder="Adı (məs: Decorazza Alcantara)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newPaintImg" placeholder="Şəkil yolu (məs: uploads/ foto.png)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <button onclick="addNewPaintItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
-      </div>
-    </div>
-
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ ДВЕРЕЙ -->
-    <div id="adminDoorAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni qapı modeli əlavə et (Admin)</h4>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newDoorTitle" placeholder="Model adı" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newDoorDesc" placeholder="Qısa təsvir" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newDoorImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-        <button onclick="addNewDoorItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
-      </div>
-    </div>
-
-    <!-- АДМИН-ПАНЕЛЬ ДОБАВЛЕНИЯ ПАРКЕТА -->
-    <div id="adminParquetAddPanel" style="background: var(--cream-card); padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--brass); display: none;">
-      <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--ink);">+ Yeni parket rəngi / modeli əlavə et (Admin)</h4>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-        <input type="text" id="newParquetTitle" placeholder="Rəng və Kod (məs: Gao - BXAS007)" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newParquetDesc" placeholder="Selection və Ölçü" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 13px;">
-        <input type="text" id="newParquetImg" placeholder="Şəkil yolu" style="background: var(--paper); border: 1px solid var(--stone-line); padding: 8px; border-radius: 4px; font-size: 13px;">
-        <button onclick="addNewParquetItem()" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; cursor:pointer;">Əlavə et</button>
-      </div>
-    </div>
-
     <div class="catalog-grid-inner" id="catalogGridInner"></div>
+  </div>
+</div>
+
+<!-- ============================= UPDATES / NEWS ============================= -->
+<div class="catalog-modal updates-modal" id="updatesModal" aria-hidden="true">
+  <div class="catalog-content">
+    <button class="catalog-close" type="button" onclick="closeUpdates()" aria-label="Close">&times;</button>
+    <div class="catalog-heading"><h2 id="updatesTitle" style="font-size:32px;font-weight:500;">Yeniliklər</h2></div>
+    <div class="updates-toolbar">
+      <p id="updatesIntro" class="lede" style="max-width:650px;">Yeni məhsullar və xüsusi təkliflər.</p>
+    </div>
+    <div class="updates-grid" id="updatesGrid"></div>
   </div>
 </div>
 
@@ -5531,6 +5525,95 @@ let catalogData = {
   }
 }
 
+/* Featured collections, offers and showroom news.
+   Edit the arrays below directly to change the content. */
+const defaultUpdates = {
+  collections: [
+    { type: 'collection', brand: 'erismann', collectionIndex: 0 },
+    { type: 'collection', brand: 'erismann', collectionIndex: 1 },
+    { type: 'collection', brand: 'erismann', collectionIndex: 2 }
+  ],
+  offers: [
+    { type: 'product', category: 'paint', brand: 'decorazza', itemIndex: 0, label: 'Xüsusi təklif' },
+    { type: 'product', category: 'paint', brand: 'olsta', itemIndex: 0, label: 'Xüsusi təklif' },
+    { type: 'product', category: 'paint', brand: 'teknos', itemIndex: 0, label: 'Xüsusi təklif' },
+    { type: 'product', category: 'doors', brand: 'perfectoporte', itemIndex: 0, label: 'Xüsusi təklif' }
+  ],
+  news: [
+    { title: 'Teknos boyaları gəldi', text: 'Teknosun yeni boya məhsulları artıq showroomumuzdadır. Rəng və tətbiq üzrə məsləhət üçün bizimlə əlaqə saxlayın.', image: 'uploads/teknos.png', date: 'Yeni' }
+  ]
+};
+const updatesData = defaultUpdates;
+let activeUpdatesType = 'collections';
+
+function updateCopy(type) {
+  return {
+    collections: { title: 'Yeni kolleksiyalar', intro: 'Yeni divar kağızı kolleksiyaları. Kartı seçərək əsas kataloqda kolleksiyaya baxın.' },
+    offers: { title: 'Xüsusi təkliflər', intro: 'Seçilmiş boyalar və qapı modeli. Kartı seçərək məhsulun tam məlumatını açın.' },
+    news: { title: 'Showroom xəbərləri', intro: 'Yeni məhsullar, çatdırılmalar, tədbirlər və digər xəbərlər.' }
+  }[type];
+}
+function getUpdateCard(entry, type) {
+  if (entry.type === 'collection') {
+    const collection = ((catalogData.wallpaper.collections[entry.brand] || [])[entry.collectionIndex]);
+    if (!collection) return null;
+    return { title: collection.title, text: collection.desc || 'Divar kağızı kolleksiyası', image: collection.img || '', target: entry };
+  }
+  if (entry.type === 'product') {
+    const product = (((catalogData[entry.category] || {}).items || {})[entry.brand] || [])[entry.itemIndex];
+    if (!product) return null;
+    return { title: product.title, text: product.desc || 'Xüsusi təklif', image: product.img || '', target: entry, label: entry.label };
+  }
+  return entry;
+}
+function openUpdates(type) {
+  activeUpdatesType = type;
+  const copy = updateCopy(type);
+  document.getElementById('updatesTitle').textContent = copy.title;
+  document.getElementById('updatesIntro').textContent = copy.intro;
+  document.getElementById('updatesModal').classList.toggle('full-page', type === 'news');
+  document.getElementById('updatesModal').classList.add('open');
+  document.getElementById('updatesModal').setAttribute('aria-hidden', 'false');
+  renderUpdates();
+}
+function closeUpdates() {
+  const modal = document.getElementById('updatesModal');
+  modal.classList.remove('open', 'full-page');
+  modal.setAttribute('aria-hidden', 'true');
+}
+function renderUpdates() {
+  const grid = document.getElementById('updatesGrid');
+  const entries = updatesData[activeUpdatesType] || [];
+  const cards = entries.map(getUpdateCard).filter(Boolean);
+  if (!cards.length) { grid.innerHTML = '<div class="updates-empty">Hələ heç bir məlumat əlavə edilməyib.</div>'; return; }
+  grid.innerHTML = cards.map((card, index) => `
+    <article class="update-card">
+      ${card.image ? `<img src="${escapeHtml(fixPath(card.image))}" alt="${escapeHtml(card.title)}">` : ''}
+      <div class="update-card-body">
+        ${card.label || card.date ? `<span class="mk">${escapeHtml(card.label || card.date)}</span>` : ''}
+        <h3>${escapeHtml(card.title)}</h3>
+        <p>${escapeHtml(card.text)}</p>
+        <div class="update-card-actions">
+          ${card.target ? `<button type="button" onclick="openUpdateTarget(${index})">Ətraflı bax</button>` : ''}
+        </div>
+      </div>
+    </article>`).join('');
+}
+function openUpdateTarget(index) {
+  const entry = (updatesData[activeUpdatesType] || [])[index];
+  if (!entry) return;
+  closeUpdates();
+  if (entry.type === 'collection') {
+    openCatalogModal('wallpaper');
+    selectedBrand = entry.brand;
+    selectedCollection = (catalogData.wallpaper.collections[entry.brand] || [])[entry.collectionIndex]?.id;
+    renderCatalogContent('wallpaper');
+  } else if (entry.type === 'product') {
+    openCatalogModal(entry.category);
+    selectedBrand = entry.brand;
+    renderCatalogContent(entry.category);
+  }
+}
 function loadCustomItems() {
   let customPaint = localStorage.getItem('emiliana_custom_paint_items');
   if (customPaint) {
@@ -6429,7 +6512,7 @@ function openMaterialDetails(title, directImg = '') {
         <div>
           <h3 style="font-family: var(--font-display); font-size: 26px; margin-bottom: 16px; color: var(--ink);">${title}</h3>
           
-          <div style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
+          <div class="admin-item-editor" style="background: var(--paper); padding: 20px; border-radius: 6px; border: 1px dashed var(--brass); margin-bottom: 20px;">
             <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--brass); text-transform: uppercase; letter-spacing: .06em;">⚙️ Məhsulu idarə et (Admin)</h4>
             
             <div style="margin-bottom: 12px;">
