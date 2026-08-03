@@ -5689,6 +5689,28 @@ function loadCustomItems() {
 }
 loadCustomItems();
 
+// Uniform catalogue facts requested for the product cards and detail views.
+function applyCatalogueOrigins() {
+  const removeErismannPrice = (item) => {
+    item.origin = 'Rusiya';
+    item.desc = String(item.desc || '').replace(/\s*\|\s*Qiymət:\s*50\s*AZN/gi, '');
+    item.details = String(item.details || '').replace(/\s*(?:\\n|\n)?Qiymət:\s*50\s*AZN/gi, '');
+    delete item.price;
+  };
+
+  const erismannCollections = (((catalogData.wallpaper || {}).collections || {}).erismann || []);
+  erismannCollections.forEach(collection => (collection.items || []).forEach(removeErismannPrice));
+
+  Object.values(((catalogData.doors || {}).items || {})).forEach(items => {
+    (items || []).forEach(item => { item.origin = 'Rusiya'; });
+  });
+
+  Object.values(((catalogData.parquet || {}).items || {})).forEach(items => {
+    (items || []).forEach(item => { item.origin = '\u00c7in'; });
+  });
+}
+applyCatalogueOrigins();
+
 // Keep catalogue labels readable when the visitor switches languages. Product
 // names, brands, collections and article numbers deliberately remain original.
 const catalogDataSource = catalogData;
@@ -5777,7 +5799,7 @@ const catalogRuTerms = [
   ['Ölçü:', 'Размер:'], ['Sahə:', 'Площадь:'], ['Kod:', 'Код:'], ['Rəng:', 'Цвет:'],
   ['Model:', 'Модель:'], ['Thickness:', 'Толщина:'], ['Wear layer:', 'Рабочий слой:'],
   ['Dimensions:', 'Размеры:'], ['Selection:', 'Селекция:'], ['Divar kağızı', 'Обои'],
-  ['Flizelin', 'Флизелин'], ['İtaliya', 'Италия'], ['Rusiya', 'Россия'],
+  ['Flizelin', 'Флизелин'], ['İtaliya', 'Италия'], ['Rusiya', 'Россия'], ['\u00c7in', '\u041a\u0438\u0442\u0430\u0439'],
   ['Türkiyə', 'Турция'], ['Almaniya', 'Германия'], ['Fransız yolka parket', 'Французская ёлка'],
   ['İngilis yolka parket', 'Английская ёлка'], ['Düz düzülüşlü (Razbejka) parket', 'Паркет прямой укладки (разбежка)']
 ];
@@ -5790,7 +5812,7 @@ function localizeCatalogText(value) {
     ['Kolleksiyalara bax', 'View collections'], ['Kolleksiyaya bax', 'View collection'], ['Bütün brendlər', 'All brands'],
     ['Ətraflı öyrən', 'Learn more'], ['Kolleksiya:', 'Collection:'], ['İstehsal:', 'Made in:'], ['Material:', 'Material:'],
     ['Ölçü:', 'Size:'], ['Sahə:', 'Area:'], ['Kod:', 'Code:'], ['Rəng:', 'Colour:'], ['Model:', 'Model:'],
-    ['Divar kağızı', 'Wallpaper'], ['İtaliya', 'Italy'], ['Rusiya', 'Russia'], ['Türkiyə', 'Turkey'], ['Almaniya', 'Germany']
+    ['Divar kağızı', 'Wallpaper'], ['İtaliya', 'Italy'], ['Rusiya', 'Russia'], ['\u00c7in', 'China'], ['Türkiyə', 'Turkey'], ['Almaniya', 'Germany']
   ];
   return terms.reduce((text, [from, to]) => text.split(from).join(to), value);
 }
