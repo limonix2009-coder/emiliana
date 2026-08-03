@@ -906,7 +906,7 @@ footer .container{ position:relative; }
             <iframe id="mapFrame" src="https://maps.google.com/maps?q=Xetai%20pr%2C%20142%20Khatai%20Ave%2C%20Baku%201008&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Emiliana Parati showroom location"></iframe>
           </div>
           <figure class="showroom-photo">
-            <img src="uploads/showroom-doors.png" alt="Emiliana Parati showroom" loading="lazy">
+            <img src="uploads/about-image.jpg" alt="Emiliana Parati showroom" loading="lazy">
           </figure>
         </div>
       </div>
@@ -5541,7 +5541,7 @@ let catalogData = {
         { title: "Windsor (EBE 008)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "uploads/Windsor en.jpeg", details: "Kod: EBE 008 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
         { title: "North Carolina (RYB 010)", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "uploads/North Carolina en.png", details: "Kod: RYB 010 | Selection: CD | Ölçü: 125x600x15 (4) | Sahə: 260 kv.m", purpose: "İngilis yolka parket", origin: "Everbright" },
         { title: "Vaasa", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "uploads/Vaasa.png", details: "Vaasa rəng kodu | Selection: CD | Ölçü: 125x600x15 (4)", purpose: "İngilis yolka parket", origin: "Everbright" },
-        { title: "Manta", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "uploads/Manta.png", details: "Manta rəng kodu | Selection: CD | Ölçü: 125x600x15 (4)", purpose: "İngilis yolka parket", origin: "Everbright" }
+        { title: "Manta", desc: "Selection: CD | Ölçü: 125x600x15 (4)", img: "uploads/manta-herringbone.svg", details: "Manta rəng kodu | Selection: CD | Ölçü: 125x600x15 (4)", purpose: "İngilis yolka parket", origin: "Everbright" }
       ],
       everbright_chevron: [
         { title: "Gao (BXAS007)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "uploads/Gao fr.jpeg", details: "Kod: BXAS007 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 180 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" },
@@ -5551,8 +5551,8 @@ let catalogData = {
         { title: "North Carolina (RYB 010)", desc: "Selection: CD | Ölçü: 125x780x15 (4)", img: "uploads/North Carolina fr.png", details: "Kod: RYB 010 | Selection: CD | Ölçü: 125x780x15 (4) | Sahə: 140 kv.m", purpose: "Fransız yolka parket", origin: "Everbright" }
       ],
       everbright_razbejka: [
-        { title: "Gao", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/Gao.png", details: "Model: Razbejka | Rəng: Gao | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
-        { title: "Manta", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/Manta.png", details: "Model: Razbejka | Rəng: Manta | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Gao", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/gao-razbejka.svg", details: "Model: Razbejka | Rəng: Gao | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
+        { title: "Manta", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/manta-razbejka.svg", details: "Model: Razbejka | Rəng: Manta | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
         { title: "Tirana", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/Tirana.png", details: "Model: Razbejka | Rəng: Tirana | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
         { title: "Washington", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/Washington.png", details: "Model: Razbejka | Rəng: Washington | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" },
         { title: "Ireland", desc: "Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", img: "uploads/Ireland.png", details: "Model: Razbejka | Rəng: Irland | Thickness: 15mm | Wear layer: 4mm | Dimensions: 150x1900mm", purpose: "Düz düzülüşlü (Razbejka) parket", origin: "Everbright" }
@@ -6203,7 +6203,7 @@ function renderCatalogContent(catId) {
               <div class="cat-item-desc">${item.desc}</div>
             </div>
             <div style="display: flex; gap: 8px; margin-top: auto;">
-              <button onclick="openCatalogItemDetails('parquet', '${selectedBrand}', '', ${index})" class="cat-item-btn" style="cursor:pointer; border:none; flex:1; margin-top:0;">Ətraflı öyrən</button>
+              <button onclick="openCatalogItemDetails('parquet', '${selectedBrand}', '${selectedCollection}', ${index})" class="cat-item-btn" style="cursor:pointer; border:none; flex:1; margin-top:0;">Ətraflı öyrən</button>
             </div>
           </div>
         </div>
