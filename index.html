@@ -82,6 +82,15 @@ body{
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+#main{ display:flex; flex-direction:column; }
+#main > .hero{ order:1; }
+#products{ order:2; }
+#about{ order:3; }
+#news{ order:4; }
+#brands{ order:5; }
+#gallery{ order:6; }
+#reviews{ order:7; }
+#contact{ order:8; }
 .container{
   width:100%;
   max-width: var(--container);
@@ -189,6 +198,7 @@ section{ position:relative; }
 .nav.scrolled .logo-img{ width:250px; height:250px; }
 
 .nav-links{ display:flex; align-items:center; gap:34px; }
+.nav-links a[href="#products"]{ order:-1; }
 .nav-links a{
   font-size:14px; font-weight:600; position:relative; padding:4px 0; color:var(--ink-soft);
   transition: color .25s ease;
