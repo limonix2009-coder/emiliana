@@ -5583,10 +5583,10 @@ let catalogData = {
    Edit the arrays below directly to change the content. */
 const defaultUpdates = {
   collections: [
-    { type: 'brand', category: 'paint', brand: 'Teknos'}
+    { type: 'brand', category: 'paint', brand: 'teknos'}
   ],
   offers: [
-    { type: 'brand', category: 'Wallpaper', brand: 'Emiliana Parati'}
+    { type: 'brand', category: 'wallpaper', brand: 'emiliana parati'}
   ],
   news: [
     { title: 'Teknos boyaları artıq mağazamızdadır!', text: 'Teknosun yeni boya məhsulları artıq showroomumuzdadır. Rəng və tətbiq üzrə məsləhət üçün bizimlə əlaqə saxlayın.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4EF2ld5m0sdqdlRKSU1IJQ2AV3g3DFRwcevUBWDUTvm7dWdb4zGjvw4A&s=10', date: 'Yeni' }
@@ -5633,7 +5633,37 @@ function closeUpdates() {
 function renderUpdates() {
   const grid = document.getElementById('updatesGrid');
   const entries = updatesData[activeUpdatesType] || [];
-  const cards = entries.map(getUpdateCard).filter(Boolean);
+  const cards = [];
+
+entries.forEach(entry => {
+
+    if (entry.type === "brand") {
+
+        const products =
+            catalogData[entry.category].items[entry.brand] || [];
+
+        products.forEach(product => {
+            cards.push({
+                title: product.title,
+                text: product.desc,
+                image: product.img,
+                target: {
+                    type: "product",
+                    category: entry.category,
+                    brand: entry.brand
+                }
+            });
+        });
+
+    } else {
+
+        const card = getUpdateCard(entry);
+
+        if (card) cards.push(card);
+
+    }
+
+});
   if (!cards.length) { grid.innerHTML = '<div class="updates-empty">Hələ heç bir məlumat əlavə edilməyib.</div>'; return; }
   grid.innerHTML = cards.map((card, index) => `
     <article class="update-card">
