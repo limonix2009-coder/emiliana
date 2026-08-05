@@ -6979,10 +6979,39 @@ document.getElementById('revPrev').addEventListener('click', ()=> goToSlide(revI
 document.getElementById('revNext').addEventListener('click', ()=> goToSlide(revIndex+1));
 document.querySelector('.reviews-band').addEventListener('mouseleave', resetRevTimer);
 
-document.getElementById('contactForm').addEventListener('submit', function(e){
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby99svliuV-tb6Q0f6wzMhPDnqIvhP3Mx7Gb49hvriNGFK_NNUWO4plG03aNjJ63wYW/exec";
+
+document.getElementById('contactForm').addEventListener('submit', async function(e){
   e.preventDefault();
-  document.getElementById('formSuccess').classList.add('show');
-  this.reset();
+
+  const inputs = this.querySelectorAll("input");
+  const select = this.querySelector("select");
+  const textarea = this.querySelector("textarea");
+
+  const data = {
+    name: inputs[0].value,
+    phone: inputs[1].value,
+    email: inputs[2].value,
+    interest: select.value,
+    message: textarea.value
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: JSON.stringify(data)
+    });
+
+    document.getElementById('formSuccess').classList.add('show');
+    this.reset();
+
+  } catch (err) {
+    alert("Ошибка отправки.");
+    console.error(err);
+  }
 });
 document.getElementById('newsletterForm').addEventListener('submit', function(e){
   e.preventDefault();
