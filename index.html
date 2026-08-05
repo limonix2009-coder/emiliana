@@ -5602,19 +5602,38 @@ function updateCopy(type) {
     news: { title: 'Showroom xəbərləri', intro: 'Yeni məhsullar, çatdırılmalar, tədbirlər və digər xəbərlər.' }
   }[type];
 }
-function getUpdateCard(entry, type) {
+function getUpdateCard(entry) {
+
+  // Одна коллекция (старый вариант)
   if (entry.type === 'collection') {
     const collection = ((catalogData.wallpaper.collections[entry.brand] || [])[entry.collectionIndex]);
     if (!collection) return null;
-    return { title: collection.title, text: collection.desc || 'Divar kağızı kolleksiyası', image: collection.img || '', target: entry };
+
+    return {
+      title: collection.title,
+      text: collection.desc || 'Divar kağızı kolleksiyası',
+      image: collection.img || '',
+      target: entry
+    };
   }
+
+  // Один товар (старый вариант)
   if (entry.type === 'product') {
     const product = (((catalogData[entry.category] || {}).items || {})[entry.brand] || [])[entry.itemIndex];
     if (!product) return null;
-    return { title: product.title, text: product.desc || 'Xüsusi təklif', image: product.img || '', target: entry, label: entry.label };
+
+    return {
+      title: product.title,
+      text: product.desc || 'Xüsusi təklif',
+      image: product.img || '',
+      target: entry,
+      label: entry.label
+    };
   }
-  return entry;
+
+  return null;
 }
+  
 function openUpdates(type) {
   activeUpdatesType = type;
   const copy = updateCopy(type);
@@ -5637,31 +5656,61 @@ function renderUpdates() {
 
 entries.forEach(entry => {
 
+    // ===== Все коллекции бренда =====
+    if (entry.type === "collectionBrand") {
+
+        const collections =
+            catalogData.wallpaper.collections[entry.brand] || [];
+
+        collections.forEach((collection, index) => {
+
+            cards.push({
+                title: collection.title,
+                text: collection.desc || "Divar kağızı kolleksiyası",
+                image: collection.img || "",
+                target: {
+                    type: "collection",
+                    brand: entry.brand,
+                    collectionIndex: index
+                }
+            });
+
+        });
+
+        return;
+    }
+
+    // ===== Все товары бренда =====
     if (entry.type === "brand") {
 
         const products =
-            catalogData[entry.category].items[entry.brand] || [];
+            (((catalogData[entry.category] || {}).items || {})[entry.brand]) || [];
 
-        products.forEach(product => {
+        products.forEach((product, index) => {
+
             cards.push({
                 title: product.title,
-                text: product.desc,
-                image: product.img,
+                text: product.desc || "Xüsusi təklif",
+                image: product.img || "",
+                label: entry.label,
                 target: {
                     type: "product",
                     category: entry.category,
-                    brand: entry.brand
+                    brand: entry.brand,
+                    itemIndex: index
                 }
             });
+
         });
 
-    } else {
-
-        const card = getUpdateCard(entry);
-
-        if (card) cards.push(card);
-
+        return;
     }
+
+    // Старые записи
+    const card = getUpdateCard(entry);
+
+    if (card)
+        cards.push(card);
 
 });
   if (!cards.length) { grid.innerHTML = '<div class="updates-empty">Hələ heç bir məlumat əlavə edilməyib.</div>'; return; }
