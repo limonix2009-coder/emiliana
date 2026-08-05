@@ -5583,15 +5583,10 @@ let catalogData = {
    Edit the arrays below directly to change the content. */
 const defaultUpdates = {
   collections: [
-    { type: 'collection', brand: 'erismann', collectionIndex: 0 },
-    { type: 'collection', brand: 'erismann', collectionIndex: 1 },
-    { type: 'collection', brand: 'erismann', collectionIndex: 2 }
+    { type: 'brand', category: 'paint', brand: 'teknos' }
   ],
   offers: [
-    { type: 'product', category: 'paint', brand: 'decorazza', itemIndex: 0, label: 'Xüsusi təklif' },
-    { type: 'product', category: 'paint', brand: 'olsta', itemIndex: 0, label: 'Xüsusi təklif' },
-    { type: 'product', category: 'paint', brand: 'teknos', itemIndex: 0, label: 'Xüsusi təklif' },
-    { type: 'product', category: 'doors', brand: 'perfectoporte', itemIndex: 0, label: 'Xüsusi təklif' }
+    { type: 'brand', category: 'wallpaper', brand: 'emiliana_parati', label: 'Xüsusi təklif' }
   ],
   news: [
     { title: 'Teknos boyaları gəldi', text: 'Teknosun yeni boya məhsulları artıq showroomumuzdadır. Rəng və tətbiq üzrə məsləhət üçün bizimlə əlaqə saxlayın.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4EF2ld5m0sdqdlRKSU1IJQ2AV3g3DFRwcevUBWDUTvm7dWdb4zGjvw4A&s=10', date: 'Yeni' }
@@ -5608,6 +5603,12 @@ function updateCopy(type) {
   }[type];
 }
 function getUpdateCard(entry, type) {
+  if (entry.type === 'brand') {
+    const catalogue = catalogData[entry.category] || {};
+    const brand = (catalogue.brands || []).find(item => item.id === entry.brand);
+    if (!brand) return null;
+    return { title: brand.name, text: brand.desc || '', image: brand.logo || '', target: entry, label: entry.label };
+  }
   if (entry.type === 'collection') {
     const collection = ((catalogData.wallpaper.collections[entry.brand] || [])[entry.collectionIndex]);
     if (!collection) return null;
@@ -5662,9 +5663,10 @@ function openUpdateTarget(index) {
     selectedBrand = entry.brand;
     selectedCollection = (catalogData.wallpaper.collections[entry.brand] || [])[entry.collectionIndex]?.id;
     renderCatalogContent('wallpaper');
-  } else if (entry.type === 'product') {
+  } else if (entry.type === 'product' || entry.type === 'brand') {
     openCatalogModal(entry.category);
     selectedBrand = entry.brand;
+    selectedCollection = null;
     renderCatalogContent(entry.category);
   }
 }
