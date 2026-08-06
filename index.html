@@ -5579,6 +5579,20 @@ let catalogData = {
   }
 }
 
+// Remove the old fixed price from every Erismann wallpaper item.
+(((catalogData.wallpaper || {}).collections || {}).erismann || []).forEach(collection => {
+  (collection.items || []).forEach(item => {
+    item.desc = String(item.desc || '').replace(/\s*\|\s*Qiymət:\s*50\s*AZN/gi, '');
+    item.details = String(item.details || '').replace(/(?:\\n|\n)\s*Qiymət:\s*50\s*AZN/gi, '');
+    delete item.price;
+  });
+});
+
+// Show the parquet collection name as requested in the detail card.
+(((catalogData.parquet || {}).collections || {}).everbright_herringbone || []).forEach(collection => {
+  if (collection.id === 'everbright_razbejka') collection.title = 'Razbejka';
+});
+
 /* Featured collections, offers and showroom news.
    Edit the arrays below directly to change the content. */
 const defaultUpdates = {
